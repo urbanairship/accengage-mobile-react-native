@@ -21,9 +21,8 @@ public class RNAccModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public String getMsg() {
-    android.util.Log.d("AccModule", "getMsg!!!!");
-    return "My RNAcc module";
+  public void getMsg() {
+    android.util.Log.d("AccModule", "getMsg from Acc!!!!");
   }
 
 }
