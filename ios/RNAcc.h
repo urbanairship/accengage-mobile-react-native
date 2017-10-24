@@ -5,6 +5,8 @@
 #import <React/RCTBridgeModule.h>
 #endif
 
+#import <Accengage/Accengage.h>
+
 @interface RNAcc : NSObject <RCTBridgeModule>
 
 @end
