@@ -10,6 +10,7 @@
 		0B75B9E31F9E3BBF00773A9A /* Accengage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B75B9E21F9E3BBF00773A9A /* Accengage.framework */; };
 		0B75BADC1F9E407200773A9A /* RNAccTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BADB1F9E407200773A9A /* RNAccTracking.m */; };
 		0B75BE051F9F6E7000773A9A /* RNAccStaticLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BE041F9F6E7000773A9A /* RNAccStaticLists.m */; };
+		0B9C91A81FA215AD00BF8283 /* RNAccControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C91A71FA215AD00BF8283 /* RNAccControl.m */; };
 		B3E7B58A1CC2AC0600A0062D /* RNAcc.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNAcc.m */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,8 @@
 		0B75BADB1F9E407200773A9A /* RNAccTracking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccTracking.m; sourceTree = "<group>"; };
 		0B75BE031F9F6E7000773A9A /* RNAccStaticLists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccStaticLists.h; sourceTree = "<group>"; };
 		0B75BE041F9F6E7000773A9A /* RNAccStaticLists.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccStaticLists.m; sourceTree = "<group>"; };
+		0B9C91A61FA215AD00BF8283 /* RNAccControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccControl.h; sourceTree = "<group>"; };
+		0B9C91A71FA215AD00BF8283 /* RNAccControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccControl.m; sourceTree = "<group>"; };
 		134814201AA4EA6300B7C361 /* libRNAcc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNAcc.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E7B5881CC2AC0600A0062D /* RNAcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAcc.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNAcc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAcc.m; sourceTree = "<group>"; };
@@ -62,6 +65,8 @@
 				0B75B9E21F9E3BBF00773A9A /* Accengage.framework */,
 				B3E7B5881CC2AC0600A0062D /* RNAcc.h */,
 				B3E7B5891CC2AC0600A0062D /* RNAcc.m */,
+				0B9C91A61FA215AD00BF8283 /* RNAccControl.h */,
+				0B9C91A71FA215AD00BF8283 /* RNAccControl.m */,
 				0B75BADA1F9E407200773A9A /* RNAccTracking.h */,
 				0B75BADB1F9E407200773A9A /* RNAccTracking.m */,
 				0B75BE031F9F6E7000773A9A /* RNAccStaticLists.h */,
@@ -127,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B75BADC1F9E407200773A9A /* RNAccTracking.m in Sources */,
+				0B9C91A81FA215AD00BF8283 /* RNAccControl.m in Sources */,
 				0B75BE051F9F6E7000773A9A /* RNAccStaticLists.m in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RNAcc.m in Sources */,
 			);
