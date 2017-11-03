@@ -13,7 +13,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         minSdkVersion 16
@@ -32,7 +32,7 @@ repositories {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    compile 'com.ad4screen.sdk:A4SSDK:3.6.2'
+    compile 'com.ad4screen.sdk:A4SSDK:3.6.3'
     compile('com.ad4screen.sdk:plugin-play-services:3.1.2')
 }
   
