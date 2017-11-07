@@ -70,15 +70,31 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
                 }
                 inAppMap.putMap("displayParams", displayParamsMap);
                 inAppMap.putMap("customParams", customParamsMap);
+
+                Callback callback;
+                synchronized (RNAccInAppModule.this) {
+                    callback = mSuccessCallback;
+                    mSuccessCallback = null;
+                }
                 try {
-                    mSuccessCallback.invoke(inAppMap);
+                    callback.invoke(inAppMap);
                 } catch (IllegalViewOperationException e) {
                     mErrorCallback.invoke(e.getMessage());
                 }
+                // Clean setInAppReadyCallback, react native can't reuse callbacks
+                A4S.get(mReactContext).setInAppReadyCallback(false, null);
             }
+
             @Override
             public void onError(int error, String errorMessage) {
-                mErrorCallback.invoke(errorMessage);
+                Callback callback;
+                synchronized (RNAccInAppModule.this) {
+                    callback = mErrorCallback;
+                    mErrorCallback = null;
+                }
+                callback.invoke(errorMessage);
+                // Clean setInAppReadyCallback, react native can't reuse callbacks
+                A4S.get(mReactContext).setInAppReadyCallback(false, null);
             }
         });
     }

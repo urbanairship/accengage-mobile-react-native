@@ -15,7 +15,7 @@
   "author": "Accengage",
   "license": "ISC",
   "peerDependencies": {
-    "react-native": "^0.49.3"
+    "react-native": "^0.49.5"
   },
   "dependencies": {
     "react-native": "^0.49.5"
