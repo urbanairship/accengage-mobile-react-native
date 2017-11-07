@@ -1,4 +1,4 @@
-package com.reactlibrary.analytics;
+package com.reactlibrary.inapp;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
@@ -9,11 +9,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class RNAccTrackingPackage implements ReactPackage {
+public class RNAccInAppPackage implements ReactPackage {
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.<NativeModule>asList(new RNAccTrackingModule(reactContext));
+        return Arrays.<NativeModule>asList(new RNAccInAppModule(reactContext));
     }
 
     @Override
