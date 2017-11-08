@@ -19,8 +19,10 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
 
     private static final String TAG = "AccInApp";
 
-    private Callback mReadySuccessCallback;
-    private Callback mDisplayedSuccessCallback;
+    private Callback mReadyCallback;
+    private Callback mDisplayedCallback;
+    private Callback mClickedCallback;
+    private Callback mClosedCallback;
 
     private final ReactApplicationContext mReactContext;
 
@@ -37,10 +39,10 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void setInAppReadyCallback(Callback callback) {
         synchronized (this) {
-            if (mReadySuccessCallback != null) {
+            if (mReadyCallback != null) {
                 Log.w(TAG, "Success Ready Callback for InApp messages is replaced by a new one");
             }
-            mReadySuccessCallback = callback;
+            mReadyCallback = callback;
         }
         A4S.get(mReactContext).setInAppReadyCallback(false, new com.ad4screen.sdk.A4S.Callback<InApp>() {
             @Override
@@ -49,8 +51,8 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
 
                 Callback callback;
                 synchronized (RNAccInAppModule.this) {
-                    callback = mReadySuccessCallback;
-                    mReadySuccessCallback = null;
+                    callback = mReadyCallback;
+                    mReadyCallback = null;
                 }
                 try {
                     callback.invoke(inAppMap);
@@ -73,10 +75,10 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void setInAppDisplayedCallback(Callback callback) {
         synchronized (this) {
-            if (mDisplayedSuccessCallback != null) {
-                Log.w(TAG, "Success Inflated Callback for InApp messages is replaced by a new one");
+            if (mDisplayedCallback != null) {
+                Log.w(TAG, "Success Displayed Callback for InApp messages is replaced by a new one");
             }
-            mDisplayedSuccessCallback = callback;
+            mDisplayedCallback = callback;
 
             A4S.get(mReactContext).setInAppDisplayedCallback(new A4S.Callback<InApp>() {
                 @Override
@@ -84,13 +86,13 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
                     WritableMap inAppMap = convertToInAppMap(inapp);
                     Callback callback;
                     synchronized (RNAccInAppModule.this) {
-                        callback = mDisplayedSuccessCallback;
-                        mDisplayedSuccessCallback = null;
+                        callback = mDisplayedCallback;
+                        mDisplayedCallback = null;
                     }
                     try {
                         callback.invoke(inAppMap);
                     } catch (IllegalViewOperationException e) {
-                        Log.e(TAG, "setInAppReadyCallback exception: " + e);
+                        Log.e(TAG, "setInAppDisplayedCallback exception: " + e);
                     }
                     // Clean setInAppDisplayedCallback, react native can't reuse callbacks
                     A4S.get(mReactContext).setInAppDisplayedCallback(null);
@@ -101,6 +103,84 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
                     Log.e(TAG, "setInAppDisplayedCallback error: " + error + ", message: " + errorMessage);
                     // Clean setInAppDisplayedCallback, react native can't reuse callbacks
                     A4S.get(mReactContext).setInAppDisplayedCallback(null);
+                }
+            });
+        }
+    }
+
+    @ReactMethod
+    public void setInAppClickedCallback(Callback callback) {
+        Log.i(TAG, "==================== setInAppClickedCallback ============================== ");
+        synchronized (this) {
+            if (mClickedCallback != null) {
+                Log.w(TAG, "Success Clicked Callback for InApp messages is replaced by a new one");
+            }
+            mClickedCallback = callback;
+
+            A4S.get(mReactContext).setInAppClickedCallback(new A4S.Callback<InApp>() {
+                @Override
+                public void onResult(InApp inapp) {
+                    Log.i(TAG, "==================== setInAppClickedCallback OK ============================== ");
+                    WritableMap inAppMap = convertToInAppMap(inapp);
+                    Callback callback;
+                    synchronized (RNAccInAppModule.this) {
+                        callback = mClickedCallback;
+                        mClickedCallback = null;
+                    }
+                    try {
+                        callback.invoke(inAppMap);
+                    } catch (IllegalViewOperationException e) {
+                        Log.e(TAG, "setInAppClickedCallback exception: " + e);
+                    }
+                    // Clean setInAppClosedCallback, react native can't reuse callbacks
+                    A4S.get(mReactContext).setInAppClickedCallback(null);
+                }
+
+                @Override
+                public void onError(int error, String errorMessage) {
+                    Log.i(TAG, "==================== setInAppClickedCallback ERR ============================== ");
+                    Log.e(TAG, "setInAppClickedCallback error: " + error + ", message: " + errorMessage);
+                    // Clean setInAppClosedCallback, react native can't reuse callbacks
+                    A4S.get(mReactContext).setInAppClickedCallback(null);
+                }
+            });
+        }
+    }
+
+    @ReactMethod
+    public void setInAppClosedCallback(Callback callback) {
+        Log.i(TAG, "==================== setInAppClosedCallback ============================== ");
+        synchronized (this) {
+            if (mClosedCallback != null) {
+                Log.w(TAG, "Success Closed Callback for InApp messages is replaced by a new one");
+            }
+            mClosedCallback = callback;
+
+            A4S.get(mReactContext).setInAppClosedCallback(new A4S.Callback<InApp>() {
+                @Override
+                public void onResult(InApp inapp) {
+                    Log.i(TAG, "==================== setInAppClosedCallback OK ============================== ");
+                    WritableMap inAppMap = convertToInAppMap(inapp);
+                    Callback callback;
+                    synchronized (RNAccInAppModule.this) {
+                        callback = mClosedCallback;
+                        mClosedCallback = null;
+                    }
+                    try {
+                        callback.invoke(inAppMap);
+                    } catch (IllegalViewOperationException e) {
+                        Log.e(TAG, "setInAppClosedCallback exception: " + e);
+                    }
+                    // Clean setInAppClosedCallback, react native can't reuse callbacks
+                    A4S.get(mReactContext).setInAppClosedCallback(null);
+                }
+
+                @Override
+                public void onError(int error, String errorMessage) {
+                    Log.i(TAG, "==================== setInAppClosedCallback ERR ============================== ");
+                    Log.e(TAG, "setInAppClosedCallback error: " + error + ", message: " + errorMessage);
+                    // Clean setInAppClosedCallback, react native can't reuse callbacks
+                    A4S.get(mReactContext).setInAppClosedCallback(null);
                 }
             });
         }
