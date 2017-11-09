@@ -70,4 +70,16 @@ RCT_EXPORT_MODULE()
     }
 }
 
+RCT_EXPORT_METHOD(setInAppDisplayEnabled:(BOOL)enabled)
+{
+    [BMA4SInAppNotification setNotificationLock:!enabled];
+}
+
+RCT_EXPORT_METHOD(isInAppDisplayEnabled:(RCTResponseSenderBlock)callback)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        callback(@[[NSNull null], @(! [BMA4SInAppNotification notificationLock])]);
+    });
+}
+
 @end
