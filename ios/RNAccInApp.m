@@ -9,12 +9,27 @@
 #import "RNAccInApp.h"
 
 @implementation RNAccInApp
+{
+    bool hasListeners;
+}
 
 RCT_EXPORT_MODULE()
 
 - (dispatch_queue_t)methodQueue
 {
     return dispatch_get_main_queue();
+}
+
+// Will be called when this module's first listener is added.
+-(void)startObserving {
+    hasListeners = YES;
+    // Set up any upstream listeners or background tasks as necessary
+}
+
+// Will be called when this module's last listener is removed, or on dealloc.
+-(void)stopObserving {
+    hasListeners = NO;
+    // Remove upstream listeners, stop unnecessary background tasks
 }
 
 - (NSArray<NSString *> *)supportedEvents
@@ -36,17 +51,23 @@ RCT_EXPORT_MODULE()
 
 - (void) onInAppNotifClicked:(NSNotification*) notif
 {
-    [self sendEventWithName:@"onInAppNotifClicked" body:@{@"customParams": notif.userInfo}];
+    if (hasListeners) {
+        [self sendEventWithName:@"onInAppNotifClicked" body:@{@"customParams": notif.userInfo}];
+    }
 }
 
 - (void) onInAppNotifDidAppear:(NSNotification*) notif
 {
-    [self sendEventWithName:@"onInAppNotifDidAppear" body:@{@"customParams": notif.userInfo}];
+    if (hasListeners) {
+        [self sendEventWithName:@"onInAppNotifDidAppear" body:@{@"customParams": notif.userInfo}];
+    }
 }
 
 - (void) onInAppNotifClosed:(NSNotification*) notif
 {
-    [self sendEventWithName:@"onInAppNotifClosed" body:@{@"customParams": notif.userInfo}];
+    if (hasListeners) {
+        [self sendEventWithName:@"onInAppNotifClosed" body:@{@"customParams": notif.userInfo}];
+    }
 }
 
 @end
