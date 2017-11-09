@@ -24,6 +24,8 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
     private Callback mClickedCallback;
     private Callback mClosedCallback;
 
+    private Boolean mIsEnabled;
+
     private final ReactApplicationContext mReactContext;
 
     public RNAccInAppModule(ReactApplicationContext reactContext) {
@@ -184,6 +186,19 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
                 }
             });
         }
+    }
+
+    @ReactMethod
+    public void setInAppDisplayEnabled(Boolean isEnabled) {
+        Log.i(TAG, "==================== setInAppDisplayEnabled ============================== ");
+        mIsEnabled = isEnabled;
+        A4S.get(mReactContext).setInAppDisplayLocked(isEnabled);
+    }
+
+    @ReactMethod
+    public Boolean isInAppDisplayEnabled() {
+        Log.i(TAG, "==================== isInAppDisplayEnabled ============================== ");
+        return mIsEnabled;
     }
 
     private WritableMap convertToInAppMap(InApp inapp) {
