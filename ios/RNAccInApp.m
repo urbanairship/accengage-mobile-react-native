@@ -52,21 +52,21 @@ RCT_EXPORT_MODULE()
 - (void) onInAppNotifClicked:(NSNotification*) notif
 {
     if (hasListeners) {
-        [self sendEventWithName:@"onInAppNotifClicked" body:@{@"customParams": notif.userInfo}];
+        [self sendEventWithName:@"onInAppNotifClicked" body:@{@"inApp": [self createJavasriptInAppObject:notif]}];
     }
 }
 
 - (void) onInAppNotifDidAppear:(NSNotification*) notif
 {
     if (hasListeners) {
-        [self sendEventWithName:@"onInAppNotifDidAppear" body:@{@"customParams": notif.userInfo}];
+        [self sendEventWithName:@"onInAppNotifDidAppear" body:@{@"inApp": [self createJavasriptInAppObject:notif]}];
     }
 }
 
 - (void) onInAppNotifClosed:(NSNotification*) notif
 {
     if (hasListeners) {
-        [self sendEventWithName:@"onInAppNotifClosed" body:@{@"customParams": notif.userInfo}];
+        [self sendEventWithName:@"onInAppNotifClosed" body:@{@"inApp": [self createJavasriptInAppObject:notif]}];
     }
 }
 
@@ -75,11 +75,20 @@ RCT_EXPORT_METHOD(setInAppDisplayEnabled:(BOOL)enabled)
     [BMA4SInAppNotification setNotificationLock:!enabled];
 }
 
-RCT_EXPORT_METHOD(isInAppDisplayEnabled:(RCTResponseSenderBlock)callback)
+RCT_REMAP_METHOD(isInAppDisplayEnabled, isInAppDisplayEnabledWithResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        callback(@[[NSNull null], @(! [BMA4SInAppNotification notificationLock])]);
-    });
+    resolve([NSNumber numberWithInt:![BMA4SInAppNotification notificationLock]]);
+}
+
+// Create readable inApp js object
+- (NSDictionary*) createJavasriptInAppObject:(NSNotification*)notif {
+    NSDictionary *inAppObject = @{
+                                 @"messageId" : @"",
+                                 @"displayTemplate" : @"",
+                                 @"displayParams" : @{},
+                                 @"customParams" : notif.userInfo
+                                 };
+    return inAppObject;
 }
 
 @end
