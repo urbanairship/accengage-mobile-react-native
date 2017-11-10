@@ -80,9 +80,13 @@ public class RNAccTrackingModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void trackCart(String name, ReadableMap itemMap) {
+    public void trackCart(String name, String currency, ReadableMap itemMap) {
         if (name == null || name.isEmpty()) {
             Log.w(TAG, "trackAddToCart: there is no cart name");
+            return;
+        }
+        if (currency == null || currency.isEmpty()) {
+            Log.w(TAG, "trackAddToCart: there is no currency");
             return;
         }
         if (!(itemMap instanceof ReadableNativeMap)) {
@@ -94,7 +98,7 @@ public class RNAccTrackingModule extends ReactContextBaseJavaModule {
             Log.w(TAG, "trackAddToCart: item is not js Object (ReadableMap)");
             return;
         }
-        Map<String, Object> hashMap = Utils.recursivelyDeconstructReadableMap(itemMap);
+        Map<String, Object> hashMap = Utils.recursivelyDeconstructReadableMap(String currency, itemMap);
         Item item = convertFromMapToItem(hashMap);
         if (item == null) {
             Log.w(TAG, "trackAddToCart: can't convert js Object to Item");
@@ -132,7 +136,7 @@ public class RNAccTrackingModule extends ReactContextBaseJavaModule {
         A4S.get(mReactContext).trackPurchase(purchase);
     }
 
-    private Item convertFromMapToItem(Map<String, Object> hashMap) {
+    private Item convertFromMapToItem(String currency, Map<String, Object> hashMap) {
         // Check id of item
         if (!(hashMap.get("id") instanceof String)) {
             Log.w(TAG, "convertFromMapToItem: id of item is not a String");
@@ -161,16 +165,6 @@ public class RNAccTrackingModule extends ReactContextBaseJavaModule {
         String category = (String) hashMap.get("category");
         if (category == null || category.isEmpty()) {
             Log.w(TAG, "convertFromMapToItem: there is no category of item");
-            return null;
-        }
-        // Check currency of item
-        if (!(hashMap.get("currency") instanceof String)) {
-            Log.w(TAG, "convertFromMapToItem: currency of item is not a String");
-            return null;
-        }
-        String currency = (String) hashMap.get("currency");
-        if (currency == null || currency.isEmpty()) {
-            Log.w(TAG, "convertFromMapToItem: there is no currency of item");
             return null;
         }
         // Check price of item
