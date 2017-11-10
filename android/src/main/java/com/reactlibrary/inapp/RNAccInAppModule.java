@@ -6,6 +6,7 @@ import com.ad4screen.sdk.A4S;
 import com.ad4screen.sdk.InApp;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -23,8 +24,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
     private Callback mDisplayedCallback;
     private Callback mClickedCallback;
     private Callback mClosedCallback;
-
-    private Boolean mIsEnabled;
+    private Promise mIsInAppLockedPromise;
 
     private final ReactApplicationContext mReactContext;
 
@@ -191,14 +191,43 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void setInAppDisplayEnabled(Boolean isEnabled) {
         Log.i(TAG, "==================== setInAppDisplayEnabled ============================== ");
-        mIsEnabled = isEnabled;
         A4S.get(mReactContext).setInAppDisplayLocked(isEnabled);
     }
 
     @ReactMethod
-    public Boolean isInAppDisplayEnabled() {
+    public void isInAppDisplayEnabled(Promise promise) {
         Log.i(TAG, "==================== isInAppDisplayEnabled ============================== ");
-        return mIsEnabled;
+        synchronized (this) {
+            if (mIsInAppLockedPromise != null) {
+                Log.w(TAG, "isInAppDisplayEnabled Promise is replaced by a new one");
+            }
+            mIsInAppLockedPromise = promise;
+            A4S.get(mReactContext).isInAppDisplayLocked(new A4S.Callback<Boolean>() {
+                @Override
+                public void onResult(Boolean isLocked) {
+                    Log.i(TAG, "==================== isInAppDisplayLocked OK ============================== ");
+                    Promise promise;
+                    synchronized (RNAccInAppModule.this) {
+                        promise = mIsInAppLockedPromise;
+                        mIsInAppLockedPromise = null;
+                    }
+                    if (promise == null) {
+                        Log.e(TAG, "Promise is null for isInAppDisplayEnabled");
+                        return;
+                    }
+                    try {
+                        promise.resolve(isLocked);
+                    } catch (IllegalViewOperationException e) {
+                        promise.reject("ERROR_IS_INAPP_DISPLAY_ENABLED", e);
+                    }
+                }
+
+                @Override
+                public void onError(int i, String error) {
+                    Log.e(TAG, "An error is appeared for isInAppDisplayEnabled: " + error);
+                }
+            });
+        }
     }
 
     private WritableMap convertToInAppMap(InApp inapp) {
