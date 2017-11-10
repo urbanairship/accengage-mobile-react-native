@@ -65,6 +65,7 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
                         map.putInt("key", id);
                         map.putString("listID", staticList.getListId());
                         map.putString("name", staticList.getName());
+                        map.putInt("status", staticList.getStatus());
                         array.pushMap(map);
                     }
                     promise.resolve(array);
