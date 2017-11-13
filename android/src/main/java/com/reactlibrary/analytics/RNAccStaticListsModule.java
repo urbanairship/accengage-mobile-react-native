@@ -10,6 +10,7 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableNativeMap;
 import com.facebook.react.bridge.WritableArray;
@@ -43,7 +44,6 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
         return "RNAccStaticLists";
     }
 
-    //TODO : Remake, and implement callback with Promise
     @ReactMethod
     public void getStaticListsSubscribed(final Promise promise) {
         Log.i(TAG, "Getting Static Lists Subscribed...");
@@ -59,12 +59,17 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
                     for (StaticList staticList : result) {
                         WritableMap map = Arguments.createMap();
                         id++;
-                        Log.i(TAG, "ID: " + staticList.getListId());
+                        Log.i(TAG, "ExternalId: " + staticList.getListId());
                         Log.i(TAG, "Name: " + staticList.getName());
+                        Log.i(TAG, "Expiration date: " + staticList.getExpireAt());
                         Log.i(TAG, "key : " + id);
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                        Date expirationDate = staticList.getExpireAt();
+                        String expirationString = sdf.format(expirationDate);
                         map.putInt("key", id);
                         map.putString("listID", staticList.getListId());
                         map.putString("name", staticList.getName());
+                        map.putString("expirationDate", expirationString);
                         map.putInt("status", staticList.getStatus());
                         array.pushMap(map);
                     }
@@ -81,24 +86,24 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     //The staticListID is the field "external id" in the Accengage User Interface.
-    public void subscribeToLists(String staticListID, String expirationDate) {
+    public void subscribeToLists(ReadableArray staticListIDs, String expirationDate) {
         try {
-            if(staticListID != null) {
-                if(expirationDate == null) {
-                    Log.i(TAG, "No expiration date found");
-                    StaticList staticList = new StaticList(staticListID);
-                    Log.i(TAG, "Subscribing to list : " + staticList.getListId());
-                    A4S.get(getReactApplicationContext()).subscribeToLists(staticList);
-                    Log.i(TAG, "Successfully subscribed to list : " + staticList.getListId());
-                } else {
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-                    Date date = sdf.parse(expirationDate);
-                    Log.i(TAG, "Expiration date : " + date);
-                    StaticList staticList = new StaticList(staticListID, date);
-                    Log.i(TAG, "Subscribing to list : " + staticList.getListId());
-                    A4S.get(getReactApplicationContext()).subscribeToLists(staticList);
-                    Log.i(TAG, "Successfully subscribed to list : " + staticList.getListId());
-                }
+            for (int i=0; i < staticListIDs.size(); i++ ) {
+                    if(expirationDate == null) {
+                        Log.i(TAG, "No expiration date found");
+                        StaticList staticList = new StaticList(staticListIDs.getString(i));
+                        Log.i(TAG, "Subscribing to list : " + staticList.getListId());
+                        A4S.get(getReactApplicationContext()).subscribeToLists(staticList);
+                        Log.i(TAG, "Successfully subscribed to list : " + staticList.getListId());
+                    } else {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                        Date date = sdf.parse(expirationDate);
+                        Log.i(TAG, "Expiration date : " + date);
+                        StaticList staticList = new StaticList(staticListIDs.getString(i), date);
+                        Log.i(TAG, "Subscribing to list : " + staticList.getListId());
+                        A4S.get(getReactApplicationContext()).subscribeToLists(staticList);
+                        Log.i(TAG, "Successfully subscribed to list : " + staticList.getListId());
+                    }
             }
         } catch (Exception e) {
             Log.e(TAG, "Error : " + e);
@@ -106,20 +111,24 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void unsubscribeFromLists(String staticListID) {
-        StaticList staticList = new StaticList(staticListID);
-        Log.i(TAG, "Unsubscribing from list : " + staticList.getListId());
-        A4S.get(getReactApplicationContext()).unsubscribeFromLists(staticList);
-        Log.i(TAG, "Successfully unsubscribed from list : " + staticList.getListId());
+    public void unsubscribeFromLists(ReadableArray staticListIDs) {
+        for (int i=0; i < staticListIDs.size(); i++ ) {
+            StaticList staticList = new StaticList(staticListIDs.getString(i));
+            Log.i(TAG, "Unsubscribing from list : " + staticList.getListId());
+            A4S.get(getReactApplicationContext()).unsubscribeFromLists(staticList);
+            Log.i(TAG, "Successfully unsubscribed from list : " + staticList.getListId());
+        }
     }
 
     @ReactMethod
-    public void getSubscriptionStatusForLists(String staticListID, final Promise promise) {
-        //Putting the StaticList in a List for the function
-        StaticList staticList = new StaticList(staticListID);
+    public void getSubscriptionStatusForLists(ReadableArray staticListIDs, final Promise promise) {
         final List<StaticList> staticLists = new ArrayList<>();
-        staticLists.add(staticList);
-        Log.i(TAG, "Getting status for list : " + staticList.getListId());
+        for (int i=0; i < staticListIDs.size(); i++ ) {
+            //Putting the StaticList in a List for the function
+            StaticList staticList = new StaticList(staticListIDs.getString(i));
+            staticLists.add(staticList);
+            Log.i(TAG, "Getting status for list : " + staticList.getListId());
+        }
         //Creating the Callback
         com.ad4screen.sdk.A4S.Callback<List<com.ad4screen.sdk.StaticList>> subscriptionCallback = new Callback<List<StaticList>>() {
 
@@ -131,10 +140,24 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
                     for (StaticList staticList : result) {
                         Log.i(TAG, "ID: " + staticList.getListId());
                         Log.i(TAG, "Name: " + staticList.getName());
+                        int statusCode = staticList.getStatus();
+                        if (statusCode == 2){
+                            String status = "Subscribed";
+                            map.putString("status", status);
+                        } else if (statusCode == 4) {
+                            String status = "Unsubscribed";
+                            map.putString("status", status);
+                        } else {
+                            String status = "Unknown";
+                            map.putString("status", status);
+                        }
                         Log.i(TAG, "Status: " + staticList.getStatus());
                         map.putString("id", staticList.getListId());
                         map.putString("name", staticList.getName());
-                        map.putInt("status", staticList.getStatus());
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                        Date expirationDate = staticList.getExpireAt();
+                        String expirationString = sdf.format(expirationDate);
+                        map.putString("expirationDate", expirationString);
                     }
                     promise.resolve(map);
                 }
