@@ -14,10 +14,10 @@ import java.util.List;
  * Created by aperykasza on 11/10/17.
  */
 
-public class RNAccTrackingDeviceInfoPackage implements ReactPackage{
+public class RNAccDeviceInfoPackage implements ReactPackage{
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.<NativeModule>asList(new RNAccTrackingDeviceInfoModule(reactContext));
+        return Arrays.<NativeModule>asList(new RNAccDeviceInfoModule(reactContext));
     }
 
     // Deprecated from RN 0.47

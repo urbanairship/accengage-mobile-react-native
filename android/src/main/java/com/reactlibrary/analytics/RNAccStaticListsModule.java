@@ -95,7 +95,7 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
                 ReadableMap map = staticLists.getMap(i);
                     if(map.getInt("expirationDate") == NaN) {
                         Log.i(TAG, "No expiration date found");
-                        StaticList staticList = new StaticList(map.getString("externalId"));
+                        StaticList staticList = new StaticList(map.getString("listId"));
                         Log.i(TAG, "Subscribing to list : " + staticList.getListId());
                         A4S.get(getReactApplicationContext()).subscribeToLists(staticList);
                         Log.i(TAG, "Successfully subscribed to list : " + staticList.getListId());
@@ -103,7 +103,7 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
                         int expirationDate = map.getInt("expirationDate");
                         Date date = new Date((long)expirationDate*1000);
                         Log.i(TAG, "Expiration date : " + date);
-                        StaticList staticList = new StaticList(map.getString("externalId"), date);
+                        StaticList staticList = new StaticList(map.getString("listId"), date);
                         Log.i(TAG, "Subscribing to list : " + staticList.getListId());
                         A4S.get(getReactApplicationContext()).subscribeToLists(staticList);
                         Log.i(TAG, "Successfully subscribed to list : " + staticList.getListId());
@@ -118,7 +118,7 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
     public void unsubscribeFromLists(ReadableArray staticLists) {
         for (int i=0; i < staticLists.size(); i++ ) {
             ReadableMap map = staticLists.getMap(i);
-            StaticList staticList = new StaticList(map.getString("externalId"));
+            StaticList staticList = new StaticList(map.getString("listId"));
             Log.i(TAG, "Unsubscribing from list : " + staticList.getListId());
             A4S.get(getReactApplicationContext()).unsubscribeFromLists(staticList);
             Log.i(TAG, "Successfully unsubscribed from list : " + staticList.getListId());
@@ -131,7 +131,7 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
         for (int i=0; i < staticLists.size(); i++ ) {
             ReadableMap map = staticLists.getMap(i);
             //Putting the StaticList in a List for the function
-            StaticList staticList = new StaticList(map.getString("externalId"));
+            StaticList staticList = new StaticList(map.getString("listId"));
             listStaticLists.add(staticList);
             Log.i(TAG, "Getting status for list : " + staticList.getListId());
         }
@@ -165,7 +165,9 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
                         Log.i(TAG, "Timestamp : " + time);
                         map.putDouble("expirationDate", time);
                     }
-                    promise.resolve(map);
+                    WritableArray arrayList = Arguments.createArray();
+                    arrayList.pushMap(map);
+                    promise.resolve(arrayList);
                 }
             }
 

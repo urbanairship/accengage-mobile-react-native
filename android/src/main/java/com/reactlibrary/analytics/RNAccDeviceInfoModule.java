@@ -12,20 +12,20 @@ import com.facebook.react.bridge.ReactMethod;
  * Created by aperykasza on 11/10/17.
  */
 
-public class RNAccTrackingDeviceInfoModule extends ReactContextBaseJavaModule {
+public class RNAccDeviceInfoModule extends ReactContextBaseJavaModule {
     private static final String TAG = "AccDeviceInfo";
     private static final String E_LAYOUT_ERROR = "E_LAYOUT_ERROR";
 
     private final ReactApplicationContext reactContext;
 
-    public RNAccTrackingDeviceInfoModule(ReactApplicationContext reactContext) {
+    public RNAccDeviceInfoModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
     }
 
     @Override
     public String getName() {
-        return "RNAccTrackingDeviceInfo";
+        return "RNAccDeviceInfo";
     }
 
     @ReactMethod
@@ -33,6 +33,7 @@ public class RNAccTrackingDeviceInfoModule extends ReactContextBaseJavaModule {
         Log.i(TAG, "Received key " + key + " and value " + value);
         Bundle bundle = new Bundle();
         bundle.putString(key, value);
+        Log.i(TAG, "Sending bundle " + bundle);
         A4S.get(getReactApplicationContext()).updateDeviceInfo(bundle);
     }
 }
