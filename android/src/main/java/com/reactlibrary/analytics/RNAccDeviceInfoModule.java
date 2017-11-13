@@ -7,20 +7,20 @@ import com.ad4screen.sdk.A4S;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableNativeMap;
+import com.reactlibrary.common.Utils;
 
-/**
- * Created by aperykasza on 11/10/17.
- */
+import java.util.Map;
 
 public class RNAccDeviceInfoModule extends ReactContextBaseJavaModule {
     private static final String TAG = "AccDeviceInfo";
-    private static final String E_LAYOUT_ERROR = "E_LAYOUT_ERROR";
 
-    private final ReactApplicationContext reactContext;
+    private final ReactApplicationContext mReactContext;
 
     public RNAccDeviceInfoModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.reactContext = reactContext;
+        this.mReactContext = reactContext;
     }
 
     @Override
@@ -29,11 +29,21 @@ public class RNAccDeviceInfoModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void updateDeviceInfo(String key, String value) {
-        Log.i(TAG, "Received key " + key + " and value " + value);
+    public void updateDeviceInfo(ReadableMap deviceInfoMap) {
+        if (!(deviceInfoMap instanceof ReadableNativeMap)) {
+            Log.e(TAG, "updateDeviceInfo: deviceInfoMap is not a js object");
+            return;
+        }
+
         Bundle bundle = new Bundle();
-        bundle.putString(key, value);
-        Log.i(TAG, "Sending bundle " + bundle);
-        A4S.get(getReactApplicationContext()).updateDeviceInfo(bundle);
+        Map<String, Object> info = Utils.recursivelyDeconstructReadableMap(deviceInfoMap);
+        for (Map.Entry<String, Object> entry : info.entrySet()) {
+            if (!(entry.getValue() instanceof String)) {
+                Log.w(TAG, "updateDeviceInfo: key '" + entry.getKey() + "' doesn't contain a String object");
+                continue;
+            }
+            bundle.putString(entry.getKey(), (String) entry.getValue());
+        }
+        A4S.get(mReactContext).updateDeviceInfo(bundle);
     }
 }
