@@ -98,8 +98,8 @@ public class RNAccTrackingModule extends ReactContextBaseJavaModule {
             Log.w(TAG, "trackAddToCart: item is not js Object (ReadableMap)");
             return;
         }
-        Map<String, Object> hashMap = Utils.recursivelyDeconstructReadableMap(String currency, itemMap);
-        Item item = convertFromMapToItem(hashMap);
+        Map<String, Object> hashMap = Utils.recursivelyDeconstructReadableMap(itemMap);
+        Item item = convertFromMapToItem(currency, hashMap);
         if (item == null) {
             Log.w(TAG, "trackAddToCart: can't convert js Object to Item");
             return;
@@ -125,7 +125,7 @@ public class RNAccTrackingModule extends ReactContextBaseJavaModule {
         List<Object> itemMapList = Utils.recursivelyDeconstructReadableArray(itemsArray);
         List<Item> purchaseItems = new ArrayList<>(itemMapList.size());
         for (Object itemMap : itemMapList) {
-            Item item = convertFromMapToItem((Map<String, Object>) itemMap);
+            Item item = convertFromMapToItem(currency, (Map<String, Object>) itemMap);
             if (item == null) {
                 Log.w(TAG, "trackPurchase: can't convert js Object to Item");
                 return;

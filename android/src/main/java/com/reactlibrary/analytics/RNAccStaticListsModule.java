@@ -19,6 +19,7 @@ import com.reactlibrary.common.Utils;
 
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -63,14 +64,14 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
                         Log.i(TAG, "Name: " + staticList.getName());
                         Log.i(TAG, "Expiration date: " + staticList.getExpireAt());
                         Log.i(TAG, "key : " + id);
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-                        Date expirationDate = staticList.getExpireAt();
-                        String expirationString = sdf.format(expirationDate);
                         map.putInt("key", id);
                         map.putString("listID", staticList.getListId());
                         map.putString("name", staticList.getName());
-                        map.putString("expirationDate", expirationString);
                         map.putInt("status", staticList.getStatus());
+                        Date expirationDate = staticList.getExpireAt();
+                        double time = expirationDate.getTime()/1000L;
+                        Log.i(TAG, "Timestamp : " + time);
+                        map.putDouble("expirationDate", time);
                         array.pushMap(map);
                     }
                     promise.resolve(array);
@@ -86,18 +87,17 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     //The staticListID is the field "external id" in the Accengage User Interface.
-    public void subscribeToLists(ReadableArray staticListIDs, String expirationDate) {
+    public void subscribeToLists(ReadableArray staticListIDs, double expirationDate) {
         try {
             for (int i=0; i < staticListIDs.size(); i++ ) {
-                    if(expirationDate == null) {
+                    if(expirationDate == 0.0) {
                         Log.i(TAG, "No expiration date found");
                         StaticList staticList = new StaticList(staticListIDs.getString(i));
                         Log.i(TAG, "Subscribing to list : " + staticList.getListId());
                         A4S.get(getReactApplicationContext()).subscribeToLists(staticList);
                         Log.i(TAG, "Successfully subscribed to list : " + staticList.getListId());
                     } else {
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-                        Date date = sdf.parse(expirationDate);
+                        Date date = new Date((long)expirationDate*1000);
                         Log.i(TAG, "Expiration date : " + date);
                         StaticList staticList = new StaticList(staticListIDs.getString(i), date);
                         Log.i(TAG, "Subscribing to list : " + staticList.getListId());
@@ -154,10 +154,10 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
                         Log.i(TAG, "Status: " + staticList.getStatus());
                         map.putString("id", staticList.getListId());
                         map.putString("name", staticList.getName());
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                         Date expirationDate = staticList.getExpireAt();
-                        String expirationString = sdf.format(expirationDate);
-                        map.putString("expirationDate", expirationString);
+                        double time = expirationDate.getTime()/1000L;
+                        Log.i(TAG, "Timestamp : " + time);
+                        map.putDouble("expirationDate", time);
                     }
                     promise.resolve(map);
                 }
