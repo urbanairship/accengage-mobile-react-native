@@ -165,7 +165,9 @@ public class RNAccStaticListsModule extends ReactContextBaseJavaModule {
                         Log.i(TAG, "Timestamp : " + time);
                         map.putDouble("expirationDate", time);
                     }
-                    promise.resolve(map);
+                    WritableArray arrayList = Arguments.createArray();
+                    arrayList.pushMap(map);
+                    promise.resolve(arrayList);
                 }
             }
 
