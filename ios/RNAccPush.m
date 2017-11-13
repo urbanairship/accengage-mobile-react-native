@@ -9,6 +9,11 @@
 
 RCT_EXPORT_MODULE()
 
+- (NSArray<NSString *> *)supportedEvents
+{
+    return @[@"onInAppNotifClicked", @"onInAppNotifDidAppear", @"onInAppNotifClosed"];
+}
+
 RCT_EXPORT_METHOD(setPushServiceEnabled:(BOOL)enabled)
 {
     [Accengage push].suspended = !enabled;
