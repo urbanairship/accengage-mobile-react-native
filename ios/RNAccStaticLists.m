@@ -1,3 +1,10 @@
+//
+//  RNAccStaticLists.m
+//  RNAcc
+//
+//  Copyright © 2017 Facebook. All rights reserved.
+//
+
 #import "RNAccStaticLists.h"
 
 @implementation RNAccStaticLists
@@ -49,17 +56,16 @@ RCT_EXPORT_METHOD(getSubscriptionStatusForLists:(NSArray *)lists
 
 ////////////////////////////////////
 
-#pragma mark -
-#pragma mark Helpers
+#pragma mark - Helpers
 
 ////////////////////////////////////
 
-- (NSMutableArray*)accListsToLists:(NSArray<ACCList*>*)accLists{
-    NSMutableArray *lists = [[NSMutableArray alloc] init];
+- (NSArray<NSDictionary *> *)accListsToLists:(NSArray<ACCList *> *)accLists{
+    NSMutableArray *lists = @[].mutableCopy;
     for (ACCList *accList in accLists)
     {
         [lists addObject:@{@"listId" : accList.identifier,
-                           @"expirationDate" : [NSNumber numberWithDouble:[accList.expirationDate timeIntervalSince1970]],
+                           @"expirationDate" : @([accList.expirationDate timeIntervalSince1970]),
                            @"name" : accList.name,
                            @"status" : [self subscriptionStatusToString:accList.subscriptionStatus],
                            }];
@@ -67,19 +73,21 @@ RCT_EXPORT_METHOD(getSubscriptionStatusForLists:(NSArray *)lists
     return lists;
 }
 
-- (NSMutableArray<ACCList*>*)listsToAccLists:(NSArray*)lists{
-    NSMutableArray<ACCList*>* accLists = [[NSMutableArray alloc] init];
-    for (NSDictionary* list in lists)
-    {
-        ACCList *accList = [ACCList alloc];
-        if (list[@"expirationDate"])
-        {
-            NSDate *date = [NSDate dateWithTimeIntervalSince1970:[RCTConvert double:list[@"expirationDate"]]];
-            accList = [ACCList listWithId:list[@"listId"] expirationDate:date];
+- (NSMutableArray<ACCList *> *)listsToAccLists:(NSArray*)lists {
+    NSMutableArray<ACCList *> *accLists = @[].mutableCopy;
+    
+    for (NSDictionary *list in lists) {
+        if (![list isKindOfClass:[NSDictionary class]]) {
+            break;
         }
-        else
-            accList = [ACCList listWithId:list[@"listId"]];
-        [accLists addObject:accList];
+        
+        NSString *listId = [list[@"listId"] isKindOfClass:[NSString class]] ? list[@"listId"] : nil;
+        
+        if (listId) {
+            ACCList *accList = [ACCList listWithId:list[@"listId"]];
+            accList.expirationDate = list[@"expirationDate"] ? [NSDate dateWithTimeIntervalSince1970:[RCTConvert double:list[@"expirationDate"]]] : nil;
+            [accLists addObject:accList];
+        }
     }
     return accLists;
 }
@@ -88,7 +96,7 @@ RCT_EXPORT_METHOD(getSubscriptionStatusForLists:(NSArray *)lists
     NSString *result = nil;
     switch(subscriptionStatus) {
         case ACCListSubscriptionStatusUnknown:
-            result = @"Unknow";
+            result = @"Unknown";
             break;
         case ACCListSubscriptionStatusSubscribed:
             result = @"Subscribed";
@@ -97,7 +105,7 @@ RCT_EXPORT_METHOD(getSubscriptionStatusForLists:(NSArray *)lists
             result = @"Unsubscribed";
             break;
         default:
-            [NSException raise:NSGenericException format:@"Unexpected subscriptionStatus."];
+            result = @"Unknown";
     }
     return result;
 }

@@ -56,14 +56,34 @@ RCT_EXPORT_MODULE()
                                                                   }}];
 }
 
-RCT_EXPORT_METHOD(setPushServiceEnabled:(BOOL)enabled)
+RCT_EXPORT_METHOD(setEnabled:(BOOL)enabled)
+{
+    if (enabled) {
+        ACCNotificationOptions options = (ACCNotificationOptionSound|ACCNotificationOptionBadge|ACCNotificationOptionAlert|ACCNotificationOptionCarPlay);
+        [[Accengage push] registerForUserNotificationsWithOptions:options];
+    } else {
+        NSLog(@"RNAccPush : setEnable to True to register ios Push.");
+    }
+}
+
+RCT_EXPORT_METHOD(isEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    resolve([[UIApplication sharedApplication] isRegisteredForRemoteNotifications]);
+}
+
+RCT_EXPORT_METHOD(setLocked:(BOOL)enabled)
 {
     [Accengage push].suspended = !enabled;
 }
 
-RCT_EXPORT_METHOD(isPushServiceEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(isLocked:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     resolve([NSNumber numberWithInt:![[Accengage push] isSuspended]]);
+}
+
+RCT_EXPORT_METHOD(getToken:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    resolve([[Accengage push] deviceToken]);
 }
 
 @end

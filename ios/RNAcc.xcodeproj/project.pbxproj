@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B6A975D1FBD90A6004BD5C4 /* RNAccViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A975C1FBD90A6004BD5C4 /* RNAccViews.m */; };
 		0B75B9E31F9E3BBF00773A9A /* Accengage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B75B9E21F9E3BBF00773A9A /* Accengage.framework */; };
 		0B75BADC1F9E407200773A9A /* RNAccTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BADB1F9E407200773A9A /* RNAccTracking.m */; };
 		0B75BE051F9F6E7000773A9A /* RNAccStaticLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BE041F9F6E7000773A9A /* RNAccStaticLists.m */; };
@@ -30,6 +31,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B6A975B1FBD90A6004BD5C4 /* RNAccViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccViews.h; sourceTree = "<group>"; };
+		0B6A975C1FBD90A6004BD5C4 /* RNAccViews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccViews.m; sourceTree = "<group>"; };
 		0B75B9E21F9E3BBF00773A9A /* Accengage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Accengage.framework; sourceTree = "<group>"; };
 		0B75BADA1F9E407200773A9A /* RNAccTracking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccTracking.h; sourceTree = "<group>"; };
 		0B75BADB1F9E407200773A9A /* RNAccTracking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccTracking.m; sourceTree = "<group>"; };
@@ -86,6 +89,8 @@
 				0B75BADB1F9E407200773A9A /* RNAccTracking.m */,
 				0B75BE031F9F6E7000773A9A /* RNAccStaticLists.h */,
 				0B75BE041F9F6E7000773A9A /* RNAccStaticLists.m */,
+				0B6A975B1FBD90A6004BD5C4 /* RNAccViews.h */,
+				0B6A975C1FBD90A6004BD5C4 /* RNAccViews.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 				0BB8EFF01FB0A983008C8098 /* RNAccInApp.m in Sources */,
 				0BF1DCDD1FB9E14000C82CAF /* RNAccPush.m in Sources */,
 				0B75BADC1F9E407200773A9A /* RNAccTracking.m in Sources */,
+				0B6A975D1FBD90A6004BD5C4 /* RNAccViews.m in Sources */,
 				0B9C91A81FA215AD00BF8283 /* RNAccControl.m in Sources */,
 				0B75BE051F9F6E7000773A9A /* RNAccStaticLists.m in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RNAcc.m in Sources */,

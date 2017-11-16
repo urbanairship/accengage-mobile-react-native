@@ -1,5 +1,5 @@
 //
-//  RNAccDeviceInfo.h
+//  RNAccViews.h
 //  RNAcc
 //
 //  Copyright © 2017 Facebook. All rights reserved.
@@ -13,6 +13,6 @@
 
 #import <Accengage/Accengage.h>
 
-@interface RNAccDeviceInfo : NSObject <RCTBridgeModule>
+@interface RNAccViews : NSObject <RCTBridgeModule>
 
 @end

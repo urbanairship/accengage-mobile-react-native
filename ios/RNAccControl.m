@@ -1,3 +1,10 @@
+//
+//  RNAccControl.m
+//  RNAcc
+//
+//  Copyright © 2017 Facebook. All rights reserved.
+//
+
 #import "RNAccControl.h"
 
 @implementation RNAccControl
