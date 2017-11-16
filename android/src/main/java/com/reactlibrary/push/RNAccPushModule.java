@@ -13,7 +13,6 @@ public class RNAccPushModule extends ReactContextBaseJavaModule {
     private static final String TAG = "AccPush";
 
     private Promise mIsEnabledPromise;
-    private Promise mIsLockedPromise;
     private Promise mGetTokenPromise;
 
     private final ReactApplicationContext mReactContext;
@@ -75,35 +74,10 @@ public class RNAccPushModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void isLocked(Promise promise) {
-        synchronized (this) {
-            if (mIsLockedPromise != null) {
-                Log.w(TAG, "isLocked Promise is replaced by a new one");
-            }
-            mIsLockedPromise = promise;
-            A4S.get(mReactContext).isPushEnabled(new A4S.Callback<Boolean>() {
-                @Override
-                public void onResult(Boolean isEnabled) {
-                    Promise promise;
-                    synchronized (RNAccPushModule.this) {
-                        promise = mIsLockedPromise;
-                        mIsLockedPromise = null;
-                    }
-                    if (promise == null) {
-                        Log.e(TAG, "Promise is null for isLocked");
-                        return;
-                    }
-                    try {
-                        promise.resolve(isEnabled);
-                    } catch (IllegalViewOperationException e) {
-                        promise.reject(TAG + " ERROR_IS_LOCKED", e);
-                    }
-                }
-
-                @Override
-                public void onError(int i, String error) {
-                    Log.e(TAG, "An error is appeared for isLocked: " + error);
-                }
-            } );
+        try {
+            promise.resolve(A4S.get(mReactContext).isPushNotificationLocked());
+        } catch (IllegalViewOperationException e) {
+            promise.reject(TAG + " ERROR_IS_LOCKED", e);
         }
     }
 
