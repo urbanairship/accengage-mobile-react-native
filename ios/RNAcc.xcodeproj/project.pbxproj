@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B6A975D1FBD90A6004BD5C4 /* RNAccViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A975C1FBD90A6004BD5C4 /* RNAccViews.m */; };
 		0B75B9E31F9E3BBF00773A9A /* Accengage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B75B9E21F9E3BBF00773A9A /* Accengage.framework */; };
 		0B75BADC1F9E407200773A9A /* RNAccTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BADB1F9E407200773A9A /* RNAccTracking.m */; };
 		0B75BE051F9F6E7000773A9A /* RNAccStaticLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BE041F9F6E7000773A9A /* RNAccStaticLists.m */; };
+		0B92DCD01FBAEF8B008BDF81 /* RNAccDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B92DCCF1FBAEF8B008BDF81 /* RNAccDeviceInfo.m */; };
 		0B9C91A81FA215AD00BF8283 /* RNAccControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C91A71FA215AD00BF8283 /* RNAccControl.m */; };
+		0BB8EFF01FB0A983008C8098 /* RNAccInApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB8EFEF1FB0A983008C8098 /* RNAccInApp.m */; };
+		0BF1DCDD1FB9E14000C82CAF /* RNAccPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1DCDC1FB9E14000C82CAF /* RNAccPush.m */; };
 		B3E7B58A1CC2AC0600A0062D /* RNAcc.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNAcc.m */; };
 /* End PBXBuildFile section */
 
@@ -27,13 +31,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B6A975B1FBD90A6004BD5C4 /* RNAccViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccViews.h; sourceTree = "<group>"; };
+		0B6A975C1FBD90A6004BD5C4 /* RNAccViews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccViews.m; sourceTree = "<group>"; };
 		0B75B9E21F9E3BBF00773A9A /* Accengage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Accengage.framework; sourceTree = "<group>"; };
 		0B75BADA1F9E407200773A9A /* RNAccTracking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccTracking.h; sourceTree = "<group>"; };
 		0B75BADB1F9E407200773A9A /* RNAccTracking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccTracking.m; sourceTree = "<group>"; };
 		0B75BE031F9F6E7000773A9A /* RNAccStaticLists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccStaticLists.h; sourceTree = "<group>"; };
 		0B75BE041F9F6E7000773A9A /* RNAccStaticLists.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccStaticLists.m; sourceTree = "<group>"; };
+		0B92DCCE1FBAEF8B008BDF81 /* RNAccDeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccDeviceInfo.h; sourceTree = "<group>"; };
+		0B92DCCF1FBAEF8B008BDF81 /* RNAccDeviceInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccDeviceInfo.m; sourceTree = "<group>"; };
 		0B9C91A61FA215AD00BF8283 /* RNAccControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccControl.h; sourceTree = "<group>"; };
 		0B9C91A71FA215AD00BF8283 /* RNAccControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccControl.m; sourceTree = "<group>"; };
+		0BB8EFEE1FB0A983008C8098 /* RNAccInApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccInApp.h; sourceTree = "<group>"; };
+		0BB8EFEF1FB0A983008C8098 /* RNAccInApp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccInApp.m; sourceTree = "<group>"; };
+		0BF1DCDB1FB9E14000C82CAF /* RNAccPush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccPush.h; sourceTree = "<group>"; };
+		0BF1DCDC1FB9E14000C82CAF /* RNAccPush.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccPush.m; sourceTree = "<group>"; };
 		134814201AA4EA6300B7C361 /* libRNAcc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNAcc.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E7B5881CC2AC0600A0062D /* RNAcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAcc.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNAcc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAcc.m; sourceTree = "<group>"; };
@@ -67,10 +79,18 @@
 				B3E7B5891CC2AC0600A0062D /* RNAcc.m */,
 				0B9C91A61FA215AD00BF8283 /* RNAccControl.h */,
 				0B9C91A71FA215AD00BF8283 /* RNAccControl.m */,
+				0B92DCCE1FBAEF8B008BDF81 /* RNAccDeviceInfo.h */,
+				0B92DCCF1FBAEF8B008BDF81 /* RNAccDeviceInfo.m */,
+				0BB8EFEE1FB0A983008C8098 /* RNAccInApp.h */,
+				0BB8EFEF1FB0A983008C8098 /* RNAccInApp.m */,
+				0BF1DCDB1FB9E14000C82CAF /* RNAccPush.h */,
+				0BF1DCDC1FB9E14000C82CAF /* RNAccPush.m */,
 				0B75BADA1F9E407200773A9A /* RNAccTracking.h */,
 				0B75BADB1F9E407200773A9A /* RNAccTracking.m */,
 				0B75BE031F9F6E7000773A9A /* RNAccStaticLists.h */,
 				0B75BE041F9F6E7000773A9A /* RNAccStaticLists.m */,
+				0B6A975B1FBD90A6004BD5C4 /* RNAccViews.h */,
+				0B6A975C1FBD90A6004BD5C4 /* RNAccViews.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,6 +126,7 @@
 				TargetAttributes = {
 					58B511DA1A9E6C8500147676 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0910;
 					};
 				};
 			};
@@ -131,7 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B92DCD01FBAEF8B008BDF81 /* RNAccDeviceInfo.m in Sources */,
+				0BB8EFF01FB0A983008C8098 /* RNAccInApp.m in Sources */,
+				0BF1DCDD1FB9E14000C82CAF /* RNAccPush.m in Sources */,
 				0B75BADC1F9E407200773A9A /* RNAccTracking.m in Sources */,
+				0B6A975D1FBD90A6004BD5C4 /* RNAccViews.m in Sources */,
 				0B9C91A81FA215AD00BF8283 /* RNAccControl.m in Sources */,
 				0B75BE051F9F6E7000773A9A /* RNAccStaticLists.m in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RNAcc.m in Sources */,
@@ -225,6 +250,7 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -235,16 +261,21 @@
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RNAcc;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -255,10 +286,13 @@
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RNAcc;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

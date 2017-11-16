@@ -1,3 +1,9 @@
+//
+//  RNAcc.m
+//  RNAcc
+//
+//  Copyright © 2017 Facebook. All rights reserved.
+//
 
 #import "RNAcc.h"
 
@@ -14,7 +20,6 @@ RCT_EXPORT_METHOD(start)
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [Accengage start];
-        [Accengage setLoggingEnabled:YES];
     }];
 }
 
