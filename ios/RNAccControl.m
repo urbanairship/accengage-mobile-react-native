@@ -21,11 +21,9 @@ RCT_EXPORT_METHOD(setAllServicesEnabled:(BOOL)enabled)
     [Accengage suspendAllServices:!enabled];
 }
     
-RCT_EXPORT_METHOD(areAllServicesEnabled:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(areAllServicesEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        callback(@[[NSNull null], @(![Accengage isSuspended])]);
-	});
+    resolve(![Accengage isSuspended])
 }
                    
 RCT_EXPORT_METHOD(setNetworkCallsEnabled:(BOOL)enabled)
@@ -33,11 +31,9 @@ RCT_EXPORT_METHOD(setNetworkCallsEnabled:(BOOL)enabled)
     [Accengage setNetworkCallsDisabled:!enabled];
 }
                    
-RCT_EXPORT_METHOD(areNetworkCallsEnabled:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(areNetworkCallsEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        callback(@[[NSNull null], @(![Accengage areNetworkCallsDisabled])]);
-    });
+    resolve(![Accengage areNetworkCallsDisabled]);
 }
 
 @end

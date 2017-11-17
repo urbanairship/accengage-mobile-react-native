@@ -26,8 +26,7 @@ RCT_EXPORT_METHOD(unsubscribeFromLists:(NSArray *)lists)
     [Accengage unsubscribeFromLists:[self listsToAccLists:lists]];
 }
 
-RCT_REMAP_METHOD(getListOfSubscriptions,
-                 getListOfSubscriptionsWithResolver:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(getListOfSubscriptions:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
     [Accengage listOfSubscriptions:^(NSArray<ACCList *> * _Nullable result, NSError * _Nullable error) {
