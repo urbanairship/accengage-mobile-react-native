@@ -2,5 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.reactlibrary">
 
+    <application>
+        <receiver
+                android:name=".common.ActionsReceiver"
+                android:permission="${applicationId}.permission.A4S_SEND">
+            <intent-filter>
+                <action android:name="com.ad4screen.sdk.intent.action.DISPLAYED"/>
+                <action android:name="com.ad4screen.sdk.intent.action.CLICKED"/>
+                <action android:name="com.ad4screen.sdk.intent.action.CLOSED"/>
+
+                <category android:name="com.ad4screen.sdk.intent.category.PUSH_NOTIFICATIONS"/>
+                <category android:name="com.ad4screen.sdk.intent.category.INAPP_NOTIFICATIONS"/>
+                <category android:name="com.ad4screen.sdk.intent.category.INBOX_NOTIFICATIONS"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
 </manifest>
   

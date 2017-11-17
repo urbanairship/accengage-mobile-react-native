@@ -1,9 +1,14 @@
 package com.reactlibrary.common;
 
+import android.support.annotation.Nullable;
+
+import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.bridge.ReadableType;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,5 +78,13 @@ public class Utils {
             }
         }
         return deconstructedList;
+    }
+
+    public static void sendEvent(ReactContext reactContext,
+                                 String eventName,
+                                 @Nullable WritableMap params) {
+        reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit(eventName, params);
     }
 }
