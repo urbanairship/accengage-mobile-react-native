@@ -68,7 +68,7 @@ RCT_EXPORT_METHOD(setEnabled:(BOOL)enabled)
 
 RCT_EXPORT_METHOD(isEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    resolve([[UIApplication sharedApplication] isRegisteredForRemoteNotifications]);
+    resolve([NSNumber numberWithInt:[[UIApplication sharedApplication] isRegisteredForRemoteNotifications]]);
 }
 
 RCT_EXPORT_METHOD(setLocked:(BOOL)enabled)

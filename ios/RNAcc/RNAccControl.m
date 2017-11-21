@@ -23,7 +23,7 @@ RCT_EXPORT_METHOD(setAllServicesEnabled:(BOOL)enabled)
     
 RCT_EXPORT_METHOD(areAllServicesEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    resolve(![Accengage isSuspended])
+    resolve([NSNumber numberWithInt:![Accengage isSuspended]]);
 }
                    
 RCT_EXPORT_METHOD(setNetworkCallsEnabled:(BOOL)enabled)
@@ -33,7 +33,7 @@ RCT_EXPORT_METHOD(setNetworkCallsEnabled:(BOOL)enabled)
                    
 RCT_EXPORT_METHOD(areNetworkCallsEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    resolve(![Accengage areNetworkCallsDisabled]);
+    resolve([NSNumber numberWithInt:![Accengage areNetworkCallsDisabled]]);
 }
 
 @end
