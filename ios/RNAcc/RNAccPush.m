@@ -16,44 +16,61 @@
 
 RCT_EXPORT_MODULE()
 
+static RNAccPush *sharedMyManager = nil;
+
 - (NSArray<NSString *> *)supportedEvents
 {
-    return @[@"onInAppNotifClicked", @"onInAppNotifDidAppear", @"onInAppNotifClosed"];
+    return @[@"didReceivedNotification", @"didClickedNotification"];
+}
+
++ (id)sharedManager {
+    
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        sharedMyManager = [[self alloc] init];
+    });
+    return sharedMyManager;
 }
 
 - (id)init {
-    self = [super init];
-    
-    if (self) {
-        [Accengage push].delegate = self;
+    if (sharedMyManager) {
+        return sharedMyManager;
     }
-    
-    return self;
+    @synchronized(self) {
+        self = [super init];
+        if (self) {
+            sharedMyManager = self;
+        }
+        return self;
+    }
 }
 
 - (void)didReceiveNotificationWithId:(NSString *)notifId parameters:(NSDictionary *)params
 {
-    [self sendEventWithName:@"didReceiveNotification" body:@{@"notification": @{
+    [self sendEventWithName:@"didReceivedNotification" body:@{@"notification": @{
+                                                                      @"notificationId" : notifId,
+                                                                      @"customParams" : params
+                                                                      }}];
+}
+
+- (void)didOpenNotificationWithId:(NSString *)notifId parameters:(NSDictionary *)params
+{
+    [self sendEventWithName:@"didClickedNotification" body:@{@"notification": @{
                                                                      @"notificationId" : notifId,
                                                                      @"customParams" : params
                                                                      }}];
 }
 
-- (void)didOpenNotificationWithId:(NSString *)notifId parameters:(NSDictionary *)params
-{
-    [self sendEventWithName:@"didOpenNotification" body:@{@"notification": @{
-                                                                  @"notificationId" : notifId,
-                                                                  @"customParams" : params
-                                                                  }}];
-}
-
 - (void)didClickOnActionWithIdentifier:(NSString *)actionId forRemoteNotificationWithId:(NSString *)notifId notificationParameters:(NSDictionary *)params1 actionParameters:(NSDictionary *)params2
 {
-    [self sendEventWithName:@"onInAppNotifClicked" body:@{@"notification": @{
-                                                                  @"actionId" : notifId,
-                                                                  @"actionParams" : params2,
-                                                                  @"customParams" : params1
-                                                                  }}];
+    NSMutableDictionary *customParams = @{}.mutableCopy;
+    
+    [customParams addEntriesFromDictionary:params1];
+    [customParams addEntriesFromDictionary:params2];
+    [self sendEventWithName:@"didClickedNotification" body:@{@"notification": @{
+                                                                     @"actionId" : notifId,
+                                                                     @"customParams" : customParams
+                                                                     }}];
 }
 
 RCT_EXPORT_METHOD(setEnabled:(BOOL)enabled)

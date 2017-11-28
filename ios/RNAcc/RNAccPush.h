@@ -17,5 +17,6 @@
 
 @interface RNAccPush : RCTEventEmitter <RCTBridgeModule, ACCPushDelegate>
 
-@end
++ (id)sharedManager;
 
+@end

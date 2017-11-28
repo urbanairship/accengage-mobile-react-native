@@ -20,6 +20,7 @@ RCT_EXPORT_METHOD(start)
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [Accengage start];
+        [Accengage push].delegate = [RNAccPush sharedManager];
     }];
 }
 
