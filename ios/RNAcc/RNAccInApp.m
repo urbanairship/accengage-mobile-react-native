@@ -7,8 +7,7 @@
 
 #import "RNAccInApp.h"
 
-@implementation RNAccInApp
-{
+@implementation RNAccInApp {
     bool hasListeners;
 }
 
@@ -35,7 +34,7 @@ RCT_EXPORT_MODULE()
 
 - (NSArray<NSString *> *)supportedEvents {
     
-    return @[@"onInAppNotifClicked", @"onInAppNotifDidAppear", @"onInAppNotifClosed"];
+    return @[@"didInAppClick", @"didInAppDisplay", @"didInAppClose"];
 }
 
 - (id)init {
@@ -54,20 +53,20 @@ RCT_EXPORT_MODULE()
 - (void) onInAppNotifClicked:(NSNotification*) notif
 {
     if (hasListeners) {
-        [self sendEventWithName:@"onInAppNotifClicked" body:@{@"inApp": [self createJavasriptInAppObject:notif]}];
+        [self sendEventWithName:@"didInAppClick" body:@{@"inApp": [self createJavasriptInAppObject:notif]}];
     }
 }
 
 - (void) onInAppNotifDidAppear:(NSNotification*) notif
 {
     if (hasListeners) {
-        [self sendEventWithName:@"onInAppNotifDidAppear" body:@{@"inApp": [self createJavasriptInAppObject:notif]}];
+        [self sendEventWithName:@"didInAppDisplay" body:@{@"inApp": [self createJavasriptInAppObject:notif]}];
     }
 }
 
 - (void) onInAppNotifClosed:(NSNotification *) notif {
     if (hasListeners) {
-        [self sendEventWithName:@"onInAppNotifClosed" body:@{@"inApp": [self createJavasriptInAppObject:notif]}];
+        [self sendEventWithName:@"didInAppClose" body:@{@"inApp": [self createJavasriptInAppObject:notif]}];
     }
 }
 

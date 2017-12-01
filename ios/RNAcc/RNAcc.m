@@ -7,7 +7,9 @@
 
 #import "RNAcc.h"
 
-@implementation RNAcc
+@implementation RNAcc  {
+    bool hasListeners;
+}
 
 - (dispatch_queue_t)methodQueue {
     
