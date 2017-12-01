@@ -9,8 +9,8 @@
 
 @implementation RNAccTracking
 
-- (dispatch_queue_t)methodQueue
-{
+- (dispatch_queue_t)methodQueue {
+    
     return dispatch_get_main_queue();
 }
 
@@ -18,8 +18,8 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(trackCart:(NSString *)cartId
                   currency:(NSString *)currency
-                  item:(NSDictionary *)cartItem)
-{
+                  item:(NSDictionary *)cartItem) {
+    
     NSString *itemId = [cartItem[@"id"] isKindOfClass:[NSString class]] ? cartItem[@"id"] : nil;
     NSString *itemName = [cartItem[@"name"] isKindOfClass:[NSString class]] ? cartItem[@"name"] : nil;
     NSString *itemBrand = [cartItem[@"brand"] isKindOfClass:[NSString class]] ? cartItem[@"brand"] : nil;
@@ -40,9 +40,10 @@ RCT_EXPORT_METHOD(trackCart:(NSString *)cartId
 RCT_EXPORT_METHOD(trackPurchase:(NSString *)purchaseId
                   currency:(NSString *)currency
                   amount:(nonnull NSNumber *)purchaseAmount
-                  items:(nullable NSArray *)purchasedItems)
-{
+                  items:(nullable NSArray *)purchasedItems) {
+    
     NSMutableArray<ACCCartItem *> *result = @[].mutableCopy;
+    
     for (NSDictionary *object in purchasedItems) {
         if (![object isKindOfClass:[NSDictionary class]]) {
             break;
@@ -67,14 +68,14 @@ RCT_EXPORT_METHOD(trackPurchase:(NSString *)purchaseId
     [Accengage trackPurchase:purchaseId currency:currency items:result.copy amount:purchaseAmount];
 }
 
-RCT_EXPORT_METHOD(trackLead:(NSString *)key value:(NSString *)value)
-{
+RCT_EXPORT_METHOD(trackLead:(NSString *)key value:(NSString *)value) {
+    
     [Accengage trackLead:key value:value];
 }
 
 
-RCT_EXPORT_METHOD(trackEvent:(NSUInteger)eventType parameters:(NSDictionary *) parameters)
-{
+RCT_EXPORT_METHOD(trackEvent:(NSUInteger)eventType parameters:(NSDictionary *) parameters) {
+    
     if (![parameters isKindOfClass:[NSDictionary class]]) {
         [Accengage trackEvent:eventType];
         return;

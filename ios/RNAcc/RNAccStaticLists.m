@@ -9,26 +9,25 @@
 
 @implementation RNAccStaticLists
 
-- (dispatch_queue_t)methodQueue
-{
+- (dispatch_queue_t)methodQueue {
     return dispatch_get_main_queue();
 }
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(subscribeToLists:(NSArray *)lists)
-{
+RCT_EXPORT_METHOD(subscribeToLists:(NSArray *)lists) {
+    
     [Accengage subscribeToLists:[self listsToAccLists:lists]];
 }
 
-RCT_EXPORT_METHOD(unsubscribeFromLists:(NSArray *)lists)
-{
+RCT_EXPORT_METHOD(unsubscribeFromLists:(NSArray *)lists) {
+    
     [Accengage unsubscribeFromLists:[self listsToAccLists:lists]];
 }
 
 RCT_EXPORT_METHOD(getListOfSubscriptions:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
+                 rejecter:(RCTPromiseRejectBlock)reject) {
+    
     [Accengage listOfSubscriptions:^(NSArray<ACCList *> * _Nullable result, NSError * _Nullable error) {
         if (!error)
         {
@@ -41,8 +40,8 @@ RCT_EXPORT_METHOD(getListOfSubscriptions:(RCTPromiseResolveBlock)resolve
 
 RCT_EXPORT_METHOD(getSubscriptionStatusForLists:(NSArray *)lists
                   resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
-{
+                  rejecter:(RCTPromiseRejectBlock)reject) {
+    
     [Accengage subscriptionStatusForLists:[self listsToAccLists:lists] completionHandler:^(NSArray<ACCList *> * _Nullable result, NSError * _Nullable error) {
         if (!error)
         {
@@ -59,8 +58,10 @@ RCT_EXPORT_METHOD(getSubscriptionStatusForLists:(NSArray *)lists
 
 ////////////////////////////////////
 
-- (NSArray<NSDictionary *> *)accListsToLists:(NSArray<ACCList *> *)accLists{
+- (NSArray<NSDictionary *> *)accListsToLists:(NSArray<ACCList *> *)accLists {
+    
     NSMutableArray *lists = @[].mutableCopy;
+    
     for (ACCList *accList in accLists)
     {
         [lists addObject:@{@"listId" : accList.identifier,
@@ -73,6 +74,7 @@ RCT_EXPORT_METHOD(getSubscriptionStatusForLists:(NSArray *)lists
 }
 
 - (NSMutableArray<ACCList *> *)listsToAccLists:(NSArray*)lists {
+    
     NSMutableArray<ACCList *> *accLists = @[].mutableCopy;
     
     for (NSDictionary *list in lists) {
@@ -91,8 +93,10 @@ RCT_EXPORT_METHOD(getSubscriptionStatusForLists:(NSArray *)lists
     return accLists;
 }
 
-- (NSString*)subscriptionStatusToString:(ACCListSubscriptionStatus)subscriptionStatus{
+- (NSString *)subscriptionStatusToString:(ACCListSubscriptionStatus)subscriptionStatus {
+    
     NSString *result = nil;
+
     switch(subscriptionStatus) {
         case ACCListSubscriptionStatusUnknown:
             result = @"Unknown";
