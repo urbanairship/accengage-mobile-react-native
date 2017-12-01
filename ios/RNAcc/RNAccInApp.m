@@ -84,11 +84,11 @@ RCT_REMAP_METHOD(isInAppDisplayEnabled, isInAppDisplayEnabledWithResolver:(RCTPr
 - (NSDictionary *) createJavasriptInAppObject:(NSNotification *)notif {
     
     NSDictionary *inAppObject = @{
-                                 @"messageId" : @"",
-                                 @"displayTemplate" : @"",
-                                 @"displayParams" : @{},
-                                 @"customParams" : notif.userInfo
-                                 };
+                                  @"messageId" : @"",
+                                  @"displayTemplate" : @"",
+                                  @"displayParams" : @{},
+                                  @"customParams" : notif.userInfo
+    };
     return inAppObject;
 }
 

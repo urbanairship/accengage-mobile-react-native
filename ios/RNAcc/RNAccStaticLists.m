@@ -68,7 +68,7 @@ RCT_EXPORT_METHOD(getSubscriptionStatusForLists:(NSArray *)lists
                            @"expirationDate" : @([accList.expirationDate timeIntervalSince1970]),
                            @"name" : accList.name,
                            @"status" : [self subscriptionStatusToString:accList.subscriptionStatus],
-                           }];
+        }];
     }
     return lists;
 }

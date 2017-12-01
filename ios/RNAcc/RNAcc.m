@@ -54,17 +54,17 @@ RCT_EXPORT_MODULE()
 - (void)didReceiveNotificationWithId:(NSString *)notifId parameters:(NSDictionary *)params {
     
     [self sendEventWithName:@"didReceiveNotification" body:@{@"notification": @{
-                                                                      @"notificationId" : notifId,
-                                                                      @"customParams" : params
-                                                                      }}];
+                                                             @"notificationId" : notifId,
+                                                             @"customParams" : params
+    }}];
 }
 
 - (void)didOpenNotificationWithId:(NSString *)notifId parameters:(NSDictionary *)params {
     
     [self sendEventWithName:@"didClickNotification" body:@{@"notification": @{
-                                                                     @"notificationId" : notifId,
-                                                                     @"customParams" : params
-                                                                     }}];
+                                                           @"notificationId" : notifId,
+                                                           @"customParams" : params
+    }}];
 }
 
 - (void)didClickOnActionWithIdentifier:(NSString *)actionId forRemoteNotificationWithId:(NSString *)notifId notificationParameters:(NSDictionary *)params1 actionParameters:(NSDictionary *)params2 {
@@ -74,9 +74,10 @@ RCT_EXPORT_MODULE()
     [customParams addEntriesFromDictionary:params1];
     [customParams addEntriesFromDictionary:params2];
     [self sendEventWithName:@"didClickNotification" body:@{@"notification": @{
-                                                                     @"actionId" : notifId,
-                                                                     @"customParams" : customParams
-                                                                     }}];
+                                                           @"notificationId" : notifId,
+                                                           @"actionId" : actionId,
+                                                           @"customParams" : customParams
+    }}];
 }
 
 @end
