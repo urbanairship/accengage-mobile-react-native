@@ -11,12 +11,12 @@
     bool hasListeners;
 }
 
+RCT_EXPORT_MODULE()
+
 - (dispatch_queue_t)methodQueue {
     
     return dispatch_get_main_queue();
 }
-
-RCT_EXPORT_MODULE()
 
 // Will be called when this module's first listener is added.
 - (void)startObserving {
@@ -42,10 +42,7 @@ RCT_EXPORT_MODULE()
     self = [super init];
     
     if (self) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [Accengage start];
-            [Accengage push].delegate = self;
-        }];
+        [Accengage push].delegate = self;
     }
     
     return self;
