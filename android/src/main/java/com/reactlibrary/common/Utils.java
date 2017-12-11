@@ -1,6 +1,7 @@
 package com.reactlibrary.common;
 
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReadableArray;
@@ -16,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Utils {
+
+    private static final String TAG = "Utils";
 
     public static Map<String, Object> recursivelyDeconstructReadableMap(ReadableMap readableMap) {
         ReadableMapKeySetIterator iterator = readableMap.keySetIterator();
@@ -83,6 +86,10 @@ public class Utils {
     public static void sendEvent(ReactContext reactContext,
                                  String eventName,
                                  @Nullable WritableMap params) {
+
+        Log.d(TAG, "ReactContext : " + reactContext);
+        Log.d(TAG, "EventName : " + eventName);
+        Log.d(TAG, "Params : " + params);
         reactContext
                 .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                 .emit(eventName, params);
