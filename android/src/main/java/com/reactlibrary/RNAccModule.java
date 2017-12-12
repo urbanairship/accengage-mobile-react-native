@@ -2,17 +2,16 @@
 package com.reactlibrary;
 
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Callback;
 
 public class RNAccModule extends ReactContextBaseJavaModule {
 
-  private final ReactApplicationContext reactContext;
+  private static ReactContext mReactContext;
 
   public RNAccModule(ReactApplicationContext reactContext) {
     super(reactContext);
-    this.reactContext = reactContext;
+    mReactContext = reactContext;
   }
 
   @Override
@@ -20,9 +19,8 @@ public class RNAccModule extends ReactContextBaseJavaModule {
     return "RNAcc";
   }
 
-  @ReactMethod
-  public void getMsg() {
-    android.util.Log.d("AccModule", "getMsg from Acc!!!!");
+  public static ReactContext getReactContext() {
+    return mReactContext;
   }
 
 }
