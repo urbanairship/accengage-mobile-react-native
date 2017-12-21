@@ -20,24 +20,47 @@ public class ActionsReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Set<String> cats = intent.getCategories();
         for (String currentCat : cats) {
-            String eventName = intent.getAction();
-            String msg = "Received notification : " + eventName + "\nC:[" + currentCat + "]";
+            String eventName = "";
+            String type = "";
+            String actionName = intent.getAction();
+            String msg = "Received notification : " + actionName + "\nC:[" + currentCat + "]";
             Log.d(TAG, msg);
-            Log.d(TAG, "Sending event name: " + eventName);
+            Log.d(TAG, "Sending action name: " + actionName);
             WritableMap paramsMap = Arguments.createMap();
             if (currentCat.equals("com.ad4screen.sdk.intent.category.PUSH_NOTIFICATIONS")) {
                 paramsMap.putString("type", "push");
+                type = "push";
                 //Push received
             } else if (currentCat.equals("com.ad4screen.sdk.intent.category.INAPP_NOTIFICATIONS")) {
                 paramsMap.putString("type", "inapp");
+                type = "inapp";
             }
+            Log.d(TAG, "TYPE NOTIF : " + type);
             try {
                 Bundle bundle = intent.getExtras();
                 Log.d(TAG, "BUNDLE EXTRAS : " + bundle);
-                if (bundle == null && !eventName.equals("com.ad4screen.sdk.intent.action.DISPLAYED")) {
-                    Utils.sendEvent(RNAccModule.getReactContext(), eventName, null);
-                    return ;
+                switch (actionName) {
+                    case "com.ad4screen.sdk.intent.action.DISPLAYED":
+                        if (type.equals("push")) {
+                            eventName = "didReceiveNotification";
+                        } else if (type.equals("inapp")) {
+                            eventName = "didInAppDisplay";
+                        }
+                        break;
+                    case "com.ad4screen.sdk.intent.action.CLICKED":
+                        if (type.equals("push")) {
+                            eventName = "didClickNotification";
+                        } else if (type.equals("inapp")) {
+                            eventName = "didInAppClick";
+                        }
+                        break;
+                    case "com.ad4screen.sdk.intent.action.CLOSED":
+                        if (type.equals("inapp")) {
+                            eventName = "didInAppClose";
+                        }
+                        break;
                 }
+                Log.d(TAG,"EVENT NAME : " + eventName);
                 Set<String> extras = intent.getExtras().keySet();
                 for (String extra : extras) {
                     if (extra.equals("a4sid")) {
