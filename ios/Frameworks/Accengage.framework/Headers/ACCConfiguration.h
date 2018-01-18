@@ -73,6 +73,12 @@ typedef NS_ENUM(NSUInteger, ACCConfigTrackingMode) {
 @property (nonatomic, assign, getter=isIDFACollectionEnabled) BOOL IDFACollectionEnabled;
 
 /*!
+ *  @brief Allow Accengage SDK to collect crash reports if set to @c YES. Default is @c YES.
+ *  @since 6.1.4
+ */
+@property (nonatomic, assign, getter=isCrashReportingEnabled) BOOL crashReportingEnabled;
+
+/*!
  *  @brief Allow Accengage SDK to automatically intercept notification-related app delegate calls. Default is @c YES.
  *  @since 6.0.0
  *
