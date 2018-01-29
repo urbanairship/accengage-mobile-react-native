@@ -33,4 +33,10 @@ public class RNAccViewsModule extends ReactContextBaseJavaModule {
         Log.i(TAG, "Received view " + viewName);
         A4S.get(mReactContext).setView(viewName);
     }
+
+    @ReactMethod
+    public void dismissView(String viewName) {
+        Log.i(TAG, "Received view " + viewName);
+        A4S.get(mReactContext).dismissView(viewName);
+    }
 }
