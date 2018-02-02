@@ -1,4 +1,4 @@
-package com.reactlibrary.inapp;
+package com.accengage.react.inapp;
 
 import android.util.Log;
 

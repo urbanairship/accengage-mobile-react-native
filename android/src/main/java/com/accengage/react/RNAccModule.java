@@ -1,5 +1,4 @@
-
-package com.reactlibrary;
+package com.accengage.react;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;

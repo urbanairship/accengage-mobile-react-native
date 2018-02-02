@@ -1,4 +1,4 @@
-package com.reactlibrary.push;
+package com.accengage.react.push;
 
 import android.util.Log;
 

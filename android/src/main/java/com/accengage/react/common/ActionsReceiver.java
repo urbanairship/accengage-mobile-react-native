@@ -1,4 +1,4 @@
-package com.reactlibrary.common;
+package com.accengage.react.common;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
-import com.reactlibrary.RNAccModule;
+import com.accengage.react.RNAccModule;
 
 import java.util.Set;
 

@@ -1,4 +1,4 @@
-package com.reactlibrary.inapp;
+package com.accengage.react.inapp;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

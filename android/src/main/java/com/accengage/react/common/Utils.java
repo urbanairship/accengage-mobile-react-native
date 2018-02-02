@@ -1,4 +1,4 @@
-package com.reactlibrary.common;
+package com.accengage.react.common;
 
 import android.support.annotation.Nullable;
 import android.util.Log;
