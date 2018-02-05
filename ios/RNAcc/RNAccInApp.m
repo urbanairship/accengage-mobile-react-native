@@ -70,14 +70,14 @@ RCT_EXPORT_MODULE()
     }
 }
 
-RCT_EXPORT_METHOD(setInAppDisplayEnabled:(BOOL)enabled) {
+RCT_EXPORT_METHOD(setLocked:(BOOL)enabled) {
     
-    [BMA4SInAppNotification setNotificationLock:!enabled];
+    [BMA4SInAppNotification setNotificationLock:enabled];
 }
 
-RCT_REMAP_METHOD(isInAppDisplayEnabled, isInAppDisplayEnabledWithResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+RCT_REMAP_METHOD(isLocked, isLockedWithResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     
-    resolve([NSNumber numberWithInt:![BMA4SInAppNotification notificationLock]]);
+    resolve([NSNumber numberWithInt:[BMA4SInAppNotification notificationLock]]);
 }
 
 // Create readable inApp js object
