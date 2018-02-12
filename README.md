@@ -22,14 +22,23 @@ Checkout our [react-native sample](https://github.com/Accengage/accengage-mobile
 ## Installation
 ```
 npm install react-native-acc
+react-native link
 ```
 
 ## Integration
 
-###Android
-
+### Android
 TODO
 
-###iOS
-
+### iOS
 TODO
+
+## Usage
+### Controls
+### Push Notification
+### InApps
+### Analytics
+#### Events
+#### Views
+#### Device Info
+#### Static Lists
