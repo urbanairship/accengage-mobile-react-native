@@ -33,7 +33,7 @@ RCT_EXPORT_METHOD(isEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromise
 
 RCT_EXPORT_METHOD(setLocked:(BOOL)enabled) {
     
-    [Accengage push].suspended = !enabled;
+    [Accengage push].suspended = enabled;
 }
 
 RCT_EXPORT_METHOD(isLocked:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
