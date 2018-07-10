@@ -1,4 +1,4 @@
-package com.reactlibrary.analytics;
+package com.accengage.react.analytics;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +9,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableNativeMap;
-import com.reactlibrary.common.Utils;
+import com.accengage.react.common.Utils;
 
 import java.util.Map;
 

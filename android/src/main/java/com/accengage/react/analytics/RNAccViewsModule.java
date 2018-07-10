@@ -1,4 +1,4 @@
-package com.reactlibrary.analytics;
+package com.accengage.react.analytics;
 
 import android.os.Bundle;
 import android.util.Log;

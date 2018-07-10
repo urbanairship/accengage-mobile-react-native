@@ -1,5 +1,4 @@
-
-package com.reactlibrary.analytics;
+package com.accengage.react.analytics;
 
 import android.util.Log;
 
@@ -15,7 +14,7 @@ import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableNativeArray;
 import com.facebook.react.bridge.ReadableNativeMap;
-import com.reactlibrary.common.Utils;
+import com.accengage.react.common.Utils;
 
 import org.json.JSONObject;
 

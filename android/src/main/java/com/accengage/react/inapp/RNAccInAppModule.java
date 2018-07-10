@@ -1,4 +1,4 @@
-package com.reactlibrary.inapp;
+package com.accengage.react.inapp;
 
 import android.util.Log;
 
@@ -39,7 +39,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setInAppReadyCallback(Callback callback) {
+    public void setReadyCallback(Callback callback) {
         synchronized (this) {
             if (mReadyCallback != null) {
                 Log.w(TAG, "Success Ready Callback for InApp messages is replaced by a new one");
@@ -59,7 +59,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
                 try {
                     callback.invoke(inAppMap);
                 } catch (IllegalViewOperationException e) {
-                    Log.e(TAG, "setInAppReadyCallback exception: " + e);
+                    Log.e(TAG, "setReadyCallback exception: " + e);
                 }
                 // Clean setInAppReadyCallback, react native can't reuse callbacks
                 A4S.get(mReactContext).setInAppReadyCallback(false, null);
@@ -67,7 +67,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
 
             @Override
             public void onError(int error, String errorMessage) {
-                Log.e(TAG, "setInAppReadyCallback error: " + error + ", message: " + errorMessage);
+                Log.e(TAG, "setReadyCallback error: " + error + ", message: " + errorMessage);
                 // Clean setInAppReadyCallback, react native can't reuse callbacks
                 A4S.get(mReactContext).setInAppReadyCallback(false, null);
             }
@@ -75,7 +75,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setInAppDisplayedCallback(Callback callback) {
+    public void setDisplayedCallback(Callback callback) {
         synchronized (this) {
             if (mDisplayedCallback != null) {
                 Log.w(TAG, "Success Displayed Callback for InApp messages is replaced by a new one");
@@ -94,7 +94,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
                     try {
                         callback.invoke(inAppMap);
                     } catch (IllegalViewOperationException e) {
-                        Log.e(TAG, "setInAppDisplayedCallback exception: " + e);
+                        Log.e(TAG, "setDisplayedCallback exception: " + e);
                     }
                     // Clean setInAppDisplayedCallback, react native can't reuse callbacks
                     A4S.get(mReactContext).setInAppDisplayedCallback(null);
@@ -102,7 +102,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
 
                 @Override
                 public void onError(int error, String errorMessage) {
-                    Log.e(TAG, "setInAppDisplayedCallback error: " + error + ", message: " + errorMessage);
+                    Log.e(TAG, "setDisplayedCallback error: " + error + ", message: " + errorMessage);
                     // Clean setInAppDisplayedCallback, react native can't reuse callbacks
                     A4S.get(mReactContext).setInAppDisplayedCallback(null);
                 }
@@ -111,8 +111,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setInAppClickedCallback(Callback callback) {
-        Log.i(TAG, "==================== setInAppClickedCallback ============================== ");
+    public void setClickedCallback(Callback callback) {
         synchronized (this) {
             if (mClickedCallback != null) {
                 Log.w(TAG, "Success Clicked Callback for InApp messages is replaced by a new one");
@@ -122,7 +121,6 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
             A4S.get(mReactContext).setInAppClickedCallback(new A4S.Callback<InApp>() {
                 @Override
                 public void onResult(InApp inapp) {
-                    Log.i(TAG, "==================== setInAppClickedCallback OK ============================== ");
                     WritableMap inAppMap = convertToInAppMap(inapp);
                     Callback callback;
                     synchronized (RNAccInAppModule.this) {
@@ -132,7 +130,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
                     try {
                         callback.invoke(inAppMap);
                     } catch (IllegalViewOperationException e) {
-                        Log.e(TAG, "setInAppClickedCallback exception: " + e);
+                        Log.e(TAG, "setClickedCallback exception: " + e);
                     }
                     // Clean setInAppClosedCallback, react native can't reuse callbacks
                     A4S.get(mReactContext).setInAppClickedCallback(null);
@@ -140,8 +138,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
 
                 @Override
                 public void onError(int error, String errorMessage) {
-                    Log.i(TAG, "==================== setInAppClickedCallback ERR ============================== ");
-                    Log.e(TAG, "setInAppClickedCallback error: " + error + ", message: " + errorMessage);
+                    Log.e(TAG, "setClickedCallback error: " + error + ", message: " + errorMessage);
                     // Clean setInAppClosedCallback, react native can't reuse callbacks
                     A4S.get(mReactContext).setInAppClickedCallback(null);
                 }
@@ -150,8 +147,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setInAppClosedCallback(Callback callback) {
-        Log.i(TAG, "==================== setInAppClosedCallback ============================== ");
+    public void setClosedCallback(Callback callback) {
         synchronized (this) {
             if (mClosedCallback != null) {
                 Log.w(TAG, "Success Closed Callback for InApp messages is replaced by a new one");
@@ -161,7 +157,6 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
             A4S.get(mReactContext).setInAppClosedCallback(new A4S.Callback<InApp>() {
                 @Override
                 public void onResult(InApp inapp) {
-                    Log.i(TAG, "==================== setInAppClosedCallback OK ============================== ");
                     WritableMap inAppMap = convertToInAppMap(inapp);
                     Callback callback;
                     synchronized (RNAccInAppModule.this) {
@@ -171,7 +166,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
                     try {
                         callback.invoke(inAppMap);
                     } catch (IllegalViewOperationException e) {
-                        Log.e(TAG, "setInAppClosedCallback exception: " + e);
+                        Log.e(TAG, "setClosedCallback exception: " + e);
                     }
                     // Clean setInAppClosedCallback, react native can't reuse callbacks
                     A4S.get(mReactContext).setInAppClosedCallback(null);
@@ -179,8 +174,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
 
                 @Override
                 public void onError(int error, String errorMessage) {
-                    Log.i(TAG, "==================== setInAppClosedCallback ERR ============================== ");
-                    Log.e(TAG, "setInAppClosedCallback error: " + error + ", message: " + errorMessage);
+                    Log.e(TAG, "setClosedCallback error: " + error + ", message: " + errorMessage);
                     // Clean setInAppClosedCallback, react native can't reuse callbacks
                     A4S.get(mReactContext).setInAppClosedCallback(null);
                 }
@@ -189,30 +183,27 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setInAppDisplayEnabled(Boolean isEnabled) {
-        Log.i(TAG, "==================== setInAppDisplayEnabled ============================== ");
+    public void setLocked(Boolean isEnabled) {
         A4S.get(mReactContext).setInAppDisplayLocked(isEnabled);
     }
 
     @ReactMethod
-    public void isInAppDisplayEnabled(Promise promise) {
-        Log.i(TAG, "==================== isInAppDisplayEnabled ============================== ");
+    public void isDisplayEnabled(Promise promise) {
         synchronized (this) {
             if (mIsInAppLockedPromise != null) {
-                Log.w(TAG, "isInAppDisplayEnabled Promise is replaced by a new one");
+                Log.w(TAG, "isDisplayEnabled Promise is replaced by a new one");
             }
             mIsInAppLockedPromise = promise;
             A4S.get(mReactContext).isInAppDisplayLocked(new A4S.Callback<Boolean>() {
                 @Override
                 public void onResult(Boolean isLocked) {
-                    Log.i(TAG, "==================== isInAppDisplayLocked OK ============================== ");
                     Promise promise;
                     synchronized (RNAccInAppModule.this) {
                         promise = mIsInAppLockedPromise;
                         mIsInAppLockedPromise = null;
                     }
                     if (promise == null) {
-                        Log.e(TAG, "Promise is null for isInAppDisplayEnabled");
+                        Log.e(TAG, "Promise is null for isDisplayEnabled");
                         return;
                     }
                     try {
@@ -224,7 +215,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
 
                 @Override
                 public void onError(int i, String error) {
-                    Log.e(TAG, "An error is appeared for isInAppDisplayEnabled: " + error);
+                    Log.e(TAG, "An error is appeared for isDisplayEnabled: " + error);
                 }
             });
         }

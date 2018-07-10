@@ -1,4 +1,4 @@
-package com.reactlibrary.push;
+package com.accengage.react.analytics;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
@@ -10,10 +10,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class RNAccPushPackage implements ReactPackage{
+/**
+ * Created by aperykasza on 11/14/17.
+ */
+
+public class RNAccViewsPackage implements ReactPackage{
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.<NativeModule>asList(new RNAccPushModule(reactContext));
+        return Arrays.<NativeModule>asList(new RNAccViewsModule(reactContext));
     }
 
     // Deprecated from RN 0.47
