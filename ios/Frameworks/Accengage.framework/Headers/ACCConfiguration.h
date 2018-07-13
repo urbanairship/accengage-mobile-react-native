@@ -125,6 +125,19 @@ typedef NS_ENUM(NSUInteger, ACCConfigTrackingMode) {
  */
 @property (nonatomic, copy, nullable) NSString *webTrackingJSURL;
 
+/*!
+ *  @brief The launchOptions dictionary passed as parameter of the following UIApplicationDelegate method:
+ *  - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+ *
+ *  @since 6.1.6
+ *
+ *  @details By default, the SDK automatically collects the information needed for the optimal SDK launch. However, if you need to delay the SDK launch, you'll need to pass the launchOptions dictionary to the SDK.
+ *  @note Use only if you need to delay the SDK launch.
+ *
+ */
+@property (nonatomic, copy, nullable) NSDictionary *launchOptions;
+
+
 ///-----------------------------------------------------------------------------
 /// @name  Factory Methods
 ///-----------------------------------------------------------------------------
