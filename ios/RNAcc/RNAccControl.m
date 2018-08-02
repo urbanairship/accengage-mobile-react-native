@@ -61,15 +61,15 @@ RCT_EXPORT_METHOD(setOptinDataEnabled:(BOOL)enabled) {
 }
 
 RCT_EXPORT_METHOD(setOptinGeolocEnabled:(BOOL)enabled) {
-    [Accengage setGeolocOptInEnabled:optinGeoloc];
+    [Accengage setGeolocOptInEnabled:enabled];
 }
 
-RCT_EXPORT_METHOD(isOptinDataEnabled) {
-    resolve([Accengage isDataOptInEnabled]);
+RCT_EXPORT_METHOD(isOptinDataEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    resolve([NSNumber numberWithInt:[Accengage isDataOptInEnabled]]);
 }
 
-RCT_EXPORT_METHOD(isOptinGeolocEnabled) {
-    resolve([Accengage isGeolocOptInEnabled]);
+RCT_EXPORT_METHOD(isOptinGeolocEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    resolve([NSNumber numberWithInt:[Accengage isGeolocOptInEnabled]]);
 }
 
 @end
