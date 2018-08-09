@@ -188,7 +188,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void isDisplayEnabled(Promise promise) {
+    public void isLocked(Promise promise) {
         synchronized (this) {
             if (mIsInAppLockedPromise != null) {
                 Log.w(TAG, "isDisplayEnabled Promise is replaced by a new one");
