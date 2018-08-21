@@ -2,7 +2,7 @@
 //  RNAccPush.m
 //  RNAcc
 //
-//  Copyright © 2017 Facebook. All rights reserved.
+//  Copyright © 2017 Accengage. All rights reserved.
 //
 
 #import "RNAccPush.h"

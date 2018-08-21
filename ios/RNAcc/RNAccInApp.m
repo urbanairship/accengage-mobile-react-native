@@ -2,7 +2,7 @@
 //  RNAccInApp.m
 //  RNAcc
 //
-//  Created by Bastien Brunaud on 06/11/2017.
+//  Copyright © 2017 Accengage. All rights reserved.
 //
 
 #import "RNAccInApp.h"
