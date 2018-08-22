@@ -2,7 +2,7 @@
 //  RNAccInApp.h
 //  RNAcc
 //
-//  Created by Bastien Brunaud on 06/11/2017.
+//  Copyright © 2017 Accengage. All rights reserved.
 //
 
 #if __has_include(<React/RCTBridgeModule.h>)
