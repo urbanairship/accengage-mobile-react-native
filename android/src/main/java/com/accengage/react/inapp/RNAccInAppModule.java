@@ -188,10 +188,10 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void isDisplayEnabled(Promise promise) {
+    public void isLocked(Promise promise) {
         synchronized (this) {
             if (mIsInAppLockedPromise != null) {
-                Log.w(TAG, "isDisplayEnabled Promise is replaced by a new one");
+                Log.w(TAG, "isLocked Promise is replaced by a new one");
             }
             mIsInAppLockedPromise = promise;
             A4S.get(mReactContext).isInAppDisplayLocked(new A4S.Callback<Boolean>() {
@@ -203,7 +203,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
                         mIsInAppLockedPromise = null;
                     }
                     if (promise == null) {
-                        Log.e(TAG, "Promise is null for isDisplayEnabled");
+                        Log.e(TAG, "Promise is null for isLocked");
                         return;
                     }
                     try {
@@ -215,7 +215,7 @@ public class RNAccInAppModule extends ReactContextBaseJavaModule {
 
                 @Override
                 public void onError(int i, String error) {
-                    Log.e(TAG, "An error is appeared for isDisplayEnabled: " + error);
+                    Log.e(TAG, "An error is appeared for isLocked: " + error);
                 }
             });
         }

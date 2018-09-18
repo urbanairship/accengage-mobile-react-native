@@ -29,10 +29,12 @@ android {
 
 repositories {
     mavenCentral()
+    jcenter()
+    google()
 }
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    compile 'com.ad4screen.sdk:A4SSDK:3.6.4.1'
+    compile 'com.ad4screen.sdk:A4SSDK:3.8.0'
 }
   
