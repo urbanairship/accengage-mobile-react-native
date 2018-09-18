@@ -16,10 +16,14 @@ FOUNDATION_EXPORT const unsigned char AccengageVersionString[];
 
 #import <Accengage/ACCList.h>
 #import <Accengage/ACCPush.h>
+#import <Accengage/ACCUserProfile.h>
 #import <Accengage/ACCCartItem.h>
 #import <Accengage/ACCConfiguration.h>
 #import <Accengage/ACCWKWebView.h>
 #import <Accengage/UIViewController+Accengage.h>
+#import <Accengage/ACCDeviceTag.h>
+#import <Accengage/ACCDeviceInformationSet.h>
+#import <Accengage/ACCCustomEventParams.h>
 
 /**
  * Old Headers
@@ -48,6 +52,11 @@ FOUNDATION_EXPORT NSString *const ACCStartMainThreadException;
 typedef NS_ENUM(NSUInteger, ACCWebViewTrackingFramework) {
     ACCUIWebViewFramework,
     ACCWKWebViewFramework
+};
+
+typedef NS_ENUM(NSUInteger, ACCOptIn) {
+    ACCOptInEnabled,
+    ACCOptInDisabled
 };
 
 /*!
@@ -97,7 +106,17 @@ typedef NS_ENUM(NSUInteger, ACCWebViewTrackingFramework) {
  *
  *  @return The shared @c ACCPush instance.
  */
-+ (ACCPush *)push;
+
++ (nullable ACCPush *)push;
+
+/*!
+ *  @brief Returns the shared @c ACCUserProfile instance.
+ *  @since 6.3.0
+ *
+ *  @return The shared @c ACCUserProfile instance.
+ */
+
++ (ACCUserProfile *)profile;
 
 ///-----------------------------------------------------------------------------
 /// @name Lifecycle
@@ -147,6 +166,107 @@ typedef NS_ENUM(NSUInteger, ACCWebViewTrackingFramework) {
  *  @param config The configuration to use.
  */
 + (void)startWithConfig:(ACCConfiguration *)config;
+
+/*!
+ *  @brief Initializes and starts all @c Accengage services and performs all necessary setup.
+ *  @since 6.2.0
+ *
+ *  @details This method serves as the entry point to @c Accengage services. It @b must be
+ *  called in the scope of @c applicationDidFinishLaunching method, and it may be called only once.
+ *  Use this method if your application manages the user opt-in or if you wish to explicitly indicate that it's not
+ *  the case.
+ *  @code
+ *
+ *  @endcode
+ *
+ *  @warning This method @b must be called on the @b main @b thread. Otherwise it will throw
+ *  an exception.
+ *
+ *  @throw ACCStartMainThreadException
+ *
+ *  @see start
+ *
+ *  @param optIn If @c ACCOptInEnabled, Accengage SDK will wait until @c setDataOptInEnabled method is called.
+ *               If @c ACCOptInDisabled, Accengage will start with all services enabled.
+ */
++ (void)startWithOptIn:(ACCOptIn)optIn;
+
+/*!
+ *  @brief Initializes and starts all @c Accengage services and performs all necessary setup.
+ *  @since 6.2.0
+ *
+ *  @details This method serves as the entry point to @c Accengage services. It @b must be
+ *  called in the scope of @c applicationDidFinishLaunching method, and it may be called only once.
+ *  Use this method if your application manages the user opt-in or if you wish to explicitly indicate that it's not
+ *  the case.
+ *  @code
+ *
+ *  @endcode
+ *
+ *  @warning This method @b must be called on the @b main @b thread. Otherwise it will throw
+ *  an exception.
+ *
+ *  @throw ACCStartMainThreadException
+ *
+ *  @see startWithConfig
+ *
+ *  @param optIn If @c ACCOptInEnabled, Accengage SDK will wait until @c setDataOptInEnabled method is called.
+ *               If @c ACCOptInDisabled, Accengage will start with all services enabled.
+ *  @param config The configuration to use.
+ */
++ (void)startWithConfig:(ACCConfiguration *)config optIn:(ACCOptIn)optIn;
+
+/*!
+ *  @brief Enable or disable the data opt-in.
+ *  @since 6.2.0
+ *
+ *  @details If you used @c startWithOptin or @c startWithConfig:optIn method to enable ACCOptIn, you'll need to use
+ *  this method to pass the opt-in information. Passing @b YES means that Accengage SDK will start (or resume). Note
+ *  that you'll need to call @c setGeofenceServiceEnabled and @c setBeaconServiceEnabled to enable these services. Also,
+ *  you'll need to call @c registerForUserNotificationWithOptions after this method to enable push notifications.
+ *  Passing @b NO means that all Accengage services will be stopped.
+ *
+ *  @see isDataOptInEnabled
+ *
+ *  @param enabled If @c YES, Accengage SDK will start (or resume).
+ *                 If @c NO, All Accengage services will be stopped.
+ */
++ (void)setDataOptInEnabled:(BOOL)enabled;
+
+/*!
+ *  @brief Checks if data opt-in is enabled and returns the status.
+ *  @since 6.2.0
+ *
+ *  @see setDataOptInEnabled:
+ *
+ *  @return @c YES if data opt-in is enabled.
+ */
++ (BOOL)isDataOptInEnabled;
+
+/*!
+ *  @brief Enable or disable the geolocation data opt-in.
+ *  @since 6.2.0
+ *
+ *  @details If you used @c startWithOptin or @c startWithConfig:optIn method to enable ACCOptIn, you'll need to use
+ *  this method to pass the opt-in information. Note that calling this method with @b YES as param will have no effect
+ *  if data opt-in is not enabled.
+ *
+ *  @see isGeolocOptInEnabled
+ *
+ *  @param enabled If @c YES, Geolocation data opt-in will be enabled.
+ *
+ */
++ (void)setGeolocOptInEnabled:(BOOL)enabled;
+
+/*!
+ *  @brief Checks if geoloc opt-in is enabled and returns the status.
+ *  @since 6.2.0
+ *
+ *  @see setGeolocOptInEnabled:
+ *
+ *  @return @c YES if geoloc opt-in is enabled.
+ */
++ (BOOL)isGeolocOptInEnabled;
 
 /*!
  *  @brief Suspends or resumes all Accengage services.
@@ -224,7 +344,7 @@ typedef NS_ENUM(NSUInteger, ACCWebViewTrackingFramework) {
  *
  *  @param fields The @c NSDictionary with values that you want to synchronize.
  */
-+ (void)updateDeviceInfo:(NSDictionary<NSString *, NSString *> *)fields;
++ (void)updateDeviceInfo:(NSDictionary<NSString *, NSString *> *)fields __attribute__((deprecated("This method is deprecated starting from version 6.3.0. Use the updateDeviceInformation: method from ACCUserProfile class")));
 
 ///-----------------------------------------------------------------------------
 /// @name Track Events
@@ -247,9 +367,20 @@ typedef NS_ENUM(NSUInteger, ACCWebViewTrackingFramework) {
  *  The values below @c 1000 are reserved for Accengage internal usage. You can use custom event type starting from @c 1001.
  *
  *  @param parameters  Arbitrary parameter array of characteristics. The values are expected to be @c NSString
+ *  @deprecated This method is deprecated starting from version 6.3.0
  */
-+ (void)trackEvent:(NSUInteger)eventType
-    withParameters:(NSArray<NSString *>  *)parameters;
++ (void)trackEvent:(NSUInteger)eventType withParameters:(NSArray<NSString *>  *)parameters __attribute__((deprecated("This method is deprecated starting from version 6.3.0. Use [Accengage trackEvent: withCustomParameters:] instead")));
+
+/*!
+ *  @brief Tracks an event with a type and a custom parameters object.
+ *  @since 6.3.0
+ *
+ *  @param eventType   The type of the event to record. The event type is a @c NSUInteger. @n
+ *  The values below @c 1000 are reserved for Accengage internal usage. You can use custom event type starting from @c 1001.
+ *
+ *  @param customParameters  ACCCustomEventParams object. Set the parameters by implementing ACCDataFormatting protocol methods.
+ */
++ (void)trackEvent:(NSUInteger)eventType withCustomParameters:(ACCCustomEventParams *)customParameters;
 
 /*!
  *  @brief Tracks a purchase of the specified amount and items, in the specified currency.
@@ -382,6 +513,21 @@ typedef NS_ENUM(NSUInteger, ACCWebViewTrackingFramework) {
 + (void)trackScreenDismiss:(NSString *)screenID;
 
 ///-----------------------------------------------------------------------------
+/// @name  States
+///-----------------------------------------------------------------------------
+
+/*!
+ *  @brief Set a state.
+ *  @since 6.3.0
+ *
+ *  @param name  The state name.
+ *
+ *  @param value The state value.
+ */
+
++ (void)setState:(nullable NSString *)value forKey:(NSString *)name;
+
+///-----------------------------------------------------------------------------
 /// @name  Web Tracking
 ///-----------------------------------------------------------------------------
 
@@ -412,7 +558,7 @@ typedef NS_ENUM(NSUInteger, ACCWebViewTrackingFramework) {
  *
  *  @return The Accengage script message names.
  */
-+ (NSSet<NSString *> *)scriptMessagesNames;
++ (nullable NSSet<NSString *> *)scriptMessagesNames;
 
 /*!
  *  @brief Returns the Accengage tracking script.
@@ -506,7 +652,6 @@ typedef NS_ENUM(NSUInteger, ACCWebViewTrackingFramework) {
 + (void)listOfSubscriptions:(void (^)(NSArray<ACCList *> * _Nullable result,
                                       NSError * _Nullable error))completionHandler;
 
-
 ///-----------------------------------------------------------------------------
 /// @name  Opening a URL
 ///-----------------------------------------------------------------------------
@@ -546,7 +691,7 @@ typedef NS_ENUM(NSUInteger, ACCWebViewTrackingFramework) {
  *
  *  @param date Arbitrary @c NSDate object to normalize.
  */
-+ (NSString *)normalizedStringForDate:(NSDate *)date;
++ (nullable NSString *)normalizedStringForDate:(NSDate *)date;
 
 ///-----------------------------------------------------------------------------
 /// @name  Factory Methods
