@@ -46,5 +46,60 @@ RCT_EXPORT_METHOD(getToken:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseR
     resolve([[Accengage push] deviceToken]);
 }
 
+- (id)categorieAction:(NSString *)identifier title:(NSString *)title foreground:(BOOL)foreground {
+    
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]) {
+        
+        return [UNNotificationAction actionWithIdentifier:identifier
+                                                    title:title
+                                                  options:foreground ? UNNotificationActionOptionForeground : UNNotificationActionOptionNone];
+    }
+    
+    UIMutableUserNotificationAction *action = [[UIMutableUserNotificationAction alloc] init];
+    action.activationMode = foreground ? UIUserNotificationActivationModeForeground : UIUserNotificationActivationModeBackground;
+    action.title = title;
+    action.identifier = identifier;
+    action.destructive = NO;
+    action.authenticationRequired = NO;
+    
+    return action;
+}
+
+- (id)categorieWithIdentifier:(NSString *)identifier actions:(NSArray *)actions options:(UNNotificationCategoryOptions)options {
+    
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]) {
+        return [UNNotificationCategory categoryWithIdentifier:identifier actions:actions intentIdentifiers:@[] options:options];;
+    }
+    
+    UIMutableUserNotificationCategory *categorie = [[UIMutableUserNotificationCategory alloc] init];
+    categorie.identifier = identifier;
+    [categorie setActions:actions
+               forContext:UIUserNotificationActionContextDefault];
+    
+    return categorie;
+}
+
+RCT_EXPORT_METHOD(setCustomCategories:(NSDictionary *)customCategories) {
+    
+    NSMutableSet *accengageSet = [NSMutableSet set];;
+    
+    for(id key in customCategories) {
+        NSArray *dictValue = [customCategories objectForKey:key];
+        NSLog(@"key=%@ value=%@", key, [customCategories objectForKey:key]);
+        NSArray *actions = dictValue;
+        NSMutableArray* actionsObjects = @[].mutableCopy;
+        
+        for (NSDictionary *action in actions) {
+            [actionsObjects addObject:[self categorieAction:action[@"id"] title:action[@"title"] foreground:[action[@"bool"] boolValue]]];
+        }
+        
+        [accengageSet addObject:[self categorieWithIdentifier:key actions:actionsObjects options:UNNotificationCategoryOptionCustomDismissAction]];
+    }
+    
+    [Accengage push].customCategories = accengageSet;
+    ACCNotificationOptions options = ACCNotificationOptionAlert|ACCNotificationOptionBadge|ACCNotificationOptionSound;
+    [[Accengage push] registerForUserNotificationsWithOptions:options];
+}
+
 @end
 
