@@ -18,6 +18,11 @@ RCT_EXPORT_MODULE()
     return dispatch_get_main_queue();
 }
 
+- (dispatch_queue_t)methodQueue {
+    
+    return dispatch_get_main_queue();
+}
+
 // Will be called when this module's first listener is added.
 - (void)startObserving {
     
