@@ -18,9 +18,9 @@ RCT_EXPORT_MODULE()
     return dispatch_get_main_queue();
 }
 
-- (dispatch_queue_t)methodQueue {
++ (BOOL)requiresMainQueueSetup {
     
-    return dispatch_get_main_queue();
+    return false;
 }
 
 // Will be called when this module's first listener is added.
