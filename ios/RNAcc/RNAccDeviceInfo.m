@@ -27,7 +27,7 @@ RCT_EXPORT_METHOD(updateDeviceInformation:(NSString*)action
                   resolve:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
     
-    ACCDeviceInformationSet *deviceInfo = [[ACCDeviceInformationSet alloc]init];
+    ACCDeviceInformationSet *deviceInfo = [[ACCDeviceInformationSet alloc] init];
     
     if ([action isEqualToString:@"set"]) {
         
@@ -35,6 +35,8 @@ RCT_EXPORT_METHOD(updateDeviceInformation:(NSString*)action
             [deviceInfo setString:value forKey:key];
         } else if ([value isKindOfClass:[NSNumber class]]) {
             [deviceInfo setNumber:value forKey:key];
+        } else if ([value isKindOfClass:[NSDate class]]) {
+            [deviceInfo setDate:value forKey:key];
         }
         
     } else if ([action isEqualToString:@"delete"]) {
