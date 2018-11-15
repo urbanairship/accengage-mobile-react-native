@@ -46,5 +46,59 @@ RCT_EXPORT_METHOD(getToken:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseR
     resolve([[Accengage push] deviceToken]);
 }
 
+RCT_EXPORT_METHOD(setCustomCategories:(NSDictionary *)customCategories) {
+    
+    NSMutableSet *accengageSet = [NSMutableSet set];;
+    
+    for(NSString *key in customCategories) {
+        NSArray *dictValue = [customCategories objectForKey:key];
+        NSLog(@"key=%@ value=%@", key, [customCategories objectForKey:key]);
+        NSMutableArray* actionsObjects = @[].mutableCopy;
+        
+        for (NSDictionary *action in dictValue) {
+            [actionsObjects addObject:[self categoryAction:action[@"id"] title:action[@"title"] foreground:[action[@"foreground"] boolValue]]];
+        }
+        
+        [accengageSet addObject:[self categoryWithIdentifier:key actions:actionsObjects options:UNNotificationCategoryOptionCustomDismissAction]];
+    }
+    
+    [Accengage push].customCategories = accengageSet;
+}
+
+#pragma mark - Helper methods
+
+- (id)categoryAction:(NSString *)identifier title:(NSString *)title foreground:(BOOL)foreground {
+    
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]) {
+        
+        return [UNNotificationAction actionWithIdentifier:identifier
+                                                    title:title
+                                                  options:foreground ? UNNotificationActionOptionForeground : UNNotificationActionOptionNone];
+    }
+    
+    UIMutableUserNotificationAction *action = [[UIMutableUserNotificationAction alloc] init];
+    action.activationMode = foreground ? UIUserNotificationActivationModeForeground : UIUserNotificationActivationModeBackground;
+    action.title = title;
+    action.identifier = identifier;
+    action.destructive = NO;
+    action.authenticationRequired = NO;
+    
+    return action;
+}
+
+- (id)categoryWithIdentifier:(NSString *)identifier actions:(NSArray *)actions options:(UNNotificationCategoryOptions)options {
+    
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]) {
+        return [UNNotificationCategory categoryWithIdentifier:identifier actions:actions intentIdentifiers:@[] options:options];;
+    }
+    
+    UIMutableUserNotificationCategory *category = [[UIMutableUserNotificationCategory alloc] init];
+    category.identifier = identifier;
+    [category setActions:actions
+              forContext:UIUserNotificationActionContextDefault];
+    
+    return category;
+}
+
 @end
 
