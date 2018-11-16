@@ -23,7 +23,7 @@ RCT_EXPORT_METHOD(setState:(NSString *)value forKey:(NSString *)name) {
         return;
     }
 
-    [[Accengage setState:value forKey:name];
+    [Accengage setState:value forKey:name];
 }
 
 @end
