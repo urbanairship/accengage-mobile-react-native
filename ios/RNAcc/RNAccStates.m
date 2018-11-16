@@ -18,7 +18,7 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(setState:(NSString *)value forKey:(NSString *)name) {
     
-    if (!name || !value) {
+    if (!name) {
         return;
     }
 
