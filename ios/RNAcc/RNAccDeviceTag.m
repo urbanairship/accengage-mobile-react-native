@@ -20,7 +20,6 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(setDeviceTag:(NSString*)category identifier:(NSString*)identifier items:(NSDictionary*)items) {
     
     if (!category || !identifier) {
-        //A4SLog(A4SLogLevel_Ad4Screen, @"The category and identifier are required %@ ", message);
         return;
     }
     
@@ -45,7 +44,6 @@ RCT_EXPORT_METHOD(setDeviceTag:(NSString*)category identifier:(NSString*)identif
 RCT_EXPORT_METHOD(deleteDeviceTag:(NSString*)category identifier:(NSString*)identifier) {
     
     if (!category || !identifier) {
-        //A4SLog(A4SLogLevel_Ad4Screen, @"The category and identifier are required %@ ", message);
         return;
     }
     
