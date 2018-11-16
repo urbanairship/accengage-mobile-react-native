@@ -2,8 +2,7 @@
 //  RNAccDeviceTag.m
 //  RNAcc
 //
-//  Created by Mouna KHEMIRI on 11/14/18.
-//  Copyright © 2018 Facebook. All rights reserved.
+//  Copyright © 2018 Accengage. All rights reserved.
 //
 
 #import "RNAccDeviceTag.h"
