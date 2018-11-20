@@ -1,5 +1,5 @@
 //
-//  RNAccDeviceTag.h
+//  RNAccStates.h
 //  RNAcc
 //
 //  Copyright © 2018 Accengage. All rights reserved.
@@ -13,6 +13,6 @@
 
 #import <Accengage/Accengage.h>
 
-@interface RNAccDeviceTag : NSObject <RCTBridgeModule>
+@interface RNAccStates : NSObject <RCTBridgeModule>
 
 @end

@@ -2,8 +2,7 @@
 //  RNAccDeviceTag.m
 //  RNAcc
 //
-//  Created by Mouna KHEMIRI on 11/14/18.
-//  Copyright © 2018 Facebook. All rights reserved.
+//  Copyright © 2018 Accengage. All rights reserved.
 //
 
 #import "RNAccDeviceTag.h"
@@ -20,7 +19,6 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(setDeviceTag:(NSString*)category identifier:(NSString*)identifier items:(NSDictionary*)items) {
     
     if (!category || !identifier) {
-        //A4SLog(A4SLogLevel_Ad4Screen, @"The category and identifier are required %@ ", message);
         return;
     }
     
@@ -45,7 +43,6 @@ RCT_EXPORT_METHOD(setDeviceTag:(NSString*)category identifier:(NSString*)identif
 RCT_EXPORT_METHOD(deleteDeviceTag:(NSString*)category identifier:(NSString*)identifier) {
     
     if (!category || !identifier) {
-        //A4SLog(A4SLogLevel_Ad4Screen, @"The category and identifier are required %@ ", message);
         return;
     }
     
