@@ -27,7 +27,12 @@ RCT_EXPORT_METHOD(setDeviceTag:(NSString*)category identifier:(NSString*)identif
     if (items) {
         [items enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             if ([obj isKindOfClass:[NSString class]]) {
-                [deviceTag setString:obj forKey:key];
+                NSDate *date = [self dateFromString:obj];
+                if (date) {
+                    [deviceTag setDate:date forKey:key];
+                } else {
+                    [deviceTag setString:obj forKey:key];
+                }
             } else if ([obj isKindOfClass:[NSNumber class]]) {
                 [deviceTag setNumber:obj forKey:key];
             } else if ([obj isKindOfClass:[NSDate class]]) {
@@ -48,6 +53,18 @@ RCT_EXPORT_METHOD(deleteDeviceTag:(NSString*)category identifier:(NSString*)iden
     
     ACCDeviceTag *deviceTag = [[ACCDeviceTag alloc] initWithCategory:category identifier:identifier];
     [[Accengage profile] deleteDeviceTag:deviceTag];
+}
+
+#pragma mark - Helper Methods
+
+- (NSDate*)dateFromString:(NSString*)stringParam {
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZ"];
+    NSString *finalString = [stringParam stringByReplacingOccurrencesOfString:@"Z" withString:@"-0000"];
+    NSDate *date = [dateFormatter dateFromString:finalString];
+    
+    return date;
 }
 
 @end
