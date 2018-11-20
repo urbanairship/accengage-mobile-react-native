@@ -6,6 +6,7 @@
 //
 
 #import "RNAccTracking.h"
+#import "RNAccUtils.h"
 
 @implementation RNAccTracking
 
@@ -99,7 +100,7 @@ RCT_EXPORT_METHOD(trackCustomEvent:(NSUInteger)eventType withCustomParameters:(N
     ACCCustomEventParams *customEventParams = [[ACCCustomEventParams alloc] init];
     [customParameters enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSString class]]) {
-            NSDate *date = [self dateFromString:obj];
+            NSDate *date = [RNAccUtils dateFromString:obj];
             if (date) {
                 [customEventParams setDate:date forKey:key];
             } else {
@@ -113,19 +114,6 @@ RCT_EXPORT_METHOD(trackCustomEvent:(NSUInteger)eventType withCustomParameters:(N
     }];
     
     [Accengage trackEvent:eventType withCustomParameters:customEventParams];
-}
-
-
-#pragma mark - Helper Methods
-
-- (NSDate*)dateFromString:(NSString*)stringParam {
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZ"];
-    NSString *finalString = [stringParam stringByReplacingOccurrencesOfString:@"Z" withString:@"-0000"];
-    NSDate *date = [dateFormatter dateFromString:finalString];
-    
-    return date;
 }
 
 @end

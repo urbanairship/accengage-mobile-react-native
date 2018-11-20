@@ -6,6 +6,7 @@
 //
 
 #import "RNAccDeviceInfo.h"
+#import "RNAccUtils.h"
 
 @implementation RNAccDeviceInfo
 
@@ -32,7 +33,7 @@ RCT_EXPORT_METHOD(updateDeviceInformation:(NSString*)action
     if ([action isEqualToString:@"set"]) {
         
         if ([value isKindOfClass:[NSString class]]) {
-            NSDate *date = [self dateFromString:value];
+            NSDate *date = [RNAccUtils dateFromString:value];
             if (date) {
                 [deviceInfo setDate:date forKey:key];
             } else {
@@ -66,18 +67,6 @@ RCT_EXPORT_METHOD(updateDeviceInformation:(NSString*)action
         else
             reject(@"error", error.localizedDescription, error);
     }];
-}
-
-#pragma mark - Helper Methods
-
-- (NSDate*)dateFromString:(NSString*)stringParam {
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZ"];
-    NSString *finalString = [stringParam stringByReplacingOccurrencesOfString:@"Z" withString:@"-0000"];
-    NSDate *date = [dateFormatter dateFromString:finalString];
-    
-    return date;
 }
 
 @end
