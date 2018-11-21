@@ -18,6 +18,11 @@ RCT_EXPORT_MODULE()
     return dispatch_get_main_queue();
 }
 
++ (BOOL)requiresMainQueueSetup {
+    
+    return false;
+}
+
 // Will be called when this module's first listener is added.
 - (void)startObserving {
     
@@ -51,17 +56,33 @@ RCT_EXPORT_MODULE()
 - (void)didReceiveNotificationWithId:(NSString *)notifId parameters:(NSDictionary *)params {
     
     [self sendEventWithName:@"didReceiveNotification" body:@{@"notification": @{
-                                                             @"notificationId" : notifId,
-                                                             @"customParams" : params
-    }}];
+                                                                     @"notificationId" : notifId,
+                                                                     @"customParams" : params
+                                                                     }}];
 }
+
+- (void)didReceiveNotificationWithId:(NSString *)notifId allParameters:(nonnull NSDictionary *)allParams {
+    
+    [self sendEventWithName:@"didReceiveNotification" body:@{@"notification": @{
+                                                                     @"notificationId" : notifId,
+                                                                     @"allParams" : allParams
+                                                                     }}];
+}
+
 
 - (void)didOpenNotificationWithId:(NSString *)notifId parameters:(NSDictionary *)params {
     
     [self sendEventWithName:@"didClickNotification" body:@{@"notification": @{
-                                                           @"notificationId" : notifId,
-                                                           @"customParams" : params
-    }}];
+                                                                   @"notificationId" : notifId,
+                                                                   @"customParams" : params
+                                                                   }}];
+}
+
+- (void)didOpenNotificationWithId:(NSString *)notifId allParameters:(NSDictionary *)allParams {
+    [self sendEventWithName:@"didClickNotification" body:@{@"notification": @{
+                                                                   @"notificationId" : notifId,
+                                                                   @"allParams" : allParams
+                                                                   }}];
 }
 
 - (void)didClickOnActionWithIdentifier:(NSString *)actionId forRemoteNotificationWithId:(NSString *)notifId notificationParameters:(NSDictionary *)params1 actionParameters:(NSDictionary *)params2 {
@@ -71,11 +92,25 @@ RCT_EXPORT_MODULE()
     [customParams addEntriesFromDictionary:params1];
     [customParams addEntriesFromDictionary:params2];
     [self sendEventWithName:@"didClickNotification" body:@{@"notification": @{
-                                                           @"notificationId" : notifId,
-                                                           @"actionId" : actionId,
-                                                           @"customParams" : customParams
-    }}];
+                                                                   @"notificationId" : notifId,
+                                                                   @"actionId" : actionId,
+                                                                   @"customParams" : customParams
+                                                                   }}];
+}
+
+- (void)didClickOnActionWithIdentifier:(NSString *)actionId forRemoteNotificationWithId:(NSString *)notifId allNotificationParameters:(NSDictionary *)allParams actionParameters:(NSDictionary *)actionParams {
+    
+    NSMutableDictionary *params = @{}.mutableCopy;
+    
+    [params addEntriesFromDictionary:allParams];
+    [params addEntriesFromDictionary:actionParams];
+    [self sendEventWithName:@"didClickNotification" body:@{@"notification": @{
+                                                                   @"notificationId" : notifId,
+                                                                   @"actionId" : actionId,
+                                                                   @"params" : params
+                                                                   }}];
 }
 
 @end
-  
+
+
