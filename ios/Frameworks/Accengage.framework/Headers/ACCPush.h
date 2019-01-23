@@ -24,7 +24,11 @@ typedef NS_OPTIONS(NSUInteger, ACCNotificationOptions) {
     /*! The ability to display alerts. */
     ACCNotificationOptionAlert   = (1 << 2),
     /*! The ability to display notifications in a CarPlay environment. */
-    ACCNotificationOptionCarPlay = (1 << 3)
+    ACCNotificationOptionCarPlay = (1 << 3),
+    /*! An option indicating the system should display a button for in-app notification settings. */
+    ACCAuthorizationOptionProvidesAppNotificationSettings = (1 << 5),
+    /*! The ability to post noninterrupting notifications provisionally to the Notification Center. */
+    ACCNotificationOptionProvisional = (1 << 6)
 };
 
 @protocol ACCPushDelegate;
