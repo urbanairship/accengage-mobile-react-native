@@ -13,10 +13,10 @@
 		0B92DCD01FBAEF8B008BDF81 /* RNAccDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B92DCCF1FBAEF8B008BDF81 /* RNAccDeviceInfo.m */; };
 		0B9C91A81FA215AD00BF8283 /* RNAccControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C91A71FA215AD00BF8283 /* RNAccControl.m */; };
 		0BB8EFF01FB0A983008C8098 /* RNAccInApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB8EFEF1FB0A983008C8098 /* RNAccInApp.m */; };
-		0BEBD7801FC473C300AD195C /* Accengage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BEBD77F1FC473C300AD195C /* Accengage.framework */; };
 		0BF1DCDD1FB9E14000C82CAF /* RNAccPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1DCDC1FB9E14000C82CAF /* RNAccPush.m */; };
 		87194411219C5F5600E2F6EF /* RNAccDeviceTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 87194410219C5F5600E2F6EF /* RNAccDeviceTag.m */; };
 		8733DE3421A466E0000903EC /* RNAccUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8733DE3321A466E0000903EC /* RNAccUtils.m */; };
+		877D4A1822A6C2B10097F0AF /* Accengage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877D4A1722A6C2B10097F0AF /* Accengage.framework */; };
 		87F851E6219ED3190096A6BD /* RNAccStates.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F851E5219ED3190096A6BD /* RNAccStates.m */; };
 		B3E7B58A1CC2AC0600A0062D /* RNAcc.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNAcc.m */; };
 /* End PBXBuildFile section */
@@ -46,7 +46,6 @@
 		0B9C91A71FA215AD00BF8283 /* RNAccControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccControl.m; sourceTree = "<group>"; };
 		0BB8EFEE1FB0A983008C8098 /* RNAccInApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccInApp.h; sourceTree = "<group>"; };
 		0BB8EFEF1FB0A983008C8098 /* RNAccInApp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccInApp.m; sourceTree = "<group>"; };
-		0BEBD77F1FC473C300AD195C /* Accengage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Accengage.framework; sourceTree = "<group>"; };
 		0BF1DCDB1FB9E14000C82CAF /* RNAccPush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccPush.h; sourceTree = "<group>"; };
 		0BF1DCDC1FB9E14000C82CAF /* RNAccPush.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccPush.m; sourceTree = "<group>"; };
 		134814201AA4EA6300B7C361 /* libRNAcc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNAcc.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +53,7 @@
 		87194410219C5F5600E2F6EF /* RNAccDeviceTag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccDeviceTag.m; sourceTree = "<group>"; };
 		8733DE3221A466E0000903EC /* RNAccUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccUtils.h; sourceTree = "<group>"; };
 		8733DE3321A466E0000903EC /* RNAccUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccUtils.m; sourceTree = "<group>"; };
+		877D4A1722A6C2B10097F0AF /* Accengage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Accengage.framework; sourceTree = "<group>"; };
 		87F851E4219ED3190096A6BD /* RNAccStates.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccStates.h; sourceTree = "<group>"; };
 		87F851E5219ED3190096A6BD /* RNAccStates.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccStates.m; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNAcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAcc.h; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BEBD7801FC473C300AD195C /* Accengage.framework in Frameworks */,
+				877D4A1822A6C2B10097F0AF /* Accengage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +104,7 @@
 		0BEBD77E1FC473C300AD195C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0BEBD77F1FC473C300AD195C /* Accengage.framework */,
+				877D4A1722A6C2B10097F0AF /* Accengage.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -166,6 +166,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
