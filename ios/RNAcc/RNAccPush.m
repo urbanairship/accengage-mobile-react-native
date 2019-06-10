@@ -31,6 +31,16 @@ RCT_EXPORT_METHOD(isEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromise
     resolve([NSNumber numberWithInt:[[UIApplication sharedApplication] isRegisteredForRemoteNotifications]]);
 }
 
+RCT_EXPORT_METHOD(setProvisionalEnabled:(BOOL)enabled) {
+    
+    if (enabled) {
+        ACCNotificationOptions options = (ACCNotificationOptionSound|ACCNotificationOptionBadge|ACCNotificationOptionAlert|ACCNotificationOptionCarPlay|ACCAuthorizationOptionProvidesAppNotificationSettings|ACCNotificationOptionProvisional);
+        [[Accengage push] registerForUserNotificationsWithOptions:options];
+    } else {
+        NSLog(@"RNAccPush : setProvisionalEnable to True to set provisional optin.");
+    }
+}
+
 RCT_EXPORT_METHOD(setLocked:(BOOL)enabled) {
     
     [Accengage push].suspended = enabled;

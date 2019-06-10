@@ -6,6 +6,7 @@
 //
 
 #import "RNAccDeviceInfo.h"
+#import "RNAccUtils.h"
 
 @implementation RNAccDeviceInfo
 
@@ -32,7 +33,12 @@ RCT_EXPORT_METHOD(updateDeviceInformation:(NSString*)action
     if ([action isEqualToString:@"set"]) {
         
         if ([value isKindOfClass:[NSString class]]) {
-            [deviceInfo setString:value forKey:key];
+            NSDate *date = [RNAccUtils dateFromString:value];
+            if (date) {
+                [deviceInfo setDate:date forKey:key];
+            } else {
+                [deviceInfo setString:value forKey:key];
+            }
         } else if ([value isKindOfClass:[NSNumber class]]) {
             [deviceInfo setNumber:value forKey:key];
         } else if ([value isKindOfClass:[NSDate class]]) {

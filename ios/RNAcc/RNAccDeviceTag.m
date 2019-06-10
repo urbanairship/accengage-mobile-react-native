@@ -6,6 +6,7 @@
 //
 
 #import "RNAccDeviceTag.h"
+#import "RNAccUtils.h"
 
 @implementation RNAccDeviceTag
 
@@ -27,7 +28,12 @@ RCT_EXPORT_METHOD(setDeviceTag:(NSString*)category identifier:(NSString*)identif
     if (items) {
         [items enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             if ([obj isKindOfClass:[NSString class]]) {
-                [deviceTag setString:obj forKey:key];
+                NSDate *date = [RNAccUtils dateFromString:obj];
+                if (date) {
+                    [deviceTag setDate:date forKey:key];
+                } else {
+                    [deviceTag setString:obj forKey:key];
+                }
             } else if ([obj isKindOfClass:[NSNumber class]]) {
                 [deviceTag setNumber:obj forKey:key];
             } else if ([obj isKindOfClass:[NSDate class]]) {

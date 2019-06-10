@@ -6,6 +6,7 @@
 //
 
 #import "RNAccTracking.h"
+#import "RNAccUtils.h"
 
 @implementation RNAccTracking
 
@@ -92,6 +93,27 @@ RCT_EXPORT_METHOD(trackEvent:(NSUInteger)eventType parameters:(NSDictionary *) p
     
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     [Accengage trackEvent:eventType withParameters:@[jsonString]];
+}
+
+RCT_EXPORT_METHOD(trackCustomEvent:(NSUInteger)eventType withCustomParameters:(NSDictionary *) customParameters) {
+    
+    ACCCustomEventParams *customEventParams = [[ACCCustomEventParams alloc] init];
+    [customParameters enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[NSString class]]) {
+            NSDate *date = [RNAccUtils dateFromString:obj];
+            if (date) {
+                [customEventParams setDate:date forKey:key];
+            } else {
+                [customEventParams setString:obj forKey:key];
+            }
+        } else if ([obj isKindOfClass:[NSNumber class]]) {
+            [customEventParams setNumber:obj forKey:key];
+        } else if ([obj isKindOfClass:[NSDate class]]) {
+            [customEventParams setDate:obj forKey:key];
+        }
+    }];
+    
+    [Accengage trackEvent:eventType withCustomParameters:customEventParams];
 }
 
 @end

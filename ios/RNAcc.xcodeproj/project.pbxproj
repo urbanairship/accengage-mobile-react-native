@@ -16,6 +16,7 @@
 		0BEBD7801FC473C300AD195C /* Accengage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BEBD77F1FC473C300AD195C /* Accengage.framework */; };
 		0BF1DCDD1FB9E14000C82CAF /* RNAccPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1DCDC1FB9E14000C82CAF /* RNAccPush.m */; };
 		87194411219C5F5600E2F6EF /* RNAccDeviceTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 87194410219C5F5600E2F6EF /* RNAccDeviceTag.m */; };
+		8733DE3421A466E0000903EC /* RNAccUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8733DE3321A466E0000903EC /* RNAccUtils.m */; };
 		87F851E6219ED3190096A6BD /* RNAccStates.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F851E5219ED3190096A6BD /* RNAccStates.m */; };
 		B3E7B58A1CC2AC0600A0062D /* RNAcc.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNAcc.m */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,8 @@
 		134814201AA4EA6300B7C361 /* libRNAcc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNAcc.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8719440F219C5F5600E2F6EF /* RNAccDeviceTag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccDeviceTag.h; sourceTree = "<group>"; };
 		87194410219C5F5600E2F6EF /* RNAccDeviceTag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccDeviceTag.m; sourceTree = "<group>"; };
+		8733DE3221A466E0000903EC /* RNAccUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccUtils.h; sourceTree = "<group>"; };
+		8733DE3321A466E0000903EC /* RNAccUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccUtils.m; sourceTree = "<group>"; };
 		87F851E4219ED3190096A6BD /* RNAccStates.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccStates.h; sourceTree = "<group>"; };
 		87F851E5219ED3190096A6BD /* RNAccStates.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccStates.m; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNAcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAcc.h; sourceTree = "<group>"; };
@@ -92,6 +95,8 @@
 				0B75BE041F9F6E7000773A9A /* RNAccStaticLists.m */,
 				0B6A975B1FBD90A6004BD5C4 /* RNAccViews.h */,
 				0B6A975C1FBD90A6004BD5C4 /* RNAccViews.m */,
+				8733DE3221A466E0000903EC /* RNAccUtils.h */,
+				8733DE3321A466E0000903EC /* RNAccUtils.m */,
 			);
 			path = RNAcc;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 				0B6A975D1FBD90A6004BD5C4 /* RNAccViews.m in Sources */,
 				0B9C91A81FA215AD00BF8283 /* RNAccControl.m in Sources */,
 				0B75BE051F9F6E7000773A9A /* RNAccStaticLists.m in Sources */,
+				8733DE3421A466E0000903EC /* RNAccUtils.m in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RNAcc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
