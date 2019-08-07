@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/Accengage/accengage-mobile-react-native.git", :tag => "master" }
   s.source_files  = "RNAcc/**/*.{h,m}"
   s.requires_arc = true
+  s.ios.vendored_frameworks = "Frameworks/Accengage.framework"
+  s.dependency "React"
 
 end
-
-  
