@@ -65,9 +65,8 @@ public class ActionsReceiver extends BroadcastReceiver {
                 for (String extra : extras) {
                     if (extra.equals("a4sid")) {
                         paramsMap.putString("pushID", intent.getExtras().get(extra).toString());
-                    } else {
-                        paramsMap.putString(extra, intent.getExtras().get(extra).toString());
                     }
+                    paramsMap.putString(extra, intent.getExtras().get(extra).toString());
                     msg = "Key: " + extra + " Value: " + intent.getExtras().get(extra);
                     Log.d(TAG, msg);
                 }
