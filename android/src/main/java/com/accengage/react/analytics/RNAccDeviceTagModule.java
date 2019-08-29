@@ -1,6 +1,6 @@
 package com.accengage.react.analytics;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import com.accengage.react.common.Utils;
