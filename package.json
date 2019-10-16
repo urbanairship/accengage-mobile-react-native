@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "start:android": "react-native run-android --root example/",
     "start": "react-native start",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,5 +26,12 @@
     "react-test-renderer": "16.8.6",
     "react": "16.9.0",
     "react-native": "0.60.6"
+  },
+  "devDependencies": {
+    "react-native-button": "^2.4.0",
+    "react-native-checkbox": "^2.0.0",
+    "react-native-datepicker": "^1.7.2",
+    "react-native-gesture-handler": "^1.4.1",
+    "react-navigation": "^4.0.10"
   }
 }

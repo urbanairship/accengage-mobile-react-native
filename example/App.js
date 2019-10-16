@@ -30,7 +30,7 @@ import View2Screen from "./app/components/analytics/View2Screen";
 import PushEventsScreen from "./app/components/push/PushEventsScreen.js";
 import InAppEventsScreen from "./app/components/inapp/InAppEventsScreen.js";
 import ControlScreen from "./app/components/ControlScreen";
-import 'core-js/es6/symbol'; 
+import 'core-js/es6/symbol';
 import 'core-js/fn/symbol/iterator';
 // symbol polyfills
 global.Symbol = require('core-js/es6/symbol');
@@ -40,8 +40,6 @@ require('core-js/fn/symbol/iterator');
 require('core-js/fn/map');
 require('core-js/fn/set');
 require('core-js/fn/array/find');
-
-import * as firebase from 'firebase';
 
 class HomeScreen extends Component {
   static navigationOptions = {
