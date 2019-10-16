@@ -16,15 +16,13 @@
   ],
   "author": "Accengage",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@react-native-community/eslint-config": "^0.0.5",
     "babel-jest": "^24.9.0",
     "eslint": "^6.4.0",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.56.0",
-    "react-test-renderer": "16.8.6"
-  },
-  "dependencies": {
+    "react-test-renderer": "16.8.6",
     "react": "16.9.0",
     "react-native": "0.60.6"
   }
