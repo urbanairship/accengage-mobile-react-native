@@ -16,7 +16,6 @@ import {
 import Button from 'react-native-button';
 import Acc from 'react-native-acc';
 import styles from './../../../Styles';
-import {DeviceTag} from 'react-native-acc';
 
 export default class DeviceTagScreen extends Component {
   static navigationOptions = ({navigation}) => ({
@@ -216,12 +215,12 @@ export default class DeviceTagScreen extends Component {
 	
     _setDeviceTag(category, identifier) {
       console.log(category, identifier);
-      Acc.analytics.deviceTag.setDeviceTag(category, identifier, this.state.dataDict);
+      Acc.setDeviceTag(category, identifier, this.state.dataDict);
       this._initializeAll();
     }
     
     _deleteDeviceTag(category, identifier) {
-      Acc.analytics.deviceTag.deleteDeviceTag(category, identifier);
+      Acc.deleteDeviceTag(category, identifier);
       this._initializeAll();
     }
     

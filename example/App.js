@@ -12,7 +12,8 @@ import {
   DeviceEventEmitter,
   YellowBox
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import Button from 'react-native-button';
 import Acc from 'react-native-acc';
 import styles from './Styles';
@@ -108,17 +109,17 @@ if (Platform.OS === 'android') {
       var customCategories = {"test_react":[
       {id:"1", title:"je participe", foreground:true},
       {id:"2", title:"fermer",foreground:true}]};
-      Acc.push.setCustomCategories(customCategories);
+      Acc.setCustomCategories(customCategories);
     }
 
 
     if (Platform.OS === 'ios') {
-      Acc.control.setOptinDataEnabled(true);
-      Acc.push.setProvisionalEnabled(true);
+      Acc.setOptinDataEnabled(true);
+      Acc.setProvisionalEnabled(true);
     }
 
-    Acc.inapp.setLocked(false);
-    Acc.push.setEnabled(false);
+    Acc.setInAppLocked(false);
+    Acc.setPushEnabled(false);
 
     if (Platform.OS === 'android') {
       requestLocationPermission().then();
@@ -158,7 +159,7 @@ if (Platform.OS === 'android') {
   }
 }
 
-const AccDemoApp = StackNavigator({
+const AccDemoApp = createStackNavigator({
   Home: { screen: HomeScreen },
   Push: {screen: PushScreen},
   InApp: {screen: InAppScreen},
@@ -208,28 +209,31 @@ async function requestLocationPermission() {
   }
 }
 
-export default class App extends React.Component {
-  render() {
-    return <AccDemoApp
-        onNavigationStateChange={(prevState, currentState) => {
-            const currentScreen = getCurrentRouteName(currentState);
-            const prevScreen = getCurrentRouteName(prevState);
 
-            if (prevScreen !== currentScreen) {
-              if (currentScreen === "View1") {
-                Acc.analytics.views.setView(currentScreen);
-              }
-              if (currentScreen === "View2") {
-                Acc.analytics.views.setView(currentScreen);
-              }
-              if (prevScreen === "View1") {
-                Acc.analytics.views.dismissView(prevScreen);
-              }
-              if (prevScreen === "View2") {
-                Acc.analytics.views.dismissView(prevScreen);
-              }
-            }
-        }}/>;
-  }
+export default createAppContainer(AccDemoApp); 
 
-}
+// export default class App extends React.Component {
+//   render() {
+//     return <AccDemoApp
+//         onNavigationStateChange={(prevState, currentState) => {
+//             const currentScreen = getCurrentRouteName(currentState);
+//             const prevScreen = getCurrentRouteName(prevState);
+
+//             if (prevScreen !== currentScreen) {
+//               if (currentScreen === "View1") {
+//                 Acc.setView(currentScreen);
+//               }
+//               if (currentScreen === "View2") {
+//                 Acc.setView(currentScreen);
+//               }
+//               if (prevScreen === "View1") {
+//                 Acc.dismissView(prevScreen);
+//               }
+//               if (prevScreen === "View2") {
+//                 Acc.dismissView(prevScreen);
+//               }
+//             }
+//         }}/>;
+//   }
+
+// }

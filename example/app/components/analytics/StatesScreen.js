@@ -12,7 +12,6 @@ import {
 import Button from 'react-native-button';
 import Acc from 'react-native-acc';
 import styles from './../../../Styles';
-import {States} from 'react-native-acc';
 
 export default class StatesScreen extends Component {
   static navigationOptions = ({navigation}) => ({
@@ -83,7 +82,7 @@ export default class StatesScreen extends Component {
     };
     
     _sendSetStatesAction = () => {
-    	Acc.analytics.states.setState(this.state.name,  this.state.value);
+    	Acc.setState(this.state.name,  this.state.value);
     	this._initializeAll();
     }
     

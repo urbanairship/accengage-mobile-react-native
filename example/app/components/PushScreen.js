@@ -20,7 +20,7 @@ export default class PushScreen extends Component {
       textLockedName : '',
       textToken : '',
     };
-    Acc.push.isLocked().then(locked => {
+    Acc.isPushLocked().then(locked => {
       this.isPushLocked = locked;
       this._updateLockedNames();
     });
