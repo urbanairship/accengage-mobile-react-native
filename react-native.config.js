@@ -1,8 +1,8 @@
-const root = process.cwd();
+const path = process.cwd();
 module.exports = {
   dependencies: {
     'react-native-acc': {
-      root,
+      root: path,
     },
   },
 };

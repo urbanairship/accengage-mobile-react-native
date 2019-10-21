@@ -1,5 +1,5 @@
 'use strict';
 
-module.exports = require('./lib/acc');
+exports.Acc = require('./lib/acc');
 
 
