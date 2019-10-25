@@ -4,6 +4,7 @@
  * @flow
  */
 
+
 import React, { Component } from 'react';
 import { PermissionsAndroid, Platform, Linking } from 'react-native';
 import {
@@ -15,7 +16,7 @@ import {
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Button from 'react-native-button';
-import Acc from 'react-native-acc';
+import { Acc } from 'react-native-acc';
 import styles from './Styles';
 import PushScreen from "./app/components/PushScreen";
 import AnalyticsScreen from "./app/components/AnalyticsScreen";
@@ -59,6 +60,8 @@ class HomeScreen extends Component {
       } else {
         Linking.addEventListener('url', this.handleOpenURL);
       }
+
+
     }
 
     componentWillUnmount() {
@@ -118,12 +121,14 @@ if (Platform.OS === 'android') {
       Acc.setProvisionalEnabled(true);
     }
 
-    Acc.setInAppLocked(false);
-    Acc.setPushEnabled(false);
-
     if (Platform.OS === 'android') {
       requestLocationPermission().then();
     }
+
+
+    console.log(Acc);
+    Acc.setInAppLocked(false);
+    Acc.setPushEnabled(false);
 
   }
 

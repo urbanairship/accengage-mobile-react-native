@@ -2,49 +2,49 @@
 'use strict';
 import { NativeModules, Platform } from 'react-native';
 
-const RNAcc = NativeModules.RNAccModule;
+const RNAccModule = NativeModules.RNAccModule;
 
 //In-app variables
-const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNAcc) : undefined;
+const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNAccModule) : undefined;
 
 ///// Main class of the React Bridge
-class Acc {
+ class Acc {
 
   ///////////////////////
 	//// Push Methods /////
   ///////////////////////
 	setPushEnabled(isEnabled) {
-    	RNAcc.setEnabled(isEnabled);
+    	RNAccModule.setEnabled(isEnabled);
   }
 
 	setCustomCategories(customCategories) {
-  	RNAcc.setCustomCategories(customCategories);
+  	RNAccModule.setCustomCategories(customCategories);
 	}
 
 	isPushEnabled() {
-  	return RNAcc.isEnabled();
+  	return RNAccModule.isEnabled();
 	}
 
 	setProvisionalEnabled(isEnabled) {
-  	RNAcc.setProvisionalEnabled(isEnabled);
+  	RNAccModule.setProvisionalEnabled(isEnabled);
 	}
 
 	setPushLocked(isEnabled) {
-  	RNAcc.setLocked(isEnabled);
+  	RNAccModule.setLocked(isEnabled);
 	}
 
 	isPushLocked() {
-  	return RNAcc.isLocked();
+  	return RNAccModule.isLocked();
 	}
 
 	setToken(token) {
   	if (Platform.OS === 'android') {
-    		RNAcc.setToken(token);
+    		RNAccModule.setToken(token);
   	}
 	}
 
 	getToken() {
-  	return RNAcc.getToken();
+  	return RNAccModule.getToken();
 	}
 
   ///////////////////////
@@ -61,7 +61,7 @@ class Acc {
                 });
         }
         if (Platform.OS === 'android')
-          RNAcc.setDisplayedCallback(callback);
+          RNAccModule.setDisplayedCallback(callback);
     }
 
     setClickedCallback(callback) {
@@ -74,7 +74,7 @@ class Acc {
                 });
         }
         if (Platform.OS === 'android')
-          RNAcc.setClickedCallback(callback);
+          RNAccModule.setClickedCallback(callback);
     }
 
     setClosedCallback(callback) {
@@ -87,15 +87,15 @@ class Acc {
                 });
         }
         if (Platform.OS === 'android')
-          RNAcc.setClosedCallback(callback);
+          RNAccModule.setClosedCallback(callback);
     }
 
     setInAppLocked(isEnabled) {
-      RNAcc.setInAppLocked(isEnabled);
+      RNAccModule.setInAppLocked(isEnabled);
     }
 
     isInAppLocked() {
-        return RNAcc.isInAppLocked();
+        return RNAccModule.isInAppLocked();
     }
 
   ///////////////////////
@@ -103,30 +103,30 @@ class Acc {
   ///////////////////////
 
   setOptinDataEnabled(isEnabled) {
-    RNAcc.setOptinDataEnabled(isEnabled);
+    RNAccModule.setOptinDataEnabled(isEnabled);
   }
 
   setOptinGeolocEnabled(isEnabled) {
-    RNAcc.setOptinGeolocEnabled(isEnabled);
+    RNAccModule.setOptinGeolocEnabled(isEnabled);
   }
   
   isOptinDataEnabled() {
-    return RNAcc.isOptinDataEnabled();
+    return RNAccModule.isOptinDataEnabled();
   }
 
   isOptinGeolocEnabled() {
-    return RNAcc.isOptinGeolocEnabled();
+    return RNAccModule.isOptinGeolocEnabled();
   }
  
   setAllServicesEnabled(isEnabled) {
     if (Platform.OS === 'ios') {
-        RNAcc.setAllServicesEnabled(isEnabled);
+        RNAccModule.setAllServicesEnabled(isEnabled);
     }
   }
 
   areAllServicesEnabled() {
     if (Platform.OS === 'ios') {
-      return RNAcc.areAllServicesEnabled();
+      return RNAccModule.areAllServicesEnabled();
     } else {
       return new Promise(function (resolve) {
         resolve(true);
@@ -136,13 +136,13 @@ class Acc {
 
   setNetworkCallsEnabled(isEnabled) {
     if (Platform.OS === 'ios') {
-      RNAcc.setNetworkCallsEnabled(isEnabled);
+      RNAccModule.setNetworkCallsEnabled(isEnabled);
     }
   }
 
   areNetworkCallsEnabled() {
     if (Platform.OS === 'ios') {
-      return RNAcc.areNetworkCallsEnabled();
+      return RNAccModule.areNetworkCallsEnabled();
     } else {
       return new Promise(function (resolve) {
         resolve(true);
@@ -152,13 +152,13 @@ class Acc {
 
   setGeofenceServiceEnabled(isEnabled) {
     if (Platform.OS === 'ios') {
-      RNAcc.setGeofenceServiceEnabled(isEnabled);
+      RNAccModule.setGeofenceServiceEnabled(isEnabled);
     }
   }
 
   isGeofenceServiceEnabled() {
     if (Platform.OS === 'ios') {
-      return RNAcc.isGeofenceServiceEnabled();
+      return RNAccModule.isGeofenceServiceEnabled();
     }
     if (Platform.OS === 'android') {
       return new Promise(function (resolve) {
@@ -169,13 +169,13 @@ class Acc {
 
   setBeaconServiceEnabled(isEnabled) {
     if (Platform.OS === 'ios') {
-      RNAcc.setBeaconServiceEnabled(isEnabled);
+      RNAccModule.setBeaconServiceEnabled(isEnabled);
     }
   }
 
   isBeaconServiceEnabled() {
     if (Platform.OS === 'ios') {
-      return RNAcc.isBeaconServiceEnabled();
+      return RNAccModule.isBeaconServiceEnabled();
     }
     if (Platform.OS === 'android') {
       return new Promise(function (resolve) {
@@ -189,75 +189,75 @@ class Acc {
   ///////////////////////
 
   updateDeviceInfo(deviceInfo) {
-        RNAcc.updateDeviceInfo(deviceInfo);
+        RNAccModule.updateDeviceInfo(deviceInfo);
   }
     
   updateDeviceInformation(action, key, value) {
-        RNAcc.updateDeviceInformation(action, key, value);
+        RNAccModule.updateDeviceInformation(action, key, value);
   }
 
   setDeviceTag(category, identifier, items) {
-        RNAcc.setDeviceTag(category, identifier, items);
+        RNAccModule.setDeviceTag(category, identifier, items);
   }
     
   deleteDeviceTag(category, identifier) {
-        RNAcc.deleteDeviceTag(category, identifier);
+        RNAccModule.deleteDeviceTag(category, identifier);
   }
 
   setState(name, value) {
       if (Platform.OS === 'ios') {
-          RNAcc.setState(value, name);
+          RNAccModule.setState(value, name);
       } else {
-        RNAcc.setState(name, value);
+        RNAccModule.setState(name, value);
       }
   }
 
   subscribeToLists(lists) {
-        RNAcc.subscribeToLists(lists);
+        RNAccModule.subscribeToLists(lists);
   }
 
   unsubscribeFromLists(lists) {
-      RNAcc.unsubscribeFromLists(lists);
+      RNAccModule.unsubscribeFromLists(lists);
   }
 
   getSubscriptionStatusForLists(lists) {
-      return RNAcc.getSubscriptionStatusForLists(lists);
+      return RNAccModule.getSubscriptionStatusForLists(lists);
   }
 
   getStaticListsSubscribed() {
-      return RNAcc.getStaticListsSubscribed();
+      return RNAccModule.getStaticListsSubscribed();
   }
 
   trackEvent(id, parameters) {
-      RNAcc.trackEvent(id, parameters);
+      RNAccModule.trackEvent(id, parameters);
   }
 
   trackCustomEvent(id, parameters) {
       if (Platform.OS === 'ios') {
-          RNAcc.trackCustomEvent(id, parameters);
+          RNAccModule.trackCustomEvent(id, parameters);
       } else if (Platform.OS === 'android') {
-          RNAcc.trackEvent(id, parameters);
+          RNAccModule.trackEvent(id, parameters);
       }
   }
 
   trackLead(key, value) {
-      RNAcc.trackLead(key, value);
+      RNAccModule.trackLead(key, value);
   }
 
   trackCart(cartId, currency, item) {
-      RNAcc.trackCart(cartId, currency, item);
+      RNAccModule.trackCart(cartId, currency, item);
   }
 
   trackPurchase(purchaseId, currency, price, items) {
-      RNAcc.trackPurchase(purchaseId, currency, price, items);
+      RNAccModule.trackPurchase(purchaseId, currency, price, items);
   }
 
   setView(viewName) {
-      RNAcc.setView(viewName);
+      RNAccModule.setView(viewName);
   }
 
   dismissView(viewName) {
-      RNAcc.dismissView(viewName);
+      RNAccModule.dismissView(viewName);
   }
 
 }
