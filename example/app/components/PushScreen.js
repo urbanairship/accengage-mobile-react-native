@@ -4,7 +4,7 @@ import {
   Text
 } from 'react-native';
 import Button from 'react-native-button';
-import Acc from 'react-native-acc';
+import {Acc} from 'react-native-acc';
 import styles from './../../Styles';
 
 export default class PushScreen extends Component {
@@ -41,17 +41,17 @@ export default class PushScreen extends Component {
 
   _setEnabled() {
     this.isPushEnabled = !this.isPushEnabled;
-    Acc.push.setEnabled(this.isPushEnabled);
+    Acc.setPushEnabled(this.isPushEnabled);
   }
 
   _setLocked() {
     this.isPushLocked = !this.isPushLocked;
-    Acc.push.setLocked(this.isPushLocked);
+    Acc.setPushLocked(this.isPushLocked);
     this._updateLockedNames();
   }
 
   _getToken() {
-    Acc.push.getToken().then(token => {
+    Acc.getToken().then(token => {
       this.setState({textToken : token})
     });
   }

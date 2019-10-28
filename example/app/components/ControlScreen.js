@@ -4,7 +4,7 @@ import {
   Text
 } from 'react-native';
 import Button from 'react-native-button';
-import Acc from 'react-native-acc';
+import {Acc} from 'react-native-acc';
 import styles from './../../Styles';
 
 export default class ControlScreen extends Component {
@@ -28,27 +28,27 @@ export default class ControlScreen extends Component {
       textOptinGeolocEnabledName : '',
       buttonOptinGeolocEnabledName : '',
     };
-    Acc.control.areAllServicesEnabled().then(enabled => {
+    Acc.areAllServicesEnabled().then(enabled => {
       this.allServicesEnabled = enabled;
       this._updateAllServicesEnabledNames();
     });
-    Acc.control.areNetworkCallsEnabled().then(enabled => {
+    Acc.areNetworkCallsEnabled().then(enabled => {
       this.networkCallsEnabled = enabled;
       this._updateNetworkCallsEnabledNames();
     });
-    Acc.control.isGeofenceServiceEnabled().then(enabled => {
+    Acc.isGeofenceServiceEnabled().then(enabled => {
       this.geofenceServiceEnabled = enabled;
       this._updateGeofenceServiceEnabledNames();
     });
-    Acc.control.isBeaconServiceEnabled().then(enabled => {
+    Acc.isBeaconServiceEnabled().then(enabled => {
       this.beaconServiceEnabled = enabled;
       this._updateBeaconServiceEnabledNames();
     });
-    Acc.control.isOptinDataEnabled().then(enabled => {
+    Acc.isOptinDataEnabled().then(enabled => {
       this.optinDataEnabled = enabled;
       this._updateOptinDataEnabledNames();
     });
-    Acc.control.isOptinGeolocEnabled().then(enabled => {
+    Acc.isOptinGeolocEnabled().then(enabled => {
       this.optinGeolocEnabled = enabled;
       this._updateOptinGeolocEnabledNames();
     });
@@ -122,37 +122,37 @@ export default class ControlScreen extends Component {
 
   _setAllServicesEnabled() {
     this.allServicesEnabled = !this.allServicesEnabled;
-    Acc.control.setAllServicesEnabled(this.allServicesEnabled);
+    Acc.setAllServicesEnabled(this.allServicesEnabled);
     this._updateAllServicesEnabledNames();
   }
 
   _setNetworkCallsEnabled() {
     this.networkCallsEnabled = !this.networkCallsEnabled;
-    Acc.control.setNetworkCallsEnabled(this.networkCallsEnabled);
+    Acc.setNetworkCallsEnabled(this.networkCallsEnabled);
     this._updateNetworkCallsEnabledNames();
   }
 
   _setGeofenceServiceEnabled() {
     this.geofenceServiceEnabled = !this.geofenceServiceEnabled;
-    Acc.control.setGeofenceServiceEnabled(this.geofenceServiceEnabled);
+    Acc.setGeofenceServiceEnabled(this.geofenceServiceEnabled);
     this._updateGeofenceServiceEnabledNames();
   }
 
   _setBeaconServiceEnabled() {
     this.beaconServiceEnabled = !this.beaconServiceEnabled;
-    Acc.control.setBeaconServiceEnabled(this.beaconServiceEnabled);
+    Acc.setBeaconServiceEnabled(this.beaconServiceEnabled);
     this._updateBeaconServiceEnabledNames();
   }
 
   _setOptinDataEnabled() {
     this.optinDataEnabled = !this.optinDataEnabled;
-    Acc.control.setOptinDataEnabled(this.optinDataEnabled);
+    Acc.setOptinDataEnabled(this.optinDataEnabled);
     this._updateOptinDataEnabledNames();
   }
 
   _setOptinGeolocEnabled() {
     this.optinGeolocEnabled = !this.optinGeolocEnabled;
-    Acc.control.setOptinGeolocEnabled(this.optinGeolocEnabled);
+    Acc.setOptinGeolocEnabled(this.optinGeolocEnabled);
     this._updateOptinGeolocEnabledNames();
 
   }

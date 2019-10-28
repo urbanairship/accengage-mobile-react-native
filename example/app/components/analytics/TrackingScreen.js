@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 import Button from 'react-native-button';
-import Acc from 'react-native-acc';
+import {Acc} from 'react-native-acc';
 import styles from './../../../Styles';
 
 function trackEvent() {
@@ -14,23 +14,23 @@ function trackEvent() {
     age: 1,
     birthDate : new Date('December 17, 1995 03:24:00') 
   };
-  Acc.analytics.tracking.trackCustomEvent(5001, nikita);
+  Acc.trackCustomEvent(5001, nikita);
 }
 
 function trackLead() {
-  Acc.analytics.tracking.trackLead("mylabel", "123");
+  Acc.trackLead("mylabel", "123");
 }
 
 function trackCart() {
   var item = {id: "07", label: "Reebook", category: "Shoes", price: 39.99, quantity: 3};
-  Acc.analytics.tracking.trackCart("02", "EUR", item);
+  Acc.trackCart("02", "EUR", item);
 }
 
 function trackPurchase() {
   var item1 = {id: "01", label: "Label#1", category: "Cat#1", price: 9.99, quantity: 2};
   var item2 = {id: "02", label: "Label#2", category: "Cat#1", price: 86.78, quantity: 1};
   var item3 = {id: "03", label: "Label#3", category: "Cat#5", price: 40.09, quantity: 1};
-  Acc.analytics.tracking.trackPurchase("03", "EUR", 136.8, [item1, item2, item3]);
+  Acc.trackPurchase("03", "EUR", 136.8, [item1, item2, item3]);
 }
 
 export default class TrackingScreen extends Component {

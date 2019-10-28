@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Button from 'react-native-button';
-import Acc from 'react-native-acc';
+import {Acc} from 'react-native-acc';
 import styles from './../../../Styles';
 
 export default class ListStaticListsScreen extends Component {
@@ -44,7 +44,8 @@ export default class ListStaticListsScreen extends Component {
                 </Button>
                 <FlatList
                   data={this.state.data}
-                  renderItem={({item}) => <Text style={styles.text}>Nom : {item.name + " | ExternalID : " + item.listID + " | Expiration Date : " + Moment.unix(item.expirationDate).format('YYYY-MM-DD')}</Text>}
+                  renderItem={({item}) => <Text style={styles.text}>Nom : 
+                  {item.name + " | ExternalID : " + item.listID + " | Expiration Date : " + Moment.unix(item.expirationDate).format('YYYY-MM-DD')}</Text>}
                 />
             </View>
         );
@@ -56,7 +57,7 @@ export default class ListStaticListsScreen extends Component {
 
     async _getStaticListsSubscribed() {
           try {
-            var data = await Acc.analytics.staticlist.getStaticListsSubscribed();
+            var data = await Acc.getStaticListsSubscribed();
             console.log(data);
             console.log(data[0].name);
             if(data != null) {

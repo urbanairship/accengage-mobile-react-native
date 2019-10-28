@@ -2,7 +2,7 @@
 'use strict';
 import { NativeModules, Platform } from 'react-native';
 
-const RNAccModule = NativeModules.RNAccModule;
+const RNAccModule = NativeModules.RNAcc;
 
 //In-app variables
 const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNAccModule) : undefined;
@@ -14,7 +14,7 @@ const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNA
 	//// Push Methods /////
   ///////////////////////
 	setPushEnabled(isEnabled) {
-    	RNAccModule.setEnabled(isEnabled);
+    	RNAccModule.setPushEnabled(isEnabled);
   }
 
 	setCustomCategories(customCategories) {
@@ -22,7 +22,7 @@ const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNA
 	}
 
 	isPushEnabled() {
-  	return RNAccModule.isEnabled();
+  	return RNAccModule.isPushEnabled();
 	}
 
 	setProvisionalEnabled(isEnabled) {
@@ -30,11 +30,11 @@ const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNA
 	}
 
 	setPushLocked(isEnabled) {
-  	RNAccModule.setLocked(isEnabled);
+  	RNAccModule.setPushLocked(isEnabled);
 	}
 
 	isPushLocked() {
-  	return RNAccModule.isLocked();
+  	return RNAccModule.isPushLocked();
 	}
 
 	setToken(token) {
@@ -51,7 +51,7 @@ const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNA
   //// In-App Methods ///
   ///////////////////////
 
-  setDisplayedCallback(callback) {
+  setInAppDisplayedCallback(callback) {
         if (Platform.OS === 'ios') {
             const subscription = InAppManagerEmitter.addListener(
                 'didInAppDisplay',
@@ -61,10 +61,10 @@ const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNA
                 });
         }
         if (Platform.OS === 'android')
-          RNAccModule.setDisplayedCallback(callback);
+          RNAccModule.setInAppDisplayedCallback(callback);
     }
 
-    setClickedCallback(callback) {
+    setInAppClickedCallback(callback) {
         if (Platform.OS === 'ios') {
             const subscription = InAppManagerEmitter.addListener(
                 'didInAppClick',
@@ -74,10 +74,10 @@ const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNA
                 });
         }
         if (Platform.OS === 'android')
-          RNAccModule.setClickedCallback(callback);
+          RNAccModule.setInAppClickedCallback(callback);
     }
 
-    setClosedCallback(callback) {
+    setInAppClosedCallback(callback) {
         if (Platform.OS === 'ios') {
             const subscription = InAppManagerEmitter.addListener(
                 'didInAppClose',
@@ -87,7 +87,7 @@ const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNA
                 });
         }
         if (Platform.OS === 'android')
-          RNAccModule.setClosedCallback(callback);
+          RNAccModule.setInAppClosedCallback(callback);
     }
 
     setInAppLocked(isEnabled) {
@@ -262,4 +262,4 @@ const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNA
 
 }
 
-module.exports = Acc;
+module.exports = new Acc();

@@ -3,25 +3,25 @@ import {
   View
 } from 'react-native';
 import Button from 'react-native-button';
-import Acc from 'react-native-acc';
+import {Acc} from 'react-native-acc';
 import styles from './../../Styles';
 
 function setInAppDisplayedCallback() {
-  Acc.inapp.setDisplayedCallback(
+  Acc.setInAppDisplayedCallback(
     (inapp) => {
       console.log("setDisplayedCallback inapp: " + JSON.stringify(inapp));
     });
 }
 
 function setInAppClickedCallback() {
-  Acc.inapp.setClickedCallback(
+  Acc.setInAppClickedCallback(
     (inapp) => {
       console.log("setClickedCallback inapp: " + JSON.stringify(inapp));
     });
 }
 
 function setInAppClosedCallback() {
-  Acc.inapp.setClosedCallback(
+  Acc.setInAppClosedCallback(
     (inapp) => {
       console.log("setClosedCallback inapp: " + JSON.stringify(inapp));
     });
@@ -48,7 +48,7 @@ export default class InAppScreen extends Component {
   async _checkInAppLocked() {
     console.log("_checkInAppLocked");
     try {
-      this.isInAppLocked = await Acc.inapp.isLocked();
+      this.isInAppLocked = await Acc.isInAppLocked();
       console.log("_checkInAppLocked OK:" + this.isInAppLocked);
       this._updateButtonIsInAppLockedName();
     } catch (e) {
@@ -58,10 +58,10 @@ export default class InAppScreen extends Component {
 
   _setInAppLocked() {
     if (this.isInAppLocked) {
-      Acc.inapp.setLocked(false);
+      Acc.setInAppLocked(false);
       this.isInAppLocked = false;
     } else {
-      Acc.inapp.setLocked(true);
+      Acc.setInAppLocked(true);
       this.isInAppLocked = true;
     }
     this._updateButtonIsInAppLockedName();

@@ -10,7 +10,7 @@ import {
     View
 } from 'react-native';
 import Button from 'react-native-button';
-import Acc from 'react-native-acc';
+import {Acc} from 'react-native-acc';
 import styles from './../../../Styles';
 
 export default class StatesScreen extends Component {
@@ -27,7 +27,7 @@ export default class StatesScreen extends Component {
   }
   render() {
     const { navigate } = this.props.navigation;
-        return (  
+        return (
         <View style={styles.container}>
           	
           	<ScrollView  contentContainerStyle={styles.scrollcontainer}

@@ -8,7 +8,7 @@ import {
     View
 } from 'react-native';
 import Button from 'react-native-button';
-import Acc from 'react-native-acc';
+import {Acc} from 'react-native-acc';
 import styles from './../../../Styles';
 
 export default class DeviceInfoScreen extends Component {

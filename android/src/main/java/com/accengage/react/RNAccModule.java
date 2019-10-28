@@ -183,7 +183,7 @@ public class RNAccModule extends ReactContextBaseJavaModule {
    ********************************/
 
   @ReactMethod
-  public void setReadyCallback(Callback callback) {
+  public void setInAppReadyCallback(Callback callback) {
     synchronized (this) {
       if (mReadyCallback != null) {
         Log.w(TAG, "Success Ready Callback for InApp messages is replaced by a new one");
@@ -219,7 +219,7 @@ public class RNAccModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void setDisplayedCallback(Callback callback) {
+  public void setInAppDisplayedCallback(Callback callback) {
     synchronized (this) {
       if (mDisplayedCallback != null) {
         Log.w(TAG, "Success Displayed Callback for InApp messages is replaced by a new one");
@@ -255,7 +255,7 @@ public class RNAccModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void setClickedCallback(Callback callback) {
+  public void setInAppClickedCallback(Callback callback) {
     synchronized (this) {
       if (mClickedCallback != null) {
         Log.w(TAG, "Success Clicked Callback for InApp messages is replaced by a new one");
@@ -291,7 +291,7 @@ public class RNAccModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void setClosedCallback(Callback callback) {
+  public void setInAppClosedCallback(Callback callback) {
     synchronized (this) {
       if (mClosedCallback != null) {
         Log.w(TAG, "Success Closed Callback for InApp messages is replaced by a new one");

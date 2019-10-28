@@ -13,7 +13,7 @@ import {
     NativeModules
 } from 'react-native';
 import Button from 'react-native-button';
-import Acc from 'react-native-acc';
+import {Acc} from 'react-native-acc';
 import styles from './../../../Styles';
 
 export default class StaticListsScreen extends Component {
@@ -139,7 +139,7 @@ export default class StaticListsScreen extends Component {
         var lists = [];
         var list = {listId: this.state.idString};
         lists.push(list);
-        var result = await Acc.analytics.staticlist.getSubscriptionStatusForLists(lists);
+        var result = await Acc.getSubscriptionStatusForLists(lists);
         this.setState({
                         resultIdentifier: result[0].listId,
                         resultName: result[0].name,
@@ -157,18 +157,18 @@ export default class StaticListsScreen extends Component {
             if (this.state.switchIsOn) {
                 var list = {listId: this.state.idString, expirationDate: Moment(this.state.date, 'YYYY-MM-DD').unix()};
                 lists.push(list);
-                Acc.analytics.staticlist.subscribeToLists(lists);
+                Acc.subscribeToLists(lists);
             }
             else {
                 var list = {listId: this.state.idString};
                 lists.push(list);
-                Acc.analytics.staticlist.subscribeToLists(lists);
+                Acc.subscribeToLists(lists);
             }
         }
         else if (this.state.index === 1) {
             var list = {listId: this.state.idString};
             lists.push(list);
-            Acc.analytics.staticlist.unsubscribeFromLists(lists);
+            Acc.unsubscribeFromLists(lists);
         }
         else if (this.state.index === 2) {
             var list = {listId: this.state.idString};
