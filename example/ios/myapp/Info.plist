@@ -43,6 +43,8 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>
@@ -52,11 +54,11 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string></string>
 	<key>NSLocationUsageDescription</key>
-	<string></string>
-	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIBackgroundModes</key>
 	<array>
