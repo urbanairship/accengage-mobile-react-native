@@ -21,7 +21,7 @@
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.56.0",
     "react": "16.10.1",
-    "react-native": "0.60.6",
+    "react-native": "0.61.2",
     "react-navigation-stack": "^1.9.4",
     "react-test-renderer": "16.8.6"
   },
