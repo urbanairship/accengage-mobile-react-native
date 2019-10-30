@@ -33,7 +33,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.facebook.react:react-native:+'
-    implementation 'com.ad4screen.sdk:A4SSDK:3.8.6'
+    compile 'com.facebook.react:react-native:+'
+    compile 'com.ad4screen.sdk:A4SSDK:3.8.6'
 }
   
