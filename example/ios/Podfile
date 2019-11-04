@@ -1,6 +1,6 @@
 use_frameworks!
 platform :ios, '9.0'
-#require_relative '../../node_modules/@react-native-community/cli-platform-ios/native_modules'
+require_relative '../../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 target 'myapp' do
   # Pods for RnDiffApp
@@ -35,8 +35,18 @@ target 'myapp' do
   pod 'glog', :podspec => '../../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  #use_native_modules!
+  pod 'RNGestureHandler', :podspec => '../../node_modules/react-native-gesture-handler/RNGestureHandler.podspec'
+
+  target 'myappTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  #use_native_modules!("../..")
 end
+
+
+
 
 target 'myapp-tvOS' do
   # Pods for RnDiffApp-tvOS

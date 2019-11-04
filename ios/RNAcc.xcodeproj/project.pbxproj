@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01B85F4A88844B179A02806F /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DF9F68867F7480388246EDB /* libRNGestureHandler.a */; };
 		0B6A975D1FBD90A6004BD5C4 /* RNAccViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A975C1FBD90A6004BD5C4 /* RNAccViews.m */; };
 		0B75BADC1F9E407200773A9A /* RNAccTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BADB1F9E407200773A9A /* RNAccTracking.m */; };
 		0B75BE051F9F6E7000773A9A /* RNAccStaticLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BE041F9F6E7000773A9A /* RNAccStaticLists.m */; };
@@ -20,6 +21,23 @@
 		87F851E6219ED3190096A6BD /* RNAccStates.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F851E5219ED3190096A6BD /* RNAccStates.m */; };
 		B3E7B58A1CC2AC0600A0062D /* RNAcc.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNAcc.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		76CB033823707435006314C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5D1E10A9542C4010AC0132B8 /* RNGestureHandler.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNGestureHandler;
+		};
+		76CB033A23707435006314C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5D1E10A9542C4010AC0132B8 /* RNGestureHandler.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5C32A36220C603B000FFB8D;
+			remoteInfo = "RNGestureHandler-tvOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
@@ -49,6 +67,7 @@
 		0BF1DCDB1FB9E14000C82CAF /* RNAccPush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccPush.h; sourceTree = "<group>"; };
 		0BF1DCDC1FB9E14000C82CAF /* RNAccPush.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccPush.m; sourceTree = "<group>"; };
 		134814201AA4EA6300B7C361 /* libRNAcc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNAcc.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D1E10A9542C4010AC0132B8 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
 		8719440F219C5F5600E2F6EF /* RNAccDeviceTag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccDeviceTag.h; sourceTree = "<group>"; };
 		87194410219C5F5600E2F6EF /* RNAccDeviceTag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccDeviceTag.m; sourceTree = "<group>"; };
 		8733DE3221A466E0000903EC /* RNAccUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccUtils.h; sourceTree = "<group>"; };
@@ -56,6 +75,7 @@
 		877D4A1722A6C2B10097F0AF /* Accengage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Accengage.framework; sourceTree = "<group>"; };
 		87F851E4219ED3190096A6BD /* RNAccStates.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAccStates.h; sourceTree = "<group>"; };
 		87F851E5219ED3190096A6BD /* RNAccStates.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAccStates.m; sourceTree = "<group>"; };
+		9DF9F68867F7480388246EDB /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNAcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAcc.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNAcc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAcc.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				877D4A1822A6C2B10097F0AF /* Accengage.framework in Frameworks */,
+				01B85F4A88844B179A02806F /* libRNGestureHandler.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,13 +138,40 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		476D17C5C6EE45AE8DB9A6E5 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				5D1E10A9542C4010AC0132B8 /* RNGestureHandler.xcodeproj */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
 				0BEBD77E1FC473C300AD195C /* Frameworks */,
 				0BEBD5DB1FC3465200AD195C /* RNAcc */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				476D17C5C6EE45AE8DB9A6E5 /* Libraries */,
+				76CB033323707434006314C8 /* Recovered References */,
 			);
+			sourceTree = "<group>";
+		};
+		76CB033323707434006314C8 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				9DF9F68867F7480388246EDB /* libRNGestureHandler.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		76CB033423707435006314C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				76CB033923707435006314C8 /* libRNGestureHandler.a */,
+				76CB033B23707435006314C8 /* libRNGestureHandler-tvOS.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,12 +200,12 @@
 		58B511D31A9E6C8500147676 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 830;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					58B511DA1A9E6C8500147676 = {
 						CreatedOnToolsVersion = 6.1.1;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 910;
 					};
 				};
 			};
@@ -172,12 +220,35 @@
 			mainGroup = 58B511D21A9E6C8500147676;
 			productRefGroup = 58B511D21A9E6C8500147676;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 76CB033423707435006314C8 /* Products */;
+					ProjectRef = 5D1E10A9542C4010AC0132B8 /* RNGestureHandler.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				58B511DA1A9E6C8500147676 /* RNAcc */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		76CB033923707435006314C8 /* libRNGestureHandler.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNGestureHandler.a;
+			remoteRef = 76CB033823707435006314C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		76CB033B23707435006314C8 /* libRNGestureHandler-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNGestureHandler-tvOS.a";
+			remoteRef = 76CB033A23707435006314C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
@@ -298,7 +369,10 @@
 					"$(SRCROOT)/../../react-native/React/**",
 				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/RNAcc\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RNAcc;
 				SKIP_INSTALL = YES;
@@ -324,7 +398,10 @@
 					"$(SRCROOT)/../../react-native/React/**",
 				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/RNAcc\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RNAcc;
 				SKIP_INSTALL = YES;

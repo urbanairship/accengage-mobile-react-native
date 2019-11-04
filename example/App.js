@@ -113,10 +113,7 @@ if (Platform.OS === 'android') {
       {id:"1", title:"je participe", foreground:true},
       {id:"2", title:"fermer",foreground:true}]};
       Acc.setCustomCategories(customCategories);
-    }
 
-
-    if (Platform.OS === 'ios') {
       Acc.setOptinDataEnabled(true);
       Acc.setProvisionalEnabled(true);
     }

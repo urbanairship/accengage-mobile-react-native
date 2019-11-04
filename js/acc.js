@@ -1,6 +1,6 @@
 // acc.js
 'use strict';
-import { NativeModules, Platform } from 'react-native';
+import { NativeEventEmitter, NativeModules, Platform } from 'react-native';
 
 const RNAccModule = NativeModules.RNAcc;
 
@@ -13,14 +13,15 @@ const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNA
   ///////////////////////
 	//// Push Methods /////
   ///////////////////////
+  
 	setPushEnabled(isEnabled) {
-    	RNAccModule.setPushEnabled(isEnabled);
+    RNAccModule.setPushEnabled(isEnabled);
   }
-
-	setCustomCategories(customCategories) {
-  	RNAccModule.setCustomCategories(customCategories);
-	}
-
+  
+  setCustomCategories(customCategories) {
+    RNAccModule.setCustomCategories(customCategories);
+   }
+  
 	isPushEnabled() {
   	return RNAccModule.isPushEnabled();
 	}
