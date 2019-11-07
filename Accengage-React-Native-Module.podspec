@@ -4,7 +4,7 @@ require "json"
 
  Pod::Spec.new do |s|
   s.name         = "react-native-acc-Module"
-  s.version      = "2.0"
+  s.version      = package['version']"
   s.summary      = package['description']
   s.author       = package['author']
   s.homepage     = package['homepage']

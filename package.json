@@ -1,7 +1,8 @@
 {
   "name": "react-native-acc",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "Accengage Android and iOS SDKs wrapper for react native",
+  "homepage": "https://github.com/Accengage/accengage-mobile-react-native",
   "main": "./js/index.js",
   "scripts": {
     "start:android": "react-native run-android --root example/",
