@@ -10,7 +10,7 @@ require "json"
   s.homepage     = package['homepage']
   s.license      = package['license']
   s.platform     = :ios, "9.0"
-  s.source       = { :git => "https://github.com/Accengage/accengage-mobile-react-native.git", :tag => ""v#{s.version}"" }
+  s.source       = { :git => "https://github.com/Accengage/accengage-mobile-react-native.git", :tag => "{s.version}" }
   s.source_files  = "ios/**/*.{h,m}"
   s.dependency "React"
  end
