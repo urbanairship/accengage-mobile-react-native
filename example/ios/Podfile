@@ -37,7 +37,7 @@ target 'myapp' do
 
   pod 'RNGestureHandler', :podspec => '../../node_modules/react-native-gesture-handler/RNGestureHandler.podspec'
 
-  pod 'acc', :podspec => '../../Accengage-React-Native-Module.podspec'
+  pod 'Accengage-React-Native-Module', :podspec => '../../Accengage-React-Native-Module.podspec'
 
   #use_native_modules!("../..")
 
