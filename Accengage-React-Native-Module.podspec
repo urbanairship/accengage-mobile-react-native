@@ -13,5 +13,4 @@ require "json"
   s.source       = { :git => "https://github.com/Accengage/accengage-mobile-react-native.git", :tag => "{s.version}" }
   s.source_files  = "ios/**/*.{h,m}"
   s.dependency "React"
-  s.dependency "Accengage-iOS-SDK", "9.0.0"
-end
+ end
