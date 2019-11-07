@@ -1,6 +1,6 @@
 use_frameworks!
 platform :ios, '9.0'
-require_relative '../../node_modules/@react-native-community/cli-platform-ios/native_modules'
+#require_relative '../../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 target 'myapp' do
   # Pods for RnDiffApp
@@ -37,7 +37,9 @@ target 'myapp' do
 
   pod 'RNGestureHandler', :podspec => '../../node_modules/react-native-gesture-handler/RNGestureHandler.podspec'
 
-  use_native_modules!("../..")
+  pod 'acc', :podspec => '../../Accengage-React-Native-Module.podspec'
+
+  #use_native_modules!("../..")
 
   target 'myappTests' do
     inherit! :search_paths
