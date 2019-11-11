@@ -4,7 +4,7 @@ import {
   Text
 } from 'react-native';
 import Button from 'react-native-button';
-import {Acc} from 'react-native-acc';
+import { Acc } from 'react-native-acc';
 import styles from './../../Styles';
 
 export default class PushScreen extends Component {
@@ -16,11 +16,10 @@ export default class PushScreen extends Component {
     super();
     this.state = {
       buttonEnabledName : 'Enable Push Notifications',
-      buttonLockedName : '',
       textLockedName : '',
       textToken : '',
     };
-    Acc.isPushLocked().then(locked => {
+    Acc.push.isLocked().then(locked => {
       this.isPushLocked = locked;
       this._updateLockedNames();
     });
@@ -32,26 +31,24 @@ export default class PushScreen extends Component {
   _updateLockedNames() {
     if (this.isPushLocked) {
       this.setState({textLockedName : 'Push notifications are locked'});
-      this.setState({buttonLockedName : 'Unlock'});
     } else {
       this.setState({textLockedName : 'Push notifications are unlocked'});
-      this.setState({buttonLockedName : 'Lock'});
     }
   }
 
   _setEnabled() {
     this.isPushEnabled = !this.isPushEnabled;
-    Acc.setPushEnabled(this.isPushEnabled);
+    Acc.push.setEnabled(this.isPushEnabled);
   }
 
   _setLocked() {
     this.isPushLocked = !this.isPushLocked;
-    Acc.setPushLocked(this.isPushLocked);
+    Acc.push.setLocked(this.isPushLocked);
     this._updateLockedNames();
   }
 
   _getToken() {
-    Acc.getToken().then(token => {
+    Acc.push.getToken().then(token => {
       this.setState({textToken : token})
     });
   }
@@ -76,11 +73,8 @@ export default class PushScreen extends Component {
           onPress={this._setLocked}
           containerStyle={styles.accbuttoncontainer}
           style={styles.accbutton}>
-          {this.state.buttonLockedName}
-        </Button>
-        <Text style={styles.welcome}>
           {this.state.textLockedName}
-        </Text>
+        </Button>
         <Button
           onPress={this._getToken}
           containerStyle={styles.accbuttoncontainer}

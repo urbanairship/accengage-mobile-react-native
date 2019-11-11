@@ -9,7 +9,7 @@
 
 @implementation RNAccPush
 
-RCT_EXPORT_MODULE()
+RCT_EXPORT_MODULE(RNAcc)
 
 - (dispatch_queue_t)methodQueue {
     

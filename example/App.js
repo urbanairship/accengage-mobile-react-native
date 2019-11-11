@@ -16,7 +16,9 @@ import {
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Button from 'react-native-button';
+
 import { Acc } from 'react-native-acc';
+
 import styles from './Styles';
 import PushScreen from "./app/components/PushScreen";
 import AnalyticsScreen from "./app/components/AnalyticsScreen";
@@ -112,21 +114,20 @@ if (Platform.OS === 'android') {
       var customCategories = {"test_react":[
       {id:"1", title:"je participe", foreground:true},
       {id:"2", title:"fermer",foreground:true}]};
-      Acc.setCustomCategories(customCategories);
+      
+      Acc.push.setCustomCategories(customCategories);
 
-      Acc.setOptinDataEnabled(true);
-      Acc.setProvisionalEnabled(true);
+      Acc.control.setOptinDataEnabled(true);
+      Acc.push.setProvisionalEnabled(true);
     }
 
     if (Platform.OS === 'android') {
       requestLocationPermission().then();
     }
 
-
     console.log(Acc);
-    Acc.setInAppLocked(false);
-    Acc.setPushEnabled(false);
-
+    Acc.inapp.setLocked(false);
+    Acc.push.setEnabled(false);
   }
 
   render() {

@@ -4,7 +4,7 @@ import {
   Text
 } from 'react-native';
 import Button from 'react-native-button';
-import {Acc} from 'react-native-acc';
+import { Acc } from 'react-native-acc';
 import styles from './../../Styles';
 
 export default class ControlScreen extends Component {
@@ -28,27 +28,27 @@ export default class ControlScreen extends Component {
       textOptinGeolocEnabledName : '',
       buttonOptinGeolocEnabledName : '',
     };
-    Acc.areAllServicesEnabled().then(enabled => {
+    Acc.control.areAllServicesEnabled().then(enabled => {
       this.allServicesEnabled = enabled;
       this._updateAllServicesEnabledNames();
     });
-    Acc.areNetworkCallsEnabled().then(enabled => {
+    Acc.control.areNetworkCallsEnabled().then(enabled => {
       this.networkCallsEnabled = enabled;
       this._updateNetworkCallsEnabledNames();
     });
-    Acc.isGeofenceServiceEnabled().then(enabled => {
+    Acc.control.isGeofenceServiceEnabled().then(enabled => {
       this.geofenceServiceEnabled = enabled;
       this._updateGeofenceServiceEnabledNames();
     });
-    Acc.isBeaconServiceEnabled().then(enabled => {
+    Acc.control.isBeaconServiceEnabled().then(enabled => {
       this.beaconServiceEnabled = enabled;
       this._updateBeaconServiceEnabledNames();
     });
-    Acc.isOptinDataEnabled().then(enabled => {
+    Acc.control.isOptinDataEnabled().then(enabled => {
       this.optinDataEnabled = enabled;
       this._updateOptinDataEnabledNames();
     });
-    Acc.isOptinGeolocEnabled().then(enabled => {
+    Acc.control.isOptinGeolocEnabled().then(enabled => {
       this.optinGeolocEnabled = enabled;
       this._updateOptinGeolocEnabledNames();
     });
@@ -122,37 +122,37 @@ export default class ControlScreen extends Component {
 
   _setAllServicesEnabled() {
     this.allServicesEnabled = !this.allServicesEnabled;
-    Acc.setAllServicesEnabled(this.allServicesEnabled);
+    Acc.control.setAllServicesEnabled(this.allServicesEnabled);
     this._updateAllServicesEnabledNames();
   }
 
   _setNetworkCallsEnabled() {
     this.networkCallsEnabled = !this.networkCallsEnabled;
-    Acc.setNetworkCallsEnabled(this.networkCallsEnabled);
+    Acc.control.setNetworkCallsEnabled(this.networkCallsEnabled);
     this._updateNetworkCallsEnabledNames();
   }
 
   _setGeofenceServiceEnabled() {
     this.geofenceServiceEnabled = !this.geofenceServiceEnabled;
-    Acc.setGeofenceServiceEnabled(this.geofenceServiceEnabled);
+    Acc.control.setGeofenceServiceEnabled(this.geofenceServiceEnabled);
     this._updateGeofenceServiceEnabledNames();
   }
 
   _setBeaconServiceEnabled() {
     this.beaconServiceEnabled = !this.beaconServiceEnabled;
-    Acc.setBeaconServiceEnabled(this.beaconServiceEnabled);
+    Acc.control.setBeaconServiceEnabled(this.beaconServiceEnabled);
     this._updateBeaconServiceEnabledNames();
   }
 
   _setOptinDataEnabled() {
     this.optinDataEnabled = !this.optinDataEnabled;
-    Acc.setOptinDataEnabled(this.optinDataEnabled);
+    Acc.control.setOptinDataEnabled(this.optinDataEnabled);
     this._updateOptinDataEnabledNames();
   }
 
   _setOptinGeolocEnabled() {
     this.optinGeolocEnabled = !this.optinGeolocEnabled;
-    Acc.setOptinGeolocEnabled(this.optinGeolocEnabled);
+    Acc.control.setOptinGeolocEnabled(this.optinGeolocEnabled);
     this._updateOptinGeolocEnabledNames();
 
   }
@@ -164,56 +164,38 @@ export default class ControlScreen extends Component {
           onPress={this._setAllServicesEnabled}
           containerStyle={styles.accbuttoncontainer}
           style={styles.accbutton}>
-          {this.state.buttonAllServicesEnabledName}
-        </Button>
-        <Text style={styles.welcome}>
           {this.state.textAllServicesEnabledName}
-        </Text>
+        </Button>
         <Button
           onPress={this._setNetworkCallsEnabled}
           containerStyle={styles.accbuttoncontainer}
           style={styles.accbutton}>
-          {this.state.buttonNetworkCallsEnabledName}
-        </Button>
-        <Text style={styles.welcome}>
           {this.state.textNetworkCallsEnabledName}
-        </Text>
+        </Button>
         <Button
           onPress={this._setGeofenceServiceEnabled}
           containerStyle={styles.accbuttoncontainer}
           style={styles.accbutton}>
-          {this.state.buttonGeofenceServiceEnabledName}
-        </Button>
-        <Text style={styles.welcome}>
           {this.state.textGeofenceServiceEnabledName}
-        </Text>
+        </Button>
         <Button
           onPress={this._setBeaconServiceEnabled}
           containerStyle={styles.accbuttoncontainer}
           style={styles.accbutton}>
-          {this.state.buttonBeaconServiceEnabledName}
-        </Button>
-        <Text style={styles.welcome}>
           {this.state.textBeaconServiceEnabledName}
-        </Text>
+        </Button>
         <Button
           onPress={this._setOptinDataEnabled}
           containerStyle={styles.accbuttoncontainer}
           style={styles.accbutton}>
-          {this.state.buttonOptinDataEnabledName}
-        </Button>
-        <Text style={styles.welcome}>
           {this.state.textOptinDataEnabledName}
-        </Text>
+        </Button>
         <Button
           onPress={this._setOptinGeolocEnabled}
           containerStyle={styles.accbuttoncontainer}
           style={styles.accbutton}>
-          {this.state.buttonOptinGeolocEnabledName}
-        </Button>
-        <Text style={styles.welcome}>
           {this.state.textOptinGeolocEnabledName}
-        </Text>
+        </Button>
       </View>
     );
   }
