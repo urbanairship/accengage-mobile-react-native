@@ -1,9 +1,12 @@
+require "json"
+
+package = JSON.parse(File.read(File.join(__dir__, "../package.json")))
 
 Pod::Spec.new do |s|
 
   s.name         = 'RNAcc'
-  s.version      = "1.0.1"
-  s.summary      = 'Connect with your mobile users via push notifications and in-app messaging thanks to Accengage.'
+  s.version      = package['version']
+  s.summary      = package['description']
   s.description  = <<-DESC
                    Connect with your mobile users via push notifications and in-app messaging thanks to Accengage, the most advanced Mobile CRM Solution available on the market to date.
 
@@ -12,16 +15,16 @@ Pod::Spec.new do |s|
                    Accengage has it all, and more!
                    Much more.
                    DESC
-  s.homepage     = 'https://www.accengage.com/'
+  s.homepage     = package['homepage']
   s.license      = { :type => 'proprietary', :text => <<-LICENSE
                             Copyright 2010 - present Accengage. All rights reserved.
                         LICENSE
                    }
-  s.author       = { 'Accengage' => 'help@accengage.com' }
-  s.platform = :ios
-  s.ios.deployment_target = '8.0'
-  s.source       = { :git => "https://github.com/Accengage/accengage-mobile-react-native.git", :tag => "master" }
-  s.source_files  = "RNAcc/**/*.{h,m}"
+  s.author       = package['author']
+  s.platform     = :ios, "9.0"
+  s.ios.deployment_target = '9.0'
+  s.source       = { :git => "https://github.com/Accengage/accengage-mobile-react-native.git", :tag => s.version }
+  s.source_files  = "RNAcc/*.{h,m}"
   s.requires_arc = true
   s.ios.vendored_frameworks = "Frameworks/Accengage.framework"
   s.dependency "React"
