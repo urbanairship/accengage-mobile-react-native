@@ -25,7 +25,6 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2D4AE188B2D9ED6AF6413714 /* Pods_myapp_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED626306B7894E9E75BF22 /* Pods_myapp_tvOS.framework */; };
 		2DCD954D1E0B4F2C00145EB5 /* myappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* myappTests.m */; };
-		769248A2237036BF00BC7E7F /* Accengage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 769248A1237036BE00BC7E7F /* Accengage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8209D468D1C217F4AE49844F /* Pods_myapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE97245D3E2D8C724EAAEADC /* Pods_myapp.framework */; };
 		A25430391FDAC627008E61CD /* AccengageConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = A25430381FDAC627008E61CD /* AccengageConfig.plist */; };
 		A2CC37321FD6F6A5004E7AC2 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CC37311FD6F6A5004E7AC2 /* NotificationService.m */; };
@@ -360,7 +359,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A2CC37721FD6FC40004E7AC2 /* AccengageExtension.framework in Embed Frameworks */,
-				769248A2237036BF00BC7E7F /* Accengage.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,7 +409,6 @@
 		5E7F17E8EB0F423B452730AE /* Pods-myapp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myapp-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-myapp-tvOSTests/Pods-myapp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6B660FBA6D304177BE119D76 /* libRNAcc.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAcc.a; sourceTree = "<group>"; };
-		769248A1237036BE00BC7E7F /* Accengage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accengage.framework; path = ../../ios/Frameworks/Accengage.framework; sourceTree = "<group>"; };
 		76CB01EE23703965006314C8 /* React.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = React.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7F8D611F9A6A49DFBC492506 /* RNAcc.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAcc.xcodeproj; path = "../node_modules/react-native-acc/ios/RNAcc.xcodeproj"; sourceTree = "<group>"; };
@@ -692,7 +689,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				769248A1237036BE00BC7E7F /* Accengage.framework */,
 				13B07FAE1A68108700A75B9A /* myapp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* myappTests */,
@@ -1465,6 +1461,8 @@
 				"${BUILT_PRODUCTS_DIR}/FBReactNativeSpec/FBReactNativeSpec.framework",
 				"${BUILT_PRODUCTS_DIR}/Folly/folly.framework",
 				"${BUILT_PRODUCTS_DIR}/RCTTypeSafety/RCTTypeSafety.framework",
+				"${PODS_ROOT}/RNAcc/ios/Frameworks/Accengage.framework",
+				"${BUILT_PRODUCTS_DIR}/RNAcc/RNAcc.framework",
 				"${BUILT_PRODUCTS_DIR}/RNGestureHandler/RNGestureHandler.framework",
 				"${BUILT_PRODUCTS_DIR}/React-Core/React.framework",
 				"${BUILT_PRODUCTS_DIR}/React-CoreModules/CoreModules.framework",
@@ -1491,6 +1489,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBReactNativeSpec.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/folly.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTTypeSafety.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Accengage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAcc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNGestureHandler.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreModules.framework",
@@ -1726,6 +1726,7 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myapp.app/myapp";
@@ -1753,6 +1754,7 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myapp.app/myapp";

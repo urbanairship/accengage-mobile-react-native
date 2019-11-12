@@ -37,7 +37,7 @@ target 'myapp' do
 
   pod 'RNGestureHandler', :podspec => '../../node_modules/react-native-gesture-handler/RNGestureHandler.podspec'
 
-  use_native_modules!("../..")
+  pod 'RNAcc', :podspec => '../../RNAcc.podspec'
 
   target 'myappTests' do
     inherit! :search_paths
