@@ -47,20 +47,30 @@ export default StyleSheet.create({
     color: 'white',
     fontSize: 20,
   },
-  disabledButton: {
+    accbutton: {
+    fontSize: 20,
+    color: 'white'
+  },
+  enabledButton: {
+   fontSize: 20,
+    color: 'white',
     margin: 5,
-    padding: 10,
-    height: 45,
+    width: 300,
+    height: 50,
     overflow: 'hidden',
     borderRadius: 4,
-    backgroundColor: 'gray',
-    color: 'white',
-    fontSize: 20,
+    backgroundColor: 'green'
   },
-  accbutton: {
-    fontSize: 20,
+  disabledButton: {
+   fontSize: 20,
     color: 'white',
-  },
+    margin: 5,
+    width: 300,
+    height: 50,
+    overflow: 'hidden',
+    borderRadius: 4,
+    backgroundColor: 'red'
+  },  
   text: {
         marginRight: 10,
         marginBottom: 20,

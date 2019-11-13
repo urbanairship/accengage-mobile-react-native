@@ -16,9 +16,9 @@ export default class PushScreen extends Component {
     super();
     this.state = {
       buttonEnabledName : 'Enable Push Notifications',
-      buttonLockedName : '',
       textLockedName : '',
       textToken : '',
+      arePushLocked : false,
     };
     Acc.isPushLocked().then(locked => {
       this.isPushLocked = locked;
@@ -32,10 +32,10 @@ export default class PushScreen extends Component {
   _updateLockedNames() {
     if (this.isPushLocked) {
       this.setState({textLockedName : 'Push notifications are locked'});
-      this.setState({buttonLockedName : 'Unlock'});
+      this.setState({arePushLocked : true});
     } else {
       this.setState({textLockedName : 'Push notifications are unlocked'});
-      this.setState({buttonLockedName : 'Lock'});
+      this.setState({arePushLocked : false});
     }
   }
 
@@ -74,13 +74,9 @@ export default class PushScreen extends Component {
         </Button>
         <Button
           onPress={this._setLocked}
-          containerStyle={styles.accbuttoncontainer}
-          style={styles.accbutton}>
-          {this.state.buttonLockedName}
-        </Button>
-        <Text style={styles.welcome}>
+          style = { this.state.arePushLocked === true ? styles.disabledButton : styles.enabledButton}>
           {this.state.textLockedName}
-        </Text>
+        </Button>
         <Button
           onPress={this._getToken}
           containerStyle={styles.accbuttoncontainer}
