@@ -41,3 +41,9 @@ local.properties
 buck-out/
 \.buckd/
 *.keystore
+
+example/ios/Pods/
+
+example/ios/Podfile.lock
+
+package-lock.json
