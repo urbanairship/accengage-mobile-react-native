@@ -1,6 +1,6 @@
 // acc.js
 'use strict';
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform, NativeEventEmitter } from 'react-native';
 
 const RNAccModule = NativeModules.RNAcc;
 
