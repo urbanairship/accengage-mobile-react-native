@@ -4,8 +4,9 @@ import { NativeModules, Platform, NativeEventEmitter } from 'react-native';
 
 const RNAccModule = NativeModules.RNAcc;
 
+console.log(NativeModules);
 //In-app variables
-const InAppManagerEmitter = (Platform.OS === 'ios') ? new NativeEventEmitter(RNAccModule) : undefined;
+var InAppManagerEmitter = new NativeEventEmitter(RNAccModule);
 
 ///// Main class of the React Bridge
  class Acc {

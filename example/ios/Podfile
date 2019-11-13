@@ -2,7 +2,6 @@ platform :ios, '9.0'
 require_relative '../../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 target 'myapp' do
-  # Pods for RnDiffApp
   pod 'React', :path => '../../node_modules/react-native/'
   pod 'React-Core', :path => '../../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../../node_modules/react-native/React'
@@ -29,7 +28,8 @@ target 'myapp' do
 
   pod 'RNGestureHandler', :podspec => '../../node_modules/react-native-gesture-handler/RNGestureHandler.podspec'
 
-  pod 'RNAcc', :podspec => '../../ios/RNAcc.podspec'
+  use_native_modules!("../..")
+  #pod 'RNAcc', :podspec => '../../ios/RNAcc.podspec'
 
   target 'myappTests' do
     inherit! :search_paths
@@ -39,7 +39,6 @@ target 'myapp' do
 end
 
 target 'myapp-tvOS' do
-  # Pods for RnDiffApp-tvOS
 
   target 'myapp-tvOSTests' do
     inherit! :search_paths

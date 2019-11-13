@@ -39,7 +39,7 @@ RCT_EXPORT_MODULE()
 
 - (NSArray<NSString *> *)supportedEvents {
     
-    return @[@"didReceiveNotification", @"didClickNotification"];
+    return @[@"didReceiveNotification", @"didClickNotification", @"didInAppClick", @"didInAppDisplay", @"didInAppClose"];
 }
 
 - (id)init {
@@ -305,7 +305,7 @@ RCT_EXPORT_METHOD(setInAppLocked:(BOOL)enabled) {
     [BMA4SInAppNotification setNotificationLock:enabled];
 }
 
-RCT_REMAP_METHOD(isLocked, isLockedWithResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+RCT_REMAP_METHOD(isInAppLocked, isLockedWithResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     
     resolve([NSNumber numberWithInt:[BMA4SInAppNotification notificationLock]]);
 }

@@ -13,32 +13,32 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <React/RCTLinkingManager.h>
-//#import <Accengage/Accengage.h>
+#import <Accengage/Accengage.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    ACCConfiguration *config = [ACCConfiguration defaultConfig];
-//    config.launchOptions = launchOptions;
-//    
-//    BOOL dataOptin = [[[NSUserDefaults standardUserDefaults] valueForKey:@"dataOptinApp"] boolValue];
-//    BOOL geolocOptin = [[[NSUserDefaults standardUserDefaults] valueForKey:@"geolocOptinApp"] boolValue];
-//    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(),^{
-//        [Accengage startWithConfig:config optIn:ACCOptInEnabled];
-//        if (dataOptin) {
-//            [Accengage setDataOptInEnabled:dataOptin];
-//        }
-//        if (geolocOptin) {
-//            [Accengage setGeolocOptInEnabled:geolocOptin];
-//        }
-//        [Accengage setLoggingEnabled:YES];
-//    });
+    ACCConfiguration *config = [ACCConfiguration defaultConfig];
+    config.launchOptions = launchOptions;
+    
+    BOOL dataOptin = [[[NSUserDefaults standardUserDefaults] valueForKey:@"dataOptinApp"] boolValue];
+    BOOL geolocOptin = [[[NSUserDefaults standardUserDefaults] valueForKey:@"geolocOptinApp"] boolValue];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(),^{
+        [Accengage startWithConfig:config optIn:ACCOptInEnabled];
+        if (dataOptin) {
+            [Accengage setDataOptInEnabled:dataOptin];
+        }
+        if (geolocOptin) {
+            [Accengage setGeolocOptInEnabled:geolocOptin];
+        }
+        [Accengage setLoggingEnabled:YES];
+    });
   
     RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
     RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                     moduleName:@"RnDiffApp"
+                                                     moduleName:@"myapp"
                                               initialProperties:nil];
     
     rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];

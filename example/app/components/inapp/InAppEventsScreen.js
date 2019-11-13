@@ -28,7 +28,7 @@ export default class InAppEventsScreen extends Component {
       textIdInApp : '',
       textCustomParams : '',
     };
-    this.pushManagerEmitter = new NativeEventEmitter(NativeModules.RNAccInApp);
+    this.pushManagerEmitter = new NativeEventEmitter(NativeModules.RNAcc);
     this._setDisplay = this._setDisplay.bind(this);
     this._setClick = this._setClick.bind(this);
     this._setClose = this._setClose.bind(this);
