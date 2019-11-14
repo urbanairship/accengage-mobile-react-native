@@ -43,7 +43,7 @@ export default class PushEventsScreen extends Component {
             (reminder) => this.setState({
               textTypeEvent : "Receive",
               textNotifId : reminder.notification.notificationId,
-              textCustomParams : JSON.stringify(reminder.notification.customParams)
+              textCustomParams : JSON.stringify(reminder.notification)
             })
             )
         });
@@ -84,7 +84,7 @@ export default class PushEventsScreen extends Component {
             (reminder) => this.setState({
               textTypeEvent : "Click",
               textNotifId : reminder.notification.notificationId,
-              textCustomParams : JSON.stringify(reminder.notification.customParams)
+              textCustomParams : JSON.stringify(reminder.notification)
             })
           )
         });
