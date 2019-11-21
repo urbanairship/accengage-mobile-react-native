@@ -28,7 +28,6 @@ FOUNDATION_EXPORT const unsigned char AccengageVersionString[];
 /**
  * Old Headers
  */
-#import <Accengage/A4SWebView.h>
 #import <Accengage/BMA4SInAppView.h>
 #import <Accengage/BMA4SInAppMessage.h>
 #import <Accengage/BMA4SInAppNotification.h>
@@ -50,7 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXPORT NSString *const ACCStartMainThreadException;
 
 typedef NS_ENUM(NSUInteger, ACCWebViewTrackingFramework) {
-    ACCUIWebViewFramework,
     ACCWKWebViewFramework
 };
 
@@ -116,7 +114,7 @@ typedef NS_ENUM(NSUInteger, ACCOptIn) {
  *  @return The shared @c ACCUserProfile instance.
  */
 
-+ (ACCUserProfile *)profile;
++ (nullable ACCUserProfile *)profile;
 
 ///-----------------------------------------------------------------------------
 /// @name Lifecycle

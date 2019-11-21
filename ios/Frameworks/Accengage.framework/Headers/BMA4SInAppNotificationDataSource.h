@@ -205,7 +205,7 @@ Here is the list of the required/optional subviews of each message type :
  </tr>
  <tr>
  <td rowspan="8">BMA4SInAppWebMessage</td>
- <td rowspan="8">__Web view__ : <b>UIWebView</b> with tag <i>BMA4SInAppOverlayViewBodyTag</i></td>
+ <td rowspan="8">__Web view__ : <b>WKWebView</b> with tag <i>BMA4SInAppOverlayViewBodyTag</i></td>
  <td>__Close button__ : <b>UIButton</b> with tag <i>BMA4SInAppOverlayViewCloseTag</i></td>
  </tr>
  <tr>
