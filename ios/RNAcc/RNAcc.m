@@ -51,7 +51,7 @@ RCT_EXPORT_MODULE()
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onInAppNotifDidAppear:) name:BMA4SInAppNotification_DidAppear object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onInAppNotifClosed:) name:BMA4S_InAppNotification_Closed object:nil];
         
-           [Accengage push].delegate = self;
+        [Accengage push].delegate = self;
     }
     
     return self;
@@ -62,7 +62,7 @@ RCT_EXPORT_MODULE()
     [self sendEventWithName:@"didReceiveNotification" body:@{@"notification": @{
                                                                      @"notificationId" : notifId,
                                                                      @"customParams" : params
-                                                                     }}];
+    }}];
 }
 
 - (void)didReceiveNotificationWithId:(NSString *)notifId allParameters:(nonnull NSDictionary *)allParams {
@@ -70,7 +70,7 @@ RCT_EXPORT_MODULE()
     [self sendEventWithName:@"didReceiveNotification" body:@{@"notification": @{
                                                                      @"notificationId" : notifId,
                                                                      @"allParams" : allParams
-                                                                     }}];
+    }}];
 }
 
 
@@ -79,14 +79,14 @@ RCT_EXPORT_MODULE()
     [self sendEventWithName:@"didClickNotification" body:@{@"notification": @{
                                                                    @"notificationId" : notifId,
                                                                    @"customParams" : params
-                                                                   }}];
+    }}];
 }
 
 - (void)didOpenNotificationWithId:(NSString *)notifId allParameters:(NSDictionary *)allParams {
     [self sendEventWithName:@"didClickNotification" body:@{@"notification": @{
                                                                    @"notificationId" : notifId,
                                                                    @"allParams" : allParams
-                                                                   }}];
+    }}];
 }
 
 - (void)didClickOnActionWithIdentifier:(NSString *)actionId forRemoteNotificationWithId:(NSString *)notifId notificationParameters:(NSDictionary *)params1 actionParameters:(NSDictionary *)params2 {
@@ -99,7 +99,7 @@ RCT_EXPORT_MODULE()
                                                                    @"notificationId" : notifId,
                                                                    @"actionId" : actionId,
                                                                    @"customParams" : customParams
-                                                                   }}];
+    }}];
 }
 
 - (void)didClickOnActionWithIdentifier:(NSString *)actionId forRemoteNotificationWithId:(NSString *)notifId allNotificationParameters:(NSDictionary *)allParams actionParameters:(NSDictionary *)actionParams {
@@ -112,48 +112,48 @@ RCT_EXPORT_MODULE()
                                                                    @"notificationId" : notifId,
                                                                    @"actionId" : actionId,
                                                                    @"params" : params
-                                                                   }}];
+    }}];
 }
 
 # pragma mark RNAccControl
 
 RCT_EXPORT_METHOD(setAllServicesEnabled:(BOOL)enabled) {
-
+    
     [Accengage suspendAllServices:!enabled];
 }
 
 RCT_EXPORT_METHOD(areAllServicesEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
-
+    
     resolve([NSNumber numberWithInt:![Accengage isSuspended]]);
 }
 
 RCT_EXPORT_METHOD(setNetworkCallsEnabled:(BOOL)enabled) {
-
+    
     [Accengage setNetworkCallsDisabled:!enabled];
 }
 
 RCT_EXPORT_METHOD(areNetworkCallsEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
-
+    
     resolve([NSNumber numberWithInt:![Accengage areNetworkCallsDisabled]]);
 }
 
 RCT_EXPORT_METHOD(setGeofenceServiceEnabled:(BOOL)enabled) {
-
+    
     [BMA4SLocationServices setGeofenceServiceEnabled:enabled];
 }
 
 RCT_EXPORT_METHOD(isGeofenceServiceEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
-
+    
     resolve([NSNumber numberWithInt:[BMA4SLocationServices isGeofenceServiceEnabled]]);
 }
 
 RCT_EXPORT_METHOD(setBeaconServiceEnabled:(BOOL)enabled) {
-
+    
     [BMA4SLocationServices setBeaconServiceEnabled:enabled];
 }
 
 RCT_EXPORT_METHOD(isBeaconServiceEnabled:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
-
+    
     resolve([NSNumber numberWithInt:[BMA4SLocationServices isBeaconServiceEnabled]]);
 }
 
@@ -275,7 +275,7 @@ RCT_EXPORT_METHOD(setState:(NSString *)value forKey:(NSString *)name) {
     if (!name) {
         return;
     }
-
+    
     [Accengage setState:value forKey:name];
 }
 
@@ -314,10 +314,10 @@ RCT_REMAP_METHOD(isInAppLocked, isLockedWithResolver:(RCTPromiseResolveBlock)res
 - (NSDictionary *) createJavasriptInAppObject:(NSNotification *)notif {
     
     NSDictionary *inAppObject = @{
-                                  @"messageId" : @"",
-                                  @"displayTemplate" : @"",
-                                  @"displayParams" : @{},
-                                  @"customParams" : notif.userInfo
+        @"messageId" : @"",
+        @"displayTemplate" : @"",
+        @"displayParams" : @{},
+        @"customParams" : notif.userInfo
     };
     return inAppObject;
 }
@@ -529,7 +529,7 @@ RCT_EXPORT_METHOD(unsubscribeFromLists:(NSArray *)lists) {
 }
 
 RCT_EXPORT_METHOD(getListOfSubscriptions:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject) {
+                  rejecter:(RCTPromiseRejectBlock)reject) {
     
     [Accengage listOfSubscriptions:^(NSArray<ACCList *> * _Nullable result, NSError * _Nullable error) {
         if (!error)
@@ -593,7 +593,7 @@ RCT_EXPORT_METHOD(getSubscriptionStatusForLists:(NSArray *)lists
 - (NSString *)subscriptionStatusToString:(ACCListSubscriptionStatus)subscriptionStatus {
     
     NSString *result = nil;
-
+    
     switch(subscriptionStatus) {
         case ACCListSubscriptionStatusUnknown:
             result = @"Unknown";
