@@ -216,29 +216,3 @@ async function requestLocationPermission() {
 
 
 export default createAppContainer(AccDemoApp); 
-
-// export default class App extends React.Component {
-//   render() {
-//     return <AccDemoApp
-//         onNavigationStateChange={(prevState, currentState) => {
-//             const currentScreen = getCurrentRouteName(currentState);
-//             const prevScreen = getCurrentRouteName(prevState);
-
-//             if (prevScreen !== currentScreen) {
-//               if (currentScreen === "View1") {
-//                 Acc.setView(currentScreen);
-//               }
-//               if (currentScreen === "View2") {
-//                 Acc.setView(currentScreen);
-//               }
-//               if (prevScreen === "View1") {
-//                 Acc.dismissView(prevScreen);
-//               }
-//               if (prevScreen === "View2") {
-//                 Acc.dismissView(prevScreen);
-//               }
-//             }
-//         }}/>;
-//   }
-
-// }
