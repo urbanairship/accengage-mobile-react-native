@@ -164,7 +164,7 @@ if (Platform.OS === 'android') {
   }
 }
 
-const AccDemoApp = createStackNavigator({
+const AccDemoApp = createAppContainer(createStackNavigator({
   Home: { screen: HomeScreen },
   Push: {screen: PushScreen},
   InApp: {screen: InAppScreen},
@@ -180,7 +180,7 @@ const AccDemoApp = createStackNavigator({
   PushEvents: {screen: PushEventsScreen},
   InAppEvents: {screen: InAppEventsScreen},
   Control: {screen: ControlScreen},
-});
+}));
 
 function getCurrentRouteName(navigationState) {
     if (!navigationState) {
@@ -214,5 +214,27 @@ async function requestLocationPermission() {
   }
 }
 
+export default class App extends React.Component {
+  render() {
+    return <AccDemoApp
+        onNavigationStateChange={(prevState, currentState) => {
+            const currentScreen = getCurrentRouteName(currentState);
+            const prevScreen = getCurrentRouteName(prevState);
 
-export default createAppContainer(AccDemoApp); 
+            if (prevScreen !== currentScreen) {
+              if (currentScreen === "View1") {
+                Acc.setView(currentScreen);
+              }
+              if (currentScreen === "View2") {
+                Acc.setView(currentScreen);
+              }
+              if (prevScreen === "View1") {
+                Acc.dismissView(prevScreen);
+              }
+              if (prevScreen === "View2") {
+                Acc.dismissView(prevScreen);
+              }
+            }
+        }}/>;
+  }
+}
