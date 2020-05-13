@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">myapp</string>
+
+    <string name="acc_partner_id">accengage3d7241436398f62</string>
+    <string name="acc_private_key">da3a1ac770bd27b330cdf5e8b31272e0f11e3e5f</string>
+    <!--<string name="acc_firebase_app_id">1:157858390165:android:f16df9f4b1a129b4</string>-->
+    <!--<string name="acc_ids_provider">com.accengage.internal.sample.MyA4SIDProvider</string>-->
+    <!--<string name="acc_no_geoloc">false</string>-->
+    <!--<string name="acc_advertiser_id">true</string>-->
+    <!--<string name="acc_debuggable">false</string>-->
+    <!--<string name="acc_usbstorage">false</string>-->
+    <string name="acc_logging">true,no-toast</string>
+    <!--<string name="acc_unsecure_push">true</string>-->
+    <!--<string name="acc_notification_icon">ic_action_search</string>-->
+    <!--<string name="acc_notification_accent_color">#ff0000ff</string>-->
+
+</resources>
