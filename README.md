@@ -1,6 +1,6 @@
-:warning: Note that all Accengage repos will move to Airship's github organisation. We set a redirection on the new links so you don't have to change anything.
-If you notice something wrong, do hesitate to contact our customer support team.
-This repo will be found now at: https://github.com/urbanairship/accengage-mobile-react-native
+:warning: Note that all Accengage repos move to [Airship's github organisation](https://github.com/urbanairship). We set a redirection on the old links so you don't have to change anything.
+If you notice something wrong, do not hesitate to contact our customer support team.
+This repo will be found at: https://github.com/urbanairship/accengage-mobile-react-native
 
 # react-native-acc
 React-native module wrapping [Android](https://documentation.accengage.com/sdk/android/4.1/) and [iOS](https://documentation.accengage.com/sdk/ios/7.1/) Accengage native SDKs.
